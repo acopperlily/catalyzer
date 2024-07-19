@@ -155,6 +155,13 @@ a {
     margin-bottom: 1em;
   }
 
+  &__facts {
+    margin-top: 1.5em;
+    margin-bottom: 1em;
+    display: flex;
+    gap: 4rem;
+  }
+
   &__wrapper {
     font-size: clamp(0.5rem, 0.5rem + 1vmin, 0.9rem);
     margin-bottom: 0.5em;

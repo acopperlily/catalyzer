@@ -1,4 +1,4 @@
-import socialInfo from '../utils/socialInfo.ts';
+import socialInfo from '../data/socialInfo.ts';
 
 const Footer = () => {
   return (

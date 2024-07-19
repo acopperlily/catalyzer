@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import Pele from '../assets/pele.jpg';
-import { neutralNames, femaleNames, maleNames } from '../utils/names';
-import { neutralTitles, femaleTitles, maleTitles } from '../utils/titles';
+import { neutralNames, femaleNames, maleNames } from '../data/names';
+import { neutralTitles, femaleTitles, maleTitles } from '../data/titles';
+import { likesArr, dislikesArr } from '../data/activities';
 
 const MainLogic = () => {
   const [name, setName] = useState<string>('Pele');
@@ -9,6 +10,18 @@ const MainLogic = () => {
   const [breed, setBreed] = useState<string>('Domestic Semifloof');
   const [gender, setGender] = useState<string>('f');
   const [title, setTitle] = useState<string>('Princess');
+  const [likes, setLikes] = useState<string[]>(['playing roly poly', 'catching sky raisins', 'making biscuits']);
+  const [dislikes, setDislikes] = useState<string[]>(['broccoli', 'fridge buzz', "Schrodinger's Cat"]);
+
+  const formatActivities = (arr: string[], conj: string): string => {
+    if (arr.length === 2) return `${arr[0]} ${conj} ${arr[1]}`;
+
+    // Oxford comma, bitch
+    return `${arr.slice(0, -1).join(', ')}, ${conj} ${arr.slice(-1)}`;
+  }
+
+  const formattedLikes = formatActivities(likes, 'and');
+  const formattedDislikes = formatActivities(dislikes, 'or');
 
   const getRandomNumber = (n: number): number => {
     return Math.floor(Math.random() * n);
@@ -59,6 +72,24 @@ const MainLogic = () => {
     return name + neutralNames[nameIndex];
   };
 
+  const getActivities = (arr: string[]): string[] => {
+    let activities: string[] = [];
+    const len = arr.length;
+    for (let i = 0; i < 3; i++) {
+      let index = getRandomNumber(len);
+      console.log('index:', index)
+      activities.push(arr[index]);
+    }
+    let activitySet = new Set(activities);
+    console.log('activity set:', activitySet);
+    if (activitySet.size < 2) {
+      getActivities(arr);
+    }
+    activities = [...activitySet];
+    console.log(activities)
+    return activities;
+  }
+
   const handleClick = (): void => {
     // We add one so age isn't 0
     setAge(getRandomNumber(25) + 1);
@@ -69,6 +100,10 @@ const MainLogic = () => {
 
     let newName = getName(gender);
     setName(newName);
+    let newLikes: string[] = getActivities(likesArr);
+    setLikes(newLikes);
+    let newDislikes: string[] = getActivities(dislikesArr);
+    setDislikes(newDislikes);
     console.log(newName)
   }
 
@@ -87,22 +122,22 @@ const MainLogic = () => {
         <p className="info__sub">Meet your cattastic companion. A feline friend. The purrfect pal.</p>
         <p className="info__sub">Want another? Go on and boop that big silly button.</p>
 
-        <div className="info__wrapper">
-          <span className="info__label">Name</span>
-          <p className="info__text">{title} {name}</p>
+        <div className="info__facts">
+          <div className="info__wrapper">
+            <span className="info__label">Name</span>
+            <p className="info__text">{title} {name}</p>
+          </div>
+          <div className="info__wrapper">
+            <span className="info__label">Age</span>
+            <p className="info__text">{age}</p>
+          </div>
+          <div className="info__wrapper">
+            <span className="info__label">Breed</span>
+            <p className="info__text">{breed}</p>
+          </div>
         </div>
 
-        <div className="info__wrapper">
-          <span className="info__label">Age</span>
-          <p className="info__text">{age}</p>
-        </div>
-
-        <div className="info__wrapper">
-          <span className="info__label">Breed</span>
-          <p className="info__text">{breed}</p>
-        </div>
-
-        <p className="info__text">{`Hi, my name is ${name} and I'm ${age % 10 === 8 ? 'an' : 'a' } ${age}-year-old ${breed}.` }
+        <p className="info__text">{`Hi, my name is ${name} and I'm ${(age % 10 === 8 || age === 11) ? 'an' : 'a' } ${age}-year-old ${breed}. I like ${formattedLikes}. I do not like ${formattedDislikes}.` }
 
         </p>
 
