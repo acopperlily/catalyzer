@@ -3,6 +3,7 @@ import Pele from '../assets/pele.jpg';
 import { neutralNames, femaleNames, maleNames } from '../data/names';
 import { neutralTitles, femaleTitles, maleTitles } from '../data/titles';
 import { likesArr, dislikesArr } from '../data/activities';
+import { likeVerbs, dislikeVerbs } from '../data/verbs';
 
 const MainLogic = () => {
   const [name, setName] = useState<string>('Pele');
@@ -12,6 +13,8 @@ const MainLogic = () => {
   const [title, setTitle] = useState<string>('Princess');
   const [likes, setLikes] = useState<string[]>(['playing roly poly', 'catching sky raisins', 'making biscuits']);
   const [dislikes, setDislikes] = useState<string[]>(['broccoli', 'fridge buzz', "Schrodinger's Cat"]);
+  const [likePhrase, setLikePhrase] = useState<string>('I love');
+  const [dislikePhrase, setDislikePhrase] = useState<string>("I don't like");
 
   const formatActivities = (arr: string[], conj: string): string => {
     if (arr.length === 2) return `${arr[0]} ${conj} ${arr[1]}`;
@@ -104,6 +107,10 @@ const MainLogic = () => {
     setLikes(newLikes);
     let newDislikes: string[] = getActivities(dislikesArr);
     setDislikes(newDislikes);
+    let newLikePhrase = getRandomNumber(likeVerbs.length);
+    setLikePhrase(likeVerbs[newLikePhrase]);
+    let newDislikePhrase = getRandomNumber(dislikeVerbs.length);
+    setDislikePhrase(dislikeVerbs[newDislikePhrase]);
     console.log(newName)
   }
 
@@ -137,7 +144,7 @@ const MainLogic = () => {
           </div>
         </div>
 
-        <p className="info__text">{`Hi, my name is ${name} and I'm ${(age % 10 === 8 || age === 11) ? 'an' : 'a' } ${age}-year-old ${breed}. I like ${formattedLikes}. I do not like ${formattedDislikes}.` }
+        <p className="info__text">{`Hi, my name is ${name} and I'm ${(age % 10 === 8 || age === 11) ? 'an' : 'a' } ${age}-year-old ${breed}. ${likePhrase} ${formattedLikes}. ${dislikePhrase} ${formattedDislikes}.` }
 
         </p>
 
