@@ -29,7 +29,6 @@ const dislikeVerbs: string[] = [
   "I'm not fond of",
   "I am not fond of",
   "I do not enjoy",
-  "I'm not interested in"
 ];
 
 export { likeVerbs, dislikeVerbs };

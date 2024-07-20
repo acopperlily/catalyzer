@@ -4,6 +4,7 @@ import { neutralNames, femaleNames, maleNames } from '../data/names';
 import { neutralTitles, femaleTitles, maleTitles } from '../data/titles';
 import { likesArr, dislikesArr } from '../data/activities';
 import { likeVerbs, dislikeVerbs } from '../data/verbs';
+import { surnames, neutralSuffixes, maleSuffixes } from '../data/surnames';
 
 const MainLogic = () => {
   const [name, setName] = useState<string>('Pele');
@@ -11,6 +12,7 @@ const MainLogic = () => {
   const [breed, setBreed] = useState<string>('Domestic Semifloof');
   const [gender, setGender] = useState<string>('f');
   const [title, setTitle] = useState<string>('Princess');
+  const [surname, setSurname] = useState<string>('of House Chonk');
   const [likes, setLikes] = useState<string[]>(['playing roly poly', 'catching sky raisins', 'making biscuits']);
   const [dislikes, setDislikes] = useState<string[]>(['broccoli', 'fridge buzz', "Schrodinger's Cat"]);
   const [likePhrase, setLikePhrase] = useState<string>('I love');
@@ -75,6 +77,17 @@ const MainLogic = () => {
     return name + neutralNames[nameIndex];
   };
 
+  const getSurname = (): string => {
+    let diceRoll = getRandomNumber(2);
+    let index: number;
+    if (diceRoll === 0) {
+      index = getRandomNumber(surnames.length);
+      return `of ${surnames[index]}`;
+    }
+    index = getRandomNumber(neutralSuffixes.length);
+    return `the ${neutralSuffixes[index]}`;
+  };
+
   const getActivities = (arr: string[]): string[] => {
     let activities: string[] = [];
     const len = arr.length;
@@ -111,6 +124,7 @@ const MainLogic = () => {
     setLikePhrase(likeVerbs[newLikePhrase]);
     let newDislikePhrase = getRandomNumber(dislikeVerbs.length);
     setDislikePhrase(dislikeVerbs[newDislikePhrase]);
+    setSurname(getSurname);
     console.log(newName)
   }
 
@@ -132,7 +146,7 @@ const MainLogic = () => {
         <div className="info__facts">
           <div className="info__wrapper">
             <span className="info__label">Name</span>
-            <p className="info__text">{title} {name}</p>
+            <p className="info__text">{title} {name} {surname}</p>
           </div>
           <div className="info__wrapper">
             <span className="info__label">Age</span>
