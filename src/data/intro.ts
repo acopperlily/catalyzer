@@ -1,0 +1,30 @@
+const intros: string[] = [
+  "Hi, my name is",
+  "Hi, I'm",
+  "Hi! My name is",
+  "Hi! I'm",
+  "Hello, my name is",
+  "Hello! My name is",
+  "Hey, I'm",
+  "Hey, my name is",
+  "Hey there! I'm",
+  "Hey there! My name is",
+  "Hola, me llamo",
+  "¡Hola! Me llamo",
+  "Hola, soy",
+  "¡Hola! Soy",
+  "Ayyy, they call me",
+  "Ayyy, you can call me",
+  "Greetings! I am",
+  "Greetings, I am",
+  "Greetings and salutations. My name is",
+  "Greetings and salutations. I am",
+  "Whaddup? I'm",
+  "Whaddup? My name is",
+  "'Sup? I'm",
+  "'Sup? My name is",
+  "Howdy! I'm",
+  "Howdy! My name is"
+];
+
+export default intros;

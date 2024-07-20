@@ -99,13 +99,14 @@ a {
 }
 
 .main__container {
-  border: 1px solid green;
+  // border: 1px solid green;
   max-width: min(95%, 80em);
   margin-inline: auto;
   display: flex;
   flex-direction: column;
-  // justify-content: center;
-  // align-items: center;
+  justify-content: space-around;
+  align-items: center;
+  gap: 2rem;
 
   @media (orientation: landscape) and (min-width: 35em) {
     flex-direction: row;
@@ -131,6 +132,8 @@ a {
 }
 
 .info {
+  padding: 1em;
+  max-width: 40em;
 
   &__title {
     color: transparent;
@@ -156,15 +159,15 @@ a {
   }
 
   &__facts {
-    margin-top: 1.5em;
-    margin-bottom: 1em;
+    margin-top: 2em;
+    margin-bottom: 0.8em;
     display: flex;
     gap: 4rem;
   }
 
   &__wrapper {
     font-size: clamp(0.5rem, 0.5rem + 1vmin, 0.9rem);
-    margin-bottom: 0.5em;
+    margin-bottom: 1em;
     // display: flex;
     // gap: 0.5rem;
   }
@@ -173,6 +176,7 @@ a {
     font-family: $ff-heading;
     // font-size: clamp(0.4rem, 0.4rem + 1vmin, 0.8rem);
     font-weight: 600;
+    // letter-spacing: $letter-spacing;
     text-transform: uppercase;
     color: $color-med;
   }
@@ -180,9 +184,35 @@ a {
   &__text {
     color: $color-black;
     // font-size: clamp(0.4rem, 0.4rem + 1vmin, 0.8rem);
-    // font-family: $ff-body;
-    font-weight: 500;
+    // font-family: $ff-heading;
+    font-weight: 600;
+    letter-spacing: $letter-spacing;
   }
+
+  &__para {
+    margin-bottom: 3em;
+    // color: $color-black;
+    font-family: $ff-heading;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.3;
+    // letter-spacing: $letter-spacing;
+
+    &::first-letter {
+      float: left;
+      // border: 1px dotted $color-dark;
+      // padding-right: 0.5rem;
+      padding-right: 0.9rem;
+      color: $color-med;
+      font-family: 'Berkshire Swash', cursive;
+      // font-family: $ff-heading;
+      font-style: italic;
+      // font-weight: 700;
+      font-size: 2.5rem;
+      // line-height: 1;
+    }
+  }
+
 }
 
 .button {

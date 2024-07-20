@@ -5,6 +5,7 @@ import { neutralTitles, femaleTitles, maleTitles } from '../data/titles';
 import { likesArr, dislikesArr } from '../data/activities';
 import { likeVerbs, dislikeVerbs } from '../data/verbs';
 import { surnames, neutralSuffixes, maleSuffixes } from '../data/surnames';
+import intros from '../data/intro';
 
 const MainLogic = () => {
   const [name, setName] = useState<string>('Pele');
@@ -13,6 +14,7 @@ const MainLogic = () => {
   const [gender, setGender] = useState<string>('f');
   const [title, setTitle] = useState<string>('Princess');
   const [surname, setSurname] = useState<string>('of House Chonk');
+  const [intro, setIntro] = useState<string>('Hey, my name is');
   const [likes, setLikes] = useState<string[]>(['playing roly poly', 'catching sky raisins', 'making biscuits']);
   const [dislikes, setDislikes] = useState<string[]>(['broccoli', 'fridge buzz', "Schrodinger's Cat"]);
   const [likePhrase, setLikePhrase] = useState<string>('I love');
@@ -125,6 +127,8 @@ const MainLogic = () => {
     let newDislikePhrase = getRandomNumber(dislikeVerbs.length);
     setDislikePhrase(dislikeVerbs[newDislikePhrase]);
     setSurname(getSurname);
+    let newIntro: number = getRandomNumber(intros.length);
+    setIntro(intros[newIntro]);
     console.log(newName)
   }
 
@@ -158,7 +162,7 @@ const MainLogic = () => {
           </div>
         </div>
 
-        <p className="info__text">{`Hi, my name is ${name} and I'm ${(age % 10 === 8 || age === 11) ? 'an' : 'a' } ${age}-year-old ${breed}. ${likePhrase} ${formattedLikes}. ${dislikePhrase} ${formattedDislikes}.` }
+        <p className="info__para">{`${intro} ${name}, and I'm ${(age % 10 === 8 || age === 11) ? 'an' : 'a' } ${age}-year-old ${breed}. ${likePhrase} ${formattedLikes}. ${dislikePhrase} ${formattedDislikes}.` }
 
         </p>
 
