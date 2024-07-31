@@ -47,8 +47,6 @@ const femaleTitles: string[] = [
   "Dame",
   "Duchess",
   "Empress",
-  "Frau",
-  "Fräulein",
   "Grand Duchess",
   "Grandma",
   "Granny",
@@ -72,7 +70,7 @@ const femaleTitles: string[] = [
   "Señorita",
   "Sister",
   "Tsarina",
-  "Vicountess"
+  "Viscountess"
 ];
 
 const maleTitles: string[] = [
@@ -94,7 +92,6 @@ const maleTitles: string[] = [
   "Grampaw",
   "Grand Duke",
   "Grand Master",
-  "Herr",
   "His Grace",
   "His Imperial Majesty",
   "His Lordship",

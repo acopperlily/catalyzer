@@ -24,7 +24,8 @@ const intros: string[] = [
   "'Sup? I'm",
   "'Sup? My name is",
   "Howdy! I'm",
-  "Howdy! My name is"
+  "Howdy! My name is",
+  "I go by many names, but you can call me"
 ];
 
 export default intros;
