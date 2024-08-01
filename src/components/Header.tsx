@@ -1,3 +1,4 @@
+/// <reference types="vite-plugin-svgr/client" />
 import Info from '../assets/icons/info-circle.svg?react'; 
 
 type HeaderProps = {

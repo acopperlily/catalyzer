@@ -109,7 +109,7 @@ a {
 
 .main__container {
   // border: 1px solid green;
-  padding-top: clamp(1em, 1em + 1vw, 2em);
+  padding-top: clamp(1em, 1em + 1vmin, 4em);
   max-width: min(95%, 80em);
   margin-inline: auto;
   display: flex;
@@ -117,8 +117,8 @@ a {
   // justify-content: space-around;
   align-items: center;
   // gap: 2rem;
-  row-gap: clamp(2em, 1em + 2vmin, 4em);
-  column-gap: clamp(2em, 1em + 1vmin, 10em);
+  row-gap: clamp(1em, 1em + 2vmin, 4em);
+  column-gap: clamp(4em, 4em + 1vmin, 8em);
 
   @media (orientation: landscape) and (min-width: 70em) {
     flex-direction: row;
@@ -279,10 +279,28 @@ a {
   align-items: center;
 
   &__daterange {
-    padding-right: 0.8rem;
+    margin-right: 0.8em;
+    // border: 1px solid white;
   }
 
   &__links {
+    // border: 1px dotted white;
     margin-left: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: clamp(0.4em, 0.4em + 1vmin, 0.6em);
+  }
+
+  &__icon {
+    fill: $color-light;
+    margin-top: 0.2em;
+    // padding-left: 0.6em;
+    // width: clamp(1rem, 1rem + 1vmin, 2rem);
+    width: clamp(0.6rem, 0.6rem + 1vw, 1.1rem);
+    height: clamp(0.6rem, 0.6rem + 1vw, 1.1rem);
+    // aspect-ratio: 1/1;
+    // height: clamp(1rem, 1rem + 1vmin, 2rem);
+    // font-size: 5rem;
   }
 }

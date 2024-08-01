@@ -1,6 +1,18 @@
+/// <reference types="vite-plugin-svgr/client" />
 import socialInfo from '../data/socialInfo.ts';
+import Twitter from '../assets/icons/twitter.svg?react';
+import GitHub from '../assets/icons/github.svg?react';
+import LinkedIn from '../assets/icons/linkedin.svg?react';
 
 const Footer = () => {
+
+  // This made red squigglies go away
+  const mapIcons: Record<string, JSX.Element> = {
+    twitter: <Twitter className='footer__icon' />,
+    github: <GitHub className='footer__icon' />,
+    linkedin: <LinkedIn className='footer__icon' />
+  };
+
   return (
     <footer className="footer">
       <span className="footer__daterange">
@@ -20,7 +32,12 @@ const Footer = () => {
 
       <div className="footer__links">
         {socialInfo.map((social, i) => (
-          <a key={i} href={social.link}>{social.icon}</a>
+          <a 
+            key={i} 
+            href={social.link}
+          >
+            {mapIcons[social.icon]}
+          </a>
         ))}
       </div>
       
