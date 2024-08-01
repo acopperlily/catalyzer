@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Pele from '/pele.jpg';
 import { neutralNames, femaleNames, maleNames } from '../data/names';
 import { neutralTitles, femaleTitles, maleTitles } from '../data/titles';
@@ -173,6 +173,7 @@ const MainLogic = () => {
     const newOutro: number = getRandomNumber(len.outros);
     setOutro(outros[newOutro]);
     console.log(newName)
+    setBreed('Domestic Semifloof');
   }
 
   return (
