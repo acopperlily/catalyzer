@@ -46,7 +46,15 @@ const outros: string[] = [
   "Brawndo's got what plants crave.",
   "Power resides where men believe it resides. It's a trick. A shadow on the wall. And a very smol bean can cast a very large shadow.",
   "I'm just here so I won't get fined.",
-  "Just waiting for my turn with the brain cell."
+  "Just waiting for my turn with the brain cell.",
+  "My mama always said life was like a box.",
+  "All my homies hate Criston Cole.",
+  "It is possible to commit no mistakes and still lose. That is not a weakness. That is life.",
+  "Stop trying to make fetch happen.",
+  "May the Force be with you.",
+  "If I fits, I sits.",
+  "Looks like I picked the wrong week to quit catnip.",
+  "That rug really tied the room together, did it not?"
 ];
 
 export default outros;
