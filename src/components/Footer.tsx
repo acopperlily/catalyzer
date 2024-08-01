@@ -35,6 +35,8 @@ const Footer = () => {
           <a 
             key={i} 
             href={social.link}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {mapIcons[social.icon]}
           </a>
