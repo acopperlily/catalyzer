@@ -26,6 +26,8 @@ const len: { [key: string]: number } = {
   maleSuffixes: maleSuffixes.length
 };
 
+const nums: string[] = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty', 'twenty-one', 'twenty-two', 'twenty-three', 'twenty-four', 'twenty-five', 'twenty-six'];
+
 const VALUE1: number = 2;
 const VALUE2: number = 3;
 
@@ -201,7 +203,7 @@ const MainLogic = () => {
               <p className="info__text">{breed}</p>
             </div>
           </div>
-          <p className="info__para">{`${intro} ${name}, and I'm ${(age % 10 === 8 || age === 11) ? 'an' : 'a' } ${age}-year-old ${breed}. ${likePhrase} ${formattedLikes}. ${dislikePhrase} ${formattedDislikes}. ${outro}` }
+          <p className="info__para">{`${intro} ${name}, and I'm ${(age % 10 === 8 || age === 11) ? 'an' : 'a' } ${nums[age]}-year-old ${breed}. ${likePhrase} ${formattedLikes}. ${dislikePhrase} ${formattedDislikes}. ${outro}` }
           </p>
           <button
             className="button"

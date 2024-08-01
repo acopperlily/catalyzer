@@ -3,6 +3,24 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "description": "A web app that retrieves cat photos from an API and provides fun facts.",
+  "keywords": [
+    "HTML",
+    "Sass",
+    "TypeScript",
+    "React",
+    "Vite",
+    "Axios",
+    "API"
+  ],
+  "author": {
+    "name": "April Copley",
+    "email": "april.copley@protonmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acopperlily/catalyzer"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
