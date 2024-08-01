@@ -47,7 +47,7 @@ a {
     letter-spacing: $letter-spacing;
 
     grid-column: 2 / 3;
-    // padding: clamp(0.5rem, 0.5rem + 1vmin, 1rem);
+    margin: 0.5em;
   }
 
   &__icon-container {
@@ -98,29 +98,47 @@ a {
   }
 }
 
+.main {
+  height: 100%;
+  flex: 1 0 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2em;
+}
+
 .main__container {
   // border: 1px solid green;
+  padding-top: clamp(1em, 1em + 1vw, 2em);
   max-width: min(95%, 80em);
   margin-inline: auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  // justify-content: space-around;
   align-items: center;
-  gap: 2rem;
+  // gap: 2rem;
+  row-gap: clamp(2em, 1em + 2vmin, 4em);
+  column-gap: clamp(2em, 1em + 1vmin, 10em);
 
-  @media (orientation: landscape) and (min-width: 35em) {
+  @media (orientation: landscape) and (min-width: 70em) {
     flex-direction: row;
   }
 }
 
 .image__container {
   // background-color: orange;
-  // min-height: 30vmax;
-  // max-height: 30vmin;
+  min-height: 30vmax;
+  max-height: 30vmin;
+  max-width: 100%;
   height: min(100%, 50vh);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
 
-  @media (orientation: landscape) and (min-width: 35em) {
-    flex: 1;
+  @media (orientation: landscape) and (min-width: 60em) {
+    // flex: 1;
   }
 }
 
@@ -128,12 +146,15 @@ a {
   max-width: 100%;
   object-fit: contain;
   overflow: hidden;
-  box-shadow: 3px 5px 8px 0px hsl($color-primary, 20%, 60%);
+  box-shadow: 3px 5px 8px 0px hsl($color-primary, 10%, 60%);
 }
 
 .info {
-  padding: 1em;
+  padding: 0.5em;
   max-width: 40em;
+  width: min(100%, 35em);
+  margin: 0 auto;
+  flex: 1;
 
   &__title {
     color: transparent;
@@ -150,23 +171,25 @@ a {
 
   &__sub {
     color: $color-dark;
-    font-size: clamp(0.5rem, 0.5rem + 1vmin, 1.2rem);
+    font-size: clamp(0.5rem, 0.5rem + 1vmin, 1rem);
     font-weight: 600;
-    line-height: 0.2;
+    line-height: 1;
     letter-spacing: $letter-spacing;
     // padding: 0;
-    margin-bottom: 1em;
+    margin-bottom: 0.2em;
   }
 
   &__facts {
-    margin-top: 2em;
-    margin-bottom: 0.8em;
+    margin-top: 2.2em;
+    margin-bottom: 2em;
     display: flex;
-    gap: 4rem;
+    justify-content: space-between;
+    gap: 1em;
   }
 
   &__wrapper {
-    font-size: clamp(0.5rem, 0.5rem + 1vmin, 0.9rem);
+    // border: 1px dotted red;
+    // font-size: clamp(0.5rem, 0.5rem + 1vmin, 0.9rem);
     margin-bottom: 1em;
     // display: flex;
     // gap: 0.5rem;
@@ -174,7 +197,7 @@ a {
 
   &__label {
     font-family: $ff-heading;
-    // font-size: clamp(0.4rem, 0.4rem + 1vmin, 0.8rem);
+    font-size: clamp(0.4rem, 0.4rem + 1vmin, 0.9rem);
     font-weight: 600;
     // letter-spacing: $letter-spacing;
     text-transform: uppercase;
@@ -183,9 +206,9 @@ a {
 
   &__text {
     color: $color-black;
-    // font-size: clamp(0.4rem, 0.4rem + 1vmin, 0.8rem);
+    font-size: clamp(0.4rem, 0.4rem + 1vmin, 0.9rem);
     // font-family: $ff-heading;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: $letter-spacing;
   }
 
@@ -194,22 +217,17 @@ a {
     // color: $color-black;
     font-family: $ff-heading;
     font-weight: 500;
-    font-size: 1rem;
+    font-size: clamp(0.5rem, 0.5rem + 1vmin, 1rem);
     line-height: 1.3;
-    // letter-spacing: $letter-spacing;
+    letter-spacing: $letter-spacing;
 
     &::first-letter {
       float: left;
-      // border: 1px dotted $color-dark;
-      // padding-right: 0.5rem;
-      padding-right: 0.9rem;
+      padding-right: 0.8rem;
       color: $color-med;
-      font-family: 'Berkshire Swash', cursive;
-      // font-family: $ff-heading;
-      font-style: italic;
-      // font-weight: 700;
+      font-family: 'Great Vibes', cursive;
       font-size: 2.5rem;
-      // line-height: 1;
+      text-shadow: -1px 1px 1px $color-dark;
     }
   }
 
@@ -254,7 +272,7 @@ a {
   color: $color-light;
   padding: calc(0.8rem + 1vh);
   font-family: $ff-heading;
-  font-size: clamp(0.5rem, 0.5rem + 1vh, 1rem);
+  font-size: clamp(0.5rem, 0.5rem + 1vmin, 1rem);
 
   display: flex;
   justify-content: center;
