@@ -41,7 +41,7 @@ const MainLogic = () => {
   const [intro, setIntro] = useState<string>('Hey, my name is');
   const [outro, setOutro] = useState<string>('Sometimes it really do be like that.');
   const [likes, setLikes] = useState<string[]>(['playing roly poly', 'making biscuits']);
-  const [dislikes, setDislikes] = useState<string[]>(['cruciferous veggies', 'fridge buzz', "Schrodinger's Cat"]);
+  const [dislikes, setDislikes] = useState<string[]>(['cruciferous veggies', 'fridge buzz', "Schrödinger's Cat"]);
   const [likePhrase, setLikePhrase] = useState<string>('I love');
   const [dislikePhrase, setDislikePhrase] = useState<string>("I don't like");
 
@@ -133,7 +133,7 @@ const MainLogic = () => {
     // Check for duplicates
     let activitySet: Set<string> = new Set(activities);
     console.log('activity set:', activitySet);
-    if (activitySet.size < n) {
+    while (activitySet.size < n) {
       getActivities(arr, n);
     }
     activities = [...activitySet];

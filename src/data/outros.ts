@@ -47,7 +47,7 @@ const outros: string[] = [
   "Power resides where men believe it resides. It's a trick. A shadow on the wall. And a very smol bean can cast a very large shadow.",
   "I'm just here so I won't get fined.",
   "Just waiting for my turn with the brain cell.",
-  "My mama always said life was like a box.",
+  "My mama always said life was like a box. If I fits, I sits.",
   "All my homies hate Criston Cole.",
   "It is possible to commit no mistakes and still lose. That is not a weakness. That is life.",
   "Stop trying to make fetch happen.",

@@ -4,6 +4,7 @@ const surnames: string[] = [
   "Behind the Denny's",
   "Bridgerton",
   "Catmandu",
+  "the Compound",
   "District 12",
   "Downton",
   "Funky Town",
