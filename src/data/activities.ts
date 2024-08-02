@@ -189,7 +189,6 @@ const dislikesArr: string[] = [
   "anecdotal evidence",
   "astrology",
   "arguments made in bad faith",
-  "bacon packaging",
   "barking dogs",
   "bathtubs",
   "being lactose intolerant",

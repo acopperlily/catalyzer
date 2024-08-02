@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Pele from '/pele.jpg';
 import { neutralNames, femaleNames, maleNames } from '../data/names';
 import { neutralTitles, femaleTitles, maleTitles } from '../data/titles';
@@ -7,6 +7,7 @@ import { likeVerbs, dislikeVerbs } from '../data/verbs';
 import { surnames, neutralSuffixes, maleSuffixes } from '../data/surnames';
 import intros from '../data/intros';
 import outros from '../data/outros';
+import yatesShuffle from '../utils/yatesShuffle';
 
 const len: { [key: string]: number } = {
   intros: intros.length,
@@ -31,11 +32,15 @@ const nums: string[] = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 's
 const VALUE1: number = 2;
 const VALUE2: number = 3;
 
+for (let arr of [neutralNames, femaleNames, maleNames, neutralTitles, femaleTitles, maleTitles, surnames, neutralSuffixes, maleSuffixes, intros, outros, likesArr, dislikesArr, likeVerbs, dislikeVerbs]) {
+  yatesShuffle(arr);
+}
+
 const MainLogic = () => {
   const [name, setName] = useState<string>('Pele');
   const [age, setAge] = useState<number>(14);
   const [breed, setBreed] = useState<string>('Domestic Semifloof');
-  const [gender, setGender] = useState<string>('f');
+  // const [gender, setGender] = useState<string>('f');
   const [title, setTitle] = useState<string>('Princess');
   const [surname, setSurname] = useState<string>('of House Chonk');
   const [intro, setIntro] = useState<string>('Hey, my name is');
@@ -44,6 +49,8 @@ const MainLogic = () => {
   const [dislikes, setDislikes] = useState<string[]>(['cruciferous veggies', 'fridge buzz', "Schrödinger's Cat"]);
   const [likePhrase, setLikePhrase] = useState<string>('I love');
   const [dislikePhrase, setDislikePhrase] = useState<string>("I don't like");
+
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   // Connect array elements into a coherent string
   const formatActivities = (arr: string[], conj: string): string => {
@@ -68,24 +75,18 @@ const MainLogic = () => {
     return 'n';
   };
 
-  // const hasTitle = (): boolean => {
-  //   const n: number = getRandomNumber(5);
-  //   return n < 4;
-  // };
-
-
-  const getTitle = (gender: string): string => {
+  const getTitle = (newGender: string): string => {
     const neutralTitle: string = neutralTitles[getRandomNumber(len.neutralTitles)];
     const femaleTitle: string = femaleTitles[getRandomNumber(len.femaleTitles)];
     const maleTitle: string = maleTitles[getRandomNumber(len.maleTitles)];
     let roll: number = getRandomNumber(2);
-    if (gender === 'n') {
+    if (newGender === 'n') {
       roll = getRandomNumber(3);
       if (roll === 0) return neutralTitle;
       if (roll === 1) return femaleTitle;
       return maleTitle;
     }
-    if (gender === 'f') {
+    if (newGender === 'f') {
       if (roll === 0) return neutralTitle;
       return femaleTitle;
     }
@@ -93,26 +94,33 @@ const MainLogic = () => {
     return maleTitle;
   };
 
-  const getName = (gender: string): string => {
-    let name: string = '';
+  const getName = (newGender: string): string => {
 
     let nameIndex: number;
-    if (gender === 'f') {
+    if (newGender === 'f') {
       nameIndex = getRandomNumber(len.femaleNames);
-      return name + femaleNames[nameIndex];
+      return femaleNames[nameIndex];
     }
-    if (gender === 'm') {
+    if (newGender === 'm') {
       nameIndex = getRandomNumber(len.maleNames);
-      return name + maleNames[nameIndex];
+      return maleNames[nameIndex];
     }
     nameIndex = getRandomNumber(len.neutralNames);
-    return name + neutralNames[nameIndex];
+    return neutralNames[nameIndex];
   };
 
-  // Still need a condition to check gender
-  const getSurname = (): string => {
-    let diceRoll = getRandomNumber(2);
+  const getSurname = (newGender: string): string => {
+    console.log('newGender:', newGender)
     let index: number;
+    if (newGender === 'm') {
+      let chance: number = getRandomNumber(5);
+      if (chance < 1) {
+        index = getRandomNumber(maleSuffixes.length);
+        return maleSuffixes[index];
+      }
+    }
+
+    let diceRoll: number = getRandomNumber(2);
     if (diceRoll === 0) {
       index = getRandomNumber(len.surnames);
       return `of ${surnames[index]}`;
@@ -122,23 +130,15 @@ const MainLogic = () => {
   };
 
   const getActivities = (arr: string[], n: number): string[] => {
-    let activities: string[] = [];
     const len = arr.length;
-    for (let i = 0; i < n; i++) {
-      let index = getRandomNumber(len);
-      console.log('index:', index)
-      activities.push(arr[index]);
-    }
 
-    // Check for duplicates
-    let activitySet: Set<string> = new Set(activities);
-    console.log('activity set:', activitySet);
+    // Get likes & dislikes, check for duplicates
+    let activitySet = new Set<string>();
     while (activitySet.size < n) {
-      getActivities(arr, n);
+      let i: number = getRandomNumber(len);
+      activitySet.add(arr[i]);
     }
-    activities = [...activitySet];
-    console.log(activities)
-    return activities;
+    return [...activitySet];
   }
 
   const handleClick = (): void => {
@@ -146,12 +146,16 @@ const MainLogic = () => {
     setAge(getRandomNumber(25) + 1);
 
     const newGender: string = getGender();
-    setGender(newGender);
+    // setGender(newGender);
   
-    setTitle(getTitle(gender));
+    // Get names and titles
+    setTitle(getTitle(newGender));
 
-    const newName: string = getName(gender);
+    const newName: string = getName(newGender);
+
     setName(newName);
+    setSurname(getSurname(newGender));
+
 
     // Select varying numbers of likes & dislikes
     const diceRoll: number = getRandomNumber(2);
@@ -165,7 +169,6 @@ const MainLogic = () => {
     setLikePhrase(likeVerbs[newLikePhrase]);
     const newDislikePhrase: number = getRandomNumber(len.dislikeVerbs);
     setDislikePhrase(dislikeVerbs[newDislikePhrase]);
-    setSurname(getSurname);
 
     // Choose intro & outro
     const newIntro: number = getRandomNumber(len.intros);
@@ -174,6 +177,9 @@ const MainLogic = () => {
     setOutro(outros[newOutro]);
     console.log(newName)
     setBreed('Domestic Semifloof');
+    if (buttonRef.current) {
+      buttonRef.current.blur();
+    }
   }
 
   return (
@@ -208,6 +214,7 @@ const MainLogic = () => {
           </p>
           <button
             className="button"
+            ref={buttonRef}
             onClick={handleClick}
           >
             Catalyze
