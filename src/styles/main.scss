@@ -120,7 +120,7 @@ a {
   row-gap: clamp(1em, 1em + 2vmin, 4em);
   column-gap: clamp(2em, 2em + 1vmin, 6em);
 
-  @media (orientation: landscape) and (min-width: 50em) {
+  @media (orientation: landscape) and (min-width: 45em) {
     flex-direction: row;
   }
 }
