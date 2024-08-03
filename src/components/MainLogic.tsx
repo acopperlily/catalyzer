@@ -1,5 +1,6 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import FastFact from './FastFact';
+import BigButton from './BigButton';
 import Pele from '/pele.jpg';
 import { neutralNames, femaleNames, maleNames } from '../data/names';
 import { neutralTitles, femaleTitles, maleTitles } from '../data/titles';
@@ -38,10 +39,10 @@ for (let arr of [neutralNames, femaleNames, maleNames, neutralTitles, femaleTitl
 }
 
 const MainLogic = () => {
+  const [fade, setFade] = useState<boolean>(true);
   const [name, setName] = useState<string>('Pele');
   const [age, setAge] = useState<number>(14);
   const [breed, setBreed] = useState<string>('Domestic Semifloof');
-  // const [gender, setGender] = useState<string>('f');
   const [title, setTitle] = useState<string>('Princess');
   const [surname, setSurname] = useState<string>('of House Chonk');
   const [intro, setIntro] = useState<string>('Hey, my name is');
@@ -51,13 +52,14 @@ const MainLogic = () => {
   const [likePhrase, setLikePhrase] = useState<string>('I love');
   const [dislikePhrase, setDislikePhrase] = useState<string>("I don't like");
 
-  const buttonRef = useRef<HTMLButtonElement>(null);
-
-  const handleTouchEnd = (): void => {
-    if (buttonRef.current) {
-      buttonRef.current.blur();
+  useEffect(() => {
+    if (fade) {
+      const timeout = setTimeout(() => {
+        setFade(false);
+      }, 500);
+      return () => clearTimeout(timeout);
     }
-  };
+  }, [fade]);
 
   // Connect array elements into a coherent string
   const formatActivities = (arr: string[], conj: string): string => {
@@ -76,24 +78,24 @@ const MainLogic = () => {
   };
 
   const getGender = (): string => {
-    const newGender: number = getRandomNumber(10);
-    if (newGender > 6) return 'f';
-    if (newGender < 3) return 'm';
+    const gender: number = getRandomNumber(10);
+    if (gender > 6) return 'f';
+    if (gender < 3) return 'm';
     return 'n';
   };
 
-  const getTitle = (newGender: string): string => {
+  const getTitle = (gender: string): string => {
     const neutralTitle: string = neutralTitles[getRandomNumber(len.neutralTitles)];
     const femaleTitle: string = femaleTitles[getRandomNumber(len.femaleTitles)];
     const maleTitle: string = maleTitles[getRandomNumber(len.maleTitles)];
     let roll: number = getRandomNumber(2);
-    if (newGender === 'n') {
+    if (gender === 'n') {
       roll = getRandomNumber(3);
       if (roll === 0) return neutralTitle;
       if (roll === 1) return femaleTitle;
       return maleTitle;
     }
-    if (newGender === 'f') {
+    if (gender === 'f') {
       if (roll === 0) return neutralTitle;
       return femaleTitle;
     }
@@ -101,14 +103,14 @@ const MainLogic = () => {
     return maleTitle;
   };
 
-  const getName = (newGender: string): string => {
+  const getName = (gender: string): string => {
 
     let nameIndex: number;
-    if (newGender === 'f') {
+    if (gender === 'f') {
       nameIndex = getRandomNumber(len.femaleNames);
       return femaleNames[nameIndex];
     }
-    if (newGender === 'm') {
+    if (gender === 'm') {
       nameIndex = getRandomNumber(len.maleNames);
       return maleNames[nameIndex];
     }
@@ -116,10 +118,9 @@ const MainLogic = () => {
     return neutralNames[nameIndex];
   };
 
-  const getSurname = (newGender: string): string => {
-    console.log('newGender:', newGender)
+  const getSurname = (gender: string): string => {
     let index: number;
-    if (newGender === 'm') {
+    if (gender === 'm') {
       let chance: number = getRandomNumber(5);
       if (chance < 1) {
         index = getRandomNumber(maleSuffixes.length);
@@ -149,19 +150,21 @@ const MainLogic = () => {
   }
 
   const handleClick = (): void => {
+    setTimeout(() => {
+      setFade(true);
+    }, 0);
     // We add one so age isn't 0
     setAge(getRandomNumber(25) + 1);
 
-    const newGender: string = getGender();
-    // setGender(newGender);
+    const gender: string = getGender();
   
     // Get names and titles
-    setTitle(getTitle(newGender));
+    setTitle(getTitle(gender));
 
-    const newName: string = getName(newGender);
+    const newName: string = getName(gender);
 
     setName(newName);
-    setSurname(getSurname(newGender));
+    setSurname(getSurname(gender));
 
 
     // Select varying numbers of likes & dislikes
@@ -182,11 +185,7 @@ const MainLogic = () => {
     setIntro(intros[newIntro]);
     const newOutro: number = getRandomNumber(len.outros);
     setOutro(outros[newOutro]);
-    console.log(newName)
     setBreed('Domestic Semifloof');
-    if (buttonRef.current) {
-      buttonRef.current.blur();
-    }
   }
 
   const fastFacts: string[][] = [
@@ -209,21 +208,18 @@ const MainLogic = () => {
           <h2 className="info__title">Cattributes</h2>
           <p className="info__sub">Meet your cattastic companion. A feline friend. The purrfect pal.</p>
           <p className="info__sub">Want another? Go on and boop that big silly button.</p>
+
           <div className="info__facts">
             {fastFacts.map((item, i) => (
-              <FastFact key={i} label={item[0]} fact={item[1]} />
+              <FastFact key={i} fade={fade} label={item[0]} fact={item[1]} />
             ))}
           </div>
-          <p className="info__para">{`${intro} ${name}, and I'm ${(age % 10 === 8 || age === 11) ? 'an' : 'a' } ${nums[age]}-year-old ${breed}. ${likePhrase} ${formattedLikes}. ${dislikePhrase} ${formattedDislikes}. ${outro}` }
+
+          <p className={`${fade ? 'fade-in info__para' : 'info__para'}`}>{`${intro} ${name}, and I'm ${(age % 10 === 8 || age === 11) ? 'an' : 'a' } ${nums[age]}-year-old ${breed}. ${likePhrase} ${formattedLikes}. ${dislikePhrase} ${formattedDislikes}. ${outro}` }
           </p>
-          <button
-            className="button"
-            ref={buttonRef}
-            onClick={handleClick}
-            onTouchEnd={handleTouchEnd}
-          >
-            Catalyze
-          </button>
+
+          <BigButton label='Catalyzer' handleClick={handleClick} />
+
         </section>
       </div>
     </main>

@@ -1,0 +1,67 @@
+import { useRef, useEffect } from 'react';
+
+type ButtonProps = {
+  label: string;
+  handleClick: () => void;
+};
+
+const BigButton = ( { label, handleClick }: ButtonProps ) => {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const handleMouseUp = () => {
+    console.log('mouseUp')
+    if (buttonRef.current) {
+      buttonRef.current.classList.add('button__active-tap');
+      buttonRef.current.blur();
+      setTimeout(() => {
+        if (buttonRef.current) {
+          buttonRef.current.classList.remove('button__active-tap');
+        }
+      }, 250);
+    }
+  };
+
+  const handleTouchStart = () => {
+    console.log('touchStart')
+    if (buttonRef.current) {
+      buttonRef.current.classList.add('button__active-tap');
+    }
+  };
+
+  const handleTouchEnd = () => {
+    if (buttonRef.current) {
+      buttonRef.current.classList.remove('button__active-tap');
+      setTimeout(() => {
+        if (buttonRef.current) {
+          buttonRef.current.blur();
+        }
+      }, 250);
+    }
+    handleClick();
+  };
+
+  useEffect(() => {
+    const button = buttonRef.current;
+    if (button) {
+      button.addEventListener('touchstart', handleTouchStart);
+      button.addEventListener('touchend', handleTouchEnd);
+      return () => {
+        button.removeEventListener('touchstart', handleTouchStart);
+        button.removeEventListener('touchend', handleTouchEnd);
+      }
+    }
+  }, [])
+
+  return (
+    <button
+      className='button'
+      ref={buttonRef}
+      onMouseUp={handleMouseUp}
+      onClick={handleClick}
+    >
+      {label}
+    </button>
+  );
+};
+
+export default BigButton;

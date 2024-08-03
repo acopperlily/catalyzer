@@ -246,7 +246,7 @@ a {
   font-weight: 800;
   letter-spacing: $letter-spacing;
   box-shadow: inset 0px -5px 10px 3px $color-dark;
-  transition: all 0.25s ease-in-out;
+  transition: all 0.5s ease-in-out;
 
   &:hover,
   &:focus {
@@ -254,7 +254,8 @@ a {
     box-shadow: inset 0px -5px 7px 0 $color-dark;
   }
 
-  &:active {
+  &:active,
+  &__active-tap {
     transform: scale(0.95);
     background-color: $color-med;
     box-shadow: inset 0px -5px 3px $color-dark;
@@ -302,5 +303,18 @@ a {
     // aspect-ratio: 1/1;
     // height: clamp(1rem, 1rem + 1vmin, 2rem);
     // font-size: 5rem;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
