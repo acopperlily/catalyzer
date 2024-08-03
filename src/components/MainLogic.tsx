@@ -243,7 +243,7 @@ const MainLogic = () => {
           <p className={`${fade ? 'fade-in info__para' : 'info__para'}`}>{`${intro} ${name}, and I'm ${(age % 10 === 8 || age === 11) ? 'an' : 'a' } ${nums[age]}-year-old ${breed}. ${likePhrase} ${formattedLikes}. ${dislikePhrase} ${formattedDislikes}. ${outro}` }
           </p>
 
-          <BigButton label='Catalyzer' handleClick={handleClick} />
+          <BigButton label='Catalyze' handleClick={handleClick} />
 
         </section>
       </div>
