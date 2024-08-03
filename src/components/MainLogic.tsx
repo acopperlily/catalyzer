@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import FastFact from './FastFact';
 import BigButton from './BigButton';
 import Pele from '/pele.jpg';
@@ -18,13 +19,20 @@ const nums: string[] = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 's
 const VALUE1: number = 2;
 const VALUE2: number = 3;
 
+const MAX_AGE: number = 24;
+
+const DOMAIN = "https://api.thecatapi.com/v1/images/search?";
+const API_KEY = import.meta.env.VITE_API_KEY;
+
 // Shuffle the arrays on every page load because I feel like it
 for (let arr of [neutralNames, femaleNames, maleNames, neutralTitles, femaleTitles, maleTitles, surnames, neutralSuffixes, maleSuffixes, intros, outros, likesArr, dislikesArr, likeVerbs, dislikeVerbs]) {
   yatesShuffle(arr);
 }
 
 const MainLogic = () => {
+  const [imageURL, setImageURL] = useState<string>('');
   const [fade, setFade] = useState<boolean>(true);
+  const [triggerFetch, setTriggerFetch] = useState<boolean>(false);
   const [name, setName] = useState<string>('Pele');
   const [age, setAge] = useState<number>(14);
   const [breed, setBreed] = useState<string>('Domestic Semifloof');
@@ -36,6 +44,23 @@ const MainLogic = () => {
   const [dislikes, setDislikes] = useState<string[]>(['cruciferous veggies', 'fridge buzz', "Schrödinger's Cat"]);
   const [likePhrase, setLikePhrase] = useState<string>('I love');
   const [dislikePhrase, setDislikePhrase] = useState<string>("I don't like");
+
+  useEffect(() => {
+    const getCat = async () => {
+      try {
+        const URL = `${DOMAIN}api_key=${API_KEY}&has_breeds=true`;
+        const res = await axios.get(URL);
+        console.log(res.data);
+        setImageURL(res.data[0].url);
+        console.log('breeds', res.data[0].breeds[0]);
+        setBreed(res.data[0].breeds[0].name);
+      } catch (err) {
+        console.error('Error:', err);
+      }
+    }
+
+    getCat();
+  }, [triggerFetch]);
 
   // Connect array elements into a coherent string
   const formatActivities = (arr: string[], conj: string): string => {
@@ -158,16 +183,17 @@ const MainLogic = () => {
   // Set all the mf state
   const handleClick = (): void => {
     setFade(false);
+    setTriggerFetch(!triggerFetch);
 
     // This is to create a fade-in effect for the text
     setTimeout(() => {
       setFade(true);
 
       // We add one so age isn't 0
-      let age = getRandomNumber(25) + 1;
+      let age = getRandomNumber(MAX_AGE) + 1;
 
       // Increase odds of choosing younger ages
-      if (age > 14) {
+      if (age > MAX_AGE / 2) {
         let diceRoll = getRandomNumber(3);
         if (diceRoll > 0) {
           age = Math.round(age / 2);
@@ -202,7 +228,7 @@ const MainLogic = () => {
       setIntro(intros[newIntro]);
       setOutro(outros[newOutro]);
 
-      setBreed('Domestic Semifloof');
+      // setBreed('Domestic Semifloof');
     }, 250);
   }
 
@@ -221,11 +247,19 @@ const MainLogic = () => {
     <main className="main">
       <div className="main__container">
         <section className="image__container">
-          <img
-            src={Pele}
-            alt="My darling Pele"
-            className='image'
-          />
+          {imageURL ? (
+            <img 
+              src={imageURL}
+              className={`${fade ? 'fade-in image' : 'image'}`}
+            />) : (
+
+            <img
+              src={Pele}
+              alt="My darling Pele"
+              className='image'
+            />
+          )}
+
         </section>
         <section className="info">
           <h2 className="info__title">Cattributes</h2>
