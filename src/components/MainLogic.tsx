@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import FastFact from './FastFact';
 import BigButton from './BigButton';
 import Pele from '/pele.jpg';
@@ -36,15 +36,6 @@ const MainLogic = () => {
   const [dislikes, setDislikes] = useState<string[]>(['cruciferous veggies', 'fridge buzz', "Schrödinger's Cat"]);
   const [likePhrase, setLikePhrase] = useState<string>('I love');
   const [dislikePhrase, setDislikePhrase] = useState<string>("I don't like");
-
-  useEffect(() => {
-    if (fade) {
-      const timeout = setTimeout(() => {
-        setFade(false);
-      }, 500);
-      return () => clearTimeout(timeout);
-    }
-  }, [fade]);
 
   // Connect array elements into a coherent string
   const formatActivities = (arr: string[], conj: string): string => {
@@ -166,13 +157,23 @@ const MainLogic = () => {
 
   // Set all the mf state
   const handleClick = (): void => {
+    setFade(false);
 
     // This is to create a fade-in effect for the text
     setTimeout(() => {
       setFade(true);
 
       // We add one so age isn't 0
-      setAge(getRandomNumber(25) + 1);
+      let age = getRandomNumber(25) + 1;
+
+      // Increase odds of choosing younger ages
+      if (age > 14) {
+        let diceRoll = getRandomNumber(3);
+        if (diceRoll > 0) {
+          age = Math.round(age / 2);
+        }
+      }
+      setAge(age);
 
       // Just so names & titles make sense
       const gender: string = getGender();

@@ -236,7 +236,6 @@ const femaleNames: string[] = [
   "Ginger",
   "Goldie",
   "Hazel",
-  "Hermione",
   "Imogen",
   "Isobel",
   "Janie",

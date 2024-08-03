@@ -118,7 +118,8 @@ a {
   align-items: center;
   // gap: 2rem;
   row-gap: clamp(1em, 1em + 2vmin, 4em);
-  column-gap: clamp(2em, 2em + 1vmin, 6em);
+  column-gap: clamp(1em, 1em + 3vmin, 6em);
+  // column-gap: clamp(1rem, -0.316rem + 7.018vw, 6rem);
 
   @media (orientation: landscape) and (min-width: 45em) {
     flex-direction: row;
@@ -212,7 +213,7 @@ a {
   &__text {
     color: $color-black;
     font-size: clamp(0.4rem, 0.4rem + 1vmin, 0.9rem);
-    // font-family: $ff-heading;
+    font-family: $ff-heading;
     font-weight: 500;
     letter-spacing: $letter-spacing;
   }

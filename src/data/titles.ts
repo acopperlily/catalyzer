@@ -67,6 +67,7 @@ const femaleTitles: string[] = [
   "Priestess",
   "Princess",
   "Queen",
+  "Queen Dowager",
   "Queen Regent",
   "Señora",
   "Señorita",
