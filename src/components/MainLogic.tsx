@@ -45,15 +45,30 @@ const MainLogic = () => {
   const [likePhrase, setLikePhrase] = useState<string>('I love');
   const [dislikePhrase, setDislikePhrase] = useState<string>("I don't like");
 
+  // Use this for all of the things
+  const getRandomNumber = (n: number): number => {
+    return Math.floor(Math.random() * n);
+  };
+
   useEffect(() => {
     const getCat = async () => {
       try {
-        const URL = `${DOMAIN}api_key=${API_KEY}&has_breeds=true`;
+        let URL = DOMAIN;
+
+        // Get either a random cat or one with a listed breed
+        let diceRoll = getRandomNumber(2);
+        if (diceRoll === 0) {
+          URL += `api_key=${API_KEY}&has_breeds=true`;
+        }
         const res = await axios.get(URL);
         console.log(res.data);
         setImageURL(res.data[0].url);
-        console.log('breeds', res.data[0].breeds[0]);
-        setBreed(res.data[0].breeds[0].name);
+        let newBreed = 'Whatever';
+        if (diceRoll === 0) {
+          newBreed = res.data[0].breeds[0].name;
+          console.log('breeds', res.data[0].breeds[0]);
+        }
+        setBreed(newBreed);
       } catch (err) {
         console.error('Error:', err);
       }
@@ -74,11 +89,6 @@ const MainLogic = () => {
     // Oxford comma, bitch
     return `${arr.slice(0, -1).join(', ')}, ${conj} ${arr.slice(-1)}`;
   }
-
-  // Use this for all of the things
-  const getRandomNumber = (n: number): number => {
-    return Math.floor(Math.random() * n);
-  };
 
   // Random & arbitrary af, but I do what I want
   const getGender = (): string => {
@@ -275,7 +285,7 @@ const MainLogic = () => {
             ))}
           </div>
 
-          <p className={`${fade ? 'fade-in info__para' : 'info__para'}`}>{`${intro} ${name}, and I'm ${(age % 10 === 8 || age === 11) ? 'an' : 'a' } ${nums[age]}-year-old ${breed}. ${likePhrase} ${formattedLikes}. ${dislikePhrase} ${formattedDislikes}. ${outro}` }
+          <p className={`${fade ? 'fade-in info__para' : 'info__para'}`}>{`${intro} ${name}, and I'm ${(age % 10 === 8 || age === 11) ? 'an' : 'a' } ${nums[age]}-year-old ${breed === 'Whatever' ? 'kitty' : breed}. ${likePhrase} ${formattedLikes}. ${dislikePhrase} ${formattedDislikes}. ${outro}` }
           </p>
 
           <BigButton label='Catalyze' handleClick={handleClick} />
