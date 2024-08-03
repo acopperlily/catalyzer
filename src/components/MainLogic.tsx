@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import FastFact from './FastFact';
 import Pele from '/pele.jpg';
 import { neutralNames, femaleNames, maleNames } from '../data/names';
 import { neutralTitles, femaleTitles, maleTitles } from '../data/titles';
@@ -51,6 +52,12 @@ const MainLogic = () => {
   const [dislikePhrase, setDislikePhrase] = useState<string>("I don't like");
 
   const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const handleTouchEnd = (): void => {
+    if (buttonRef.current) {
+      buttonRef.current.blur();
+    }
+  };
 
   // Connect array elements into a coherent string
   const formatActivities = (arr: string[], conj: string): string => {
@@ -182,6 +189,12 @@ const MainLogic = () => {
     }
   }
 
+  const fastFacts: string[][] = [
+    [ 'name', `${title} ${name} ${surname}` ],
+    [ 'age', age.toString() ],
+    [ 'breed', breed ]
+  ];
+
   return (
     <main className="main">
       <div className="main__container">
@@ -197,18 +210,9 @@ const MainLogic = () => {
           <p className="info__sub">Meet your cattastic companion. A feline friend. The purrfect pal.</p>
           <p className="info__sub">Want another? Go on and boop that big silly button.</p>
           <div className="info__facts">
-            <div className="info__wrapper">
-              <span className="info__label">Name</span>
-              <p className="info__text">{title} {name} {surname}</p>
-            </div>
-            <div className="info__wrapper">
-              <span className="info__label">Age</span>
-              <p className="info__text">{age}</p>
-            </div>
-            <div className="info__wrapper">
-              <span className="info__label">Breed</span>
-              <p className="info__text">{breed}</p>
-            </div>
+            {fastFacts.map((item, i) => (
+              <FastFact key={i} label={item[0]} fact={item[1]} />
+            ))}
           </div>
           <p className="info__para">{`${intro} ${name}, and I'm ${(age % 10 === 8 || age === 11) ? 'an' : 'a' } ${nums[age]}-year-old ${breed}. ${likePhrase} ${formattedLikes}. ${dislikePhrase} ${formattedDislikes}. ${outro}` }
           </p>
@@ -216,6 +220,7 @@ const MainLogic = () => {
             className="button"
             ref={buttonRef}
             onClick={handleClick}
+            onTouchEnd={handleTouchEnd}
           >
             Catalyze
           </button>
