@@ -228,8 +228,11 @@ const MainLogic = () => {
         </section>
         <section className="info">
           <h2 className="info__title">Cattributes</h2>
-          <p className="info__sub">Meet your cattastic companion. A feline friend. The purrfect pal.</p>
-          <p className="info__sub">Want another? Go on and boop that big silly button.</p>
+          <div className="info__subs">
+            <p className="info__sub">Meet your cattastic companion.&nbsp;</p>
+            <p className="info__sub"> A feline friend. The purrfect pal.</p>
+            <p className="info__sub">Want another? Go on and boop that big silly button.</p>
+          </div>
 
           <div className="info__facts">
             {fastFacts.map((item, i) => (

@@ -9,7 +9,6 @@ const BigButton = ( { label, handleClick }: ButtonProps ) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const handleMouseUp = () => {
-    console.log('mouseUp')
     if (buttonRef.current) {
       buttonRef.current.classList.add('button__active-tap');
       buttonRef.current.blur();
@@ -22,7 +21,6 @@ const BigButton = ( { label, handleClick }: ButtonProps ) => {
   };
 
   const handleTouchStart = () => {
-    console.log('touchStart')
     if (buttonRef.current) {
       buttonRef.current.classList.add('button__active-tap');
     }

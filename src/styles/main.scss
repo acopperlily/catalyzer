@@ -118,9 +118,9 @@ a {
   align-items: center;
   // gap: 2rem;
   row-gap: clamp(1em, 1em + 2vmin, 4em);
-  column-gap: clamp(4em, 4em + 1vmin, 8em);
+  column-gap: clamp(2em, 2em + 1vmin, 6em);
 
-  @media (orientation: landscape) and (min-width: 70em) {
+  @media (orientation: landscape) and (min-width: 50em) {
     flex-direction: row;
   }
 }
@@ -137,7 +137,7 @@ a {
   align-items: center;
   flex: 1;
 
-  @media (orientation: landscape) and (min-width: 60em) {
+  @media (orientation: landscape) and (min-width: 50em) {
     // flex: 1;
   }
 }
@@ -169,6 +169,11 @@ a {
     -webkit-text-fill-color: transparent;
   }
 
+  &__subs {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   &__sub {
     color: $color-dark;
     font-size: clamp(0.5rem, 0.5rem + 1vmin, 1rem);
@@ -180,7 +185,7 @@ a {
   }
 
   &__facts {
-    margin-top: 2.2em;
+    margin-top: 1.5em;
     margin-bottom: 1.5em;
     display: flex;
     justify-content: space-between;
@@ -304,20 +309,13 @@ a {
   &__icon {
     fill: $color-light;
     margin-top: 0.2em;
-    // padding-left: 0.6em;
-    // width: clamp(1rem, 1rem + 1vmin, 2rem);
     width: clamp(0.6rem, 0.6rem + 1vw, 1.1rem);
     height: clamp(0.6rem, 0.6rem + 1vw, 1.1rem);
-    // aspect-ratio: 1/1;
-    // height: clamp(1rem, 1rem + 1vmin, 2rem);
-    // font-size: 5rem;
     transition: all 1s ease-in-out;
 
 
     &:hover {
-      // transform: scale(1.1);
       transform: rotate(360deg) scale(1.5);
-      opacity: 0.8;
     }
   }
 }
