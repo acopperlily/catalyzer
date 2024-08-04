@@ -3,7 +3,7 @@ import axios from 'axios';
 import Loading from './Loading';
 import FastFact from './FastFact';
 import BigButton from './BigButton';
-import Pele from '/pele.jpg';
+// import Pele from '/pele.jpg';
 import { neutralNames, femaleNames, maleNames } from '../data/names';
 import { neutralTitles, femaleTitles, maleTitles } from '../data/titles';
 import { likesArr, dislikesArr } from '../data/activities';
