@@ -204,7 +204,7 @@ const dislikesArr: string[] = [
   "commuter traffic",
   "companies with no 401(k) match",
   "confirmation bias",
-  "conspiracy theorists",
+  "conspiracy theories",
   "corporate tax shelters",
   "country music",
   "covering my poops",

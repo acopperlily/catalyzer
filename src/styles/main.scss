@@ -118,11 +118,23 @@ a {
   align-items: center;
   // gap: 2rem;
   row-gap: clamp(1em, 1em + 2vmin, 4em);
-  column-gap: clamp(1em, 1em + 3vmin, 6em);
+  column-gap: clamp(1em, 1em + 1vmin, 4em);
   // column-gap: clamp(1rem, -0.316rem + 7.018vw, 6rem);
 
   @media (orientation: landscape) and (min-width: 45em) {
     flex-direction: row;
+  }
+}
+
+.loading {
+
+  &__message {
+    color: $color-dark;
+    font-family: $ff-heading;
+    font-size: 1.2rem;
+    font-size: calc(1rem + 1vw);
+    font-weight: 800;
+    letter-spacing: $letter-spacing;
   }
 }
 

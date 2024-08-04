@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Loading from './Loading';
 import FastFact from './FastFact';
 import BigButton from './BigButton';
 import Pele from '/pele.jpg';
@@ -30,6 +31,7 @@ for (let arr of [neutralNames, femaleNames, maleNames, neutralTitles, femaleTitl
 }
 
 const MainLogic = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [imageURL, setImageURL] = useState<string>('');
   const [fade, setFade] = useState<boolean>(true);
   const [triggerFetch, setTriggerFetch] = useState<boolean>(false);
@@ -51,12 +53,15 @@ const MainLogic = () => {
   };
 
   useEffect(() => {
+    setImageURL('');
+    setIsLoading(true);
     const getCat = async () => {
       try {
         let URL = DOMAIN;
 
         // Get either a random cat or one with a listed breed
         let diceRoll = getRandomNumber(2);
+        console.log('diceroll:', diceRoll)
         if (diceRoll === 0) {
           URL += `api_key=${API_KEY}&has_breeds=true`;
         }
@@ -69,6 +74,7 @@ const MainLogic = () => {
           console.log('breeds', res.data[0].breeds[0]);
         }
         setBreed(newBreed);
+        setIsLoading(false);
       } catch (err) {
         console.error('Error:', err);
       }
@@ -257,16 +263,12 @@ const MainLogic = () => {
     <main className="main">
       <div className="main__container">
         <section className="image__container">
-          {imageURL ? (
+          {isLoading ? (
+            <Loading />
+          ) : (
             <img 
               src={imageURL}
               className={`${fade ? 'fade-in image' : 'image'}`}
-            />) : (
-
-            <img
-              src={Pele}
-              alt="My darling Pele"
-              className='image'
             />
           )}
 

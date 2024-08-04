@@ -63,7 +63,7 @@ const outros: string[] = [
   "Time is an illusion. Lunchtime doubly so.",
   "The answer to the great question...of Life, the Universe and Everything...is...forty-two.",
   "Space is big. Really big. You just won't believe how vastly, hugely, mind-bogglingly big it is. I mean, you may think it's a long way down the road to the veterinarian, but that's just peanuts to space.",
-  "If there's anything more important than my ego around, I want it caught and shot now.",
+  "If there's anything more important than my ego around, I want it caught and whapped now.",
   "Flair is what marks the difference between artistry and mere competence.",
   "It's not safe out here. It's wondrous, with treasures to satiate desires both subtle and gross; but it's not for the timid.",
   "The road from legitimate suspicion to rampant paranoia is very much shorter than we think.",
