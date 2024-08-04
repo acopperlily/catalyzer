@@ -179,15 +179,19 @@ a {
 
   &__title {
     color: transparent;
-    margin-bottom: 0.25em;
+    margin-bottom: 0.5em;
     font-family: $ff-body;
-    font-size: clamp(2rem, 1.5rem + 3vmin, 4rem);
+    font-size: clamp(2rem, 2rem + 3vmin, 4rem);
     font-weight: 800;
     letter-spacing: $letter-spacing;
     background: linear-gradient(0deg, $color-dark, 30%, $color-med);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+
+    // @media (min-width: 70em) {
+    //   font-size: clamp(1rem, 2rem + 2vmin, 3rem);
+    // }
   }
 
   &__subs {
@@ -277,7 +281,7 @@ a {
   &:hover,
   &:focus {
     background-color: $color-dark;
-    box-shadow: inset 0px -5px 7px 0 $color-dark;
+    // box-shadow: inset 0px -5px 7px 0 $color-dark;
   }
 
   &:active,
@@ -290,7 +294,8 @@ a {
   &:disabled {
     cursor: not-allowed;
     opacity: 0.7;
-    background-color: hsl($color-primary, 10%, 50%);
+    background-color: hsl($color-primary, 5%, 60%);
+    box-shadow: none;
   }
 }
 
@@ -344,6 +349,10 @@ a {
 
 .fade-in {
   animation: fadeIn 2s ease-in-out;
+}
+
+.hidden {
+  opacity: 0;
 }
 
 @keyframes fadeIn {

@@ -59,7 +59,7 @@ const outros: string[] = [
   "You know, the very powerful and the very stupid have one thing in common: they don't alter their views to fit the facts; they alter the facts to fit their views.",
   "The universe is big. It's vast and complicated and ridiculous. And sometimes, very rarely, impossible things just happen and we call them miracles.",
   "The trouble with having an open mind, of course, is that people will insist on coming along and trying to put things in it.",
-  "In ancient times cats were worshipped as gods; I have not forgotten this.",
+  "In ancient times cats were worshipped as gods; we have not forgotten this.",
   "Time is an illusion. Lunchtime doubly so.",
   "The answer to the great question...of Life, the Universe and Everything...is...forty-two.",
   "Space is big. Really big. You just won't believe how vastly, hugely, mind-bogglingly big it is. I mean, you may think it's a long way down the road to the veterinarian, but that's just peanuts to space.",
@@ -67,7 +67,9 @@ const outros: string[] = [
   "Flair is what marks the difference between artistry and mere competence.",
   "It's not safe out here. It's wondrous, with treasures to satiate desires both subtle and gross; but it's not for the timid.",
   "The road from legitimate suspicion to rampant paranoia is very much shorter than we think.",
-  "I have been told that patience is sometimes a more effective weapon than the murder mitten."
+  "I have been told that patience is sometimes a more effective weapon than the murder mitten.",
+  "My watch has ended.",
+  "If not for sits, why is it made of warm?"
 ];
 
 export default outros;

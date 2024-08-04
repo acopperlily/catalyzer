@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Loading from './Loading';
 import FastFact from './FastFact';
+import Paragraph from './Paragraph';
 import BigButton from './BigButton';
 import Pele from '/pele.jpg';
 import { neutralNames, femaleNames, maleNames } from '../data/names';
@@ -12,9 +13,7 @@ import { surnames, neutralSuffixes, maleSuffixes } from '../data/surnames';
 import intros from '../data/intros';
 import outros from '../data/outros';
 import yatesShuffle from '../utils/yatesShuffle';
-
-// Convert numerals to words
-const nums: string[] = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty', 'twenty-one', 'twenty-two', 'twenty-three', 'twenty-four', 'twenty-five', 'twenty-six'];
+import getRandomNumber from '../utils/getRandomNumber';
 
 // Constants to balance number of likes & dislikes
 const VALUE1: number = 2;
@@ -48,11 +47,6 @@ const MainLogic = () => {
   const [likePhrase, setLikePhrase] = useState<string>('I love');
   const [dislikePhrase, setDislikePhrase] = useState<string>("I don't like");
 
-  // Use this for all of the things
-  const getRandomNumber = (n: number): number => {
-    return Math.floor(Math.random() * n);
-  };
-
   useEffect(() => {
     // setImageURL('');
     setIsLoading(true);
@@ -76,7 +70,7 @@ const MainLogic = () => {
         console.log(res.data);
         setImageURL(res.data[0].url);
 
-        let newBreed = 'Whatever';
+        let newBreed = 'Cat';
         if (diceRoll === 0) {
           newBreed = res.data[0].breeds[0].name;
           console.log('breeds', res.data[0].breeds[0]);
@@ -98,19 +92,6 @@ const MainLogic = () => {
       controller.abort();
     }
   }, [triggerFetch]);
-
-  // Connect array elements into a coherent string
-  const formatActivities = (arr: string[], conj: string): string => {
-
-    // This shouldn't happen, but just in case...
-    if (arr.length < 2) return arr[0] || 'stuff';
-
-    // Add 'and' or 'or' only
-    if (arr.length === 2) return `${arr[0]} ${conj} ${arr[1]}`;
-
-    // Oxford comma, bitch
-    return `${arr.slice(0, -1).join(', ')}, ${conj} ${arr.slice(-1)}`;
-  }
 
   // Random & arbitrary af, but I do what I want
   const getGender = (): string => {
@@ -272,10 +253,6 @@ const MainLogic = () => {
     [ 'breed', breed ]
   ];
 
-  // Form coherent sentences for our component
-  const formattedLikes: string = formatActivities(likes, 'and');
-  const formattedDislikes: string = formatActivities(dislikes, 'or');
-
   return (
     <main className="main">
       <div className="main__container">
@@ -309,8 +286,18 @@ const MainLogic = () => {
             ))}
           </div>
 
-          <p className={`${fade ? 'fade-in info__para' : 'info__para'}`}>{`${intro} ${name}, and I'm ${(age % 10 === 8 || age === 11) ? 'an' : 'a' } ${nums[age]}-year-old ${breed === 'Whatever' ? 'kitty' : breed}. ${likePhrase} ${formattedLikes}. ${dislikePhrase} ${formattedDislikes}. ${outro}` }
-          </p>
+          <Paragraph
+            fade={fade}
+            intro={intro}
+            name={name}
+            age={age}
+            breed={breed}
+            likePhrase={likePhrase}
+            dislikePhrase={dislikePhrase}
+            likes={likes}
+            dislikes={dislikes}
+            outro={outro}
+          />
 
           <BigButton isLoading={isLoading} label='Catalyze' handleClick={handleClick} />
 
