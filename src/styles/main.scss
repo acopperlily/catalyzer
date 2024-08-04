@@ -110,6 +110,7 @@ a {
 .main__container {
   // border: 1px solid green;
   padding-top: clamp(1em, 1em + 1vmin, 4em);
+  width: 100%;
   max-width: min(95%, 80em);
   margin-inline: auto;
   display: flex;
@@ -118,7 +119,7 @@ a {
   align-items: center;
   // gap: 2rem;
   row-gap: clamp(1em, 1em + 2vmin, 4em);
-  column-gap: clamp(1em, 1em + 1vmin, 4em);
+  column-gap: clamp(0.5em, 0.5em + 1vmin, 4em);
   // column-gap: clamp(1rem, -0.316rem + 7.018vw, 6rem);
 
   @media (orientation: landscape) and (min-width: 45em) {
@@ -127,8 +128,15 @@ a {
 }
 
 .loading {
+  // border: 1px dotted white;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  // align-items: center;
 
   &__message {
+    // text-align: center;
     color: $color-dark;
     font-family: $ff-heading;
     font-size: 1.2rem;
@@ -151,7 +159,7 @@ a {
   flex: 1;
 
   @media (orientation: landscape) and (min-width: 50em) {
-    // flex: 1;
+    flex: 1;
   }
 }
 

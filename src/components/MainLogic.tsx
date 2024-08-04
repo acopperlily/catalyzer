@@ -53,7 +53,6 @@ const MainLogic = () => {
   };
 
   useEffect(() => {
-    setImageURL('');
     setIsLoading(true);
     const getCat = async () => {
       try {
