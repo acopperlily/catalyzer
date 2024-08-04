@@ -1,11 +1,12 @@
 import { useRef, useEffect } from 'react';
 
 type ButtonProps = {
+  isLoading: boolean;
   label: string;
   handleClick: () => void;
 };
 
-const BigButton = ( { label, handleClick }: ButtonProps ) => {
+const BigButton = ( { isLoading, label, handleClick }: ButtonProps ) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const handleMouseUp = () => {
@@ -56,6 +57,7 @@ const BigButton = ( { label, handleClick }: ButtonProps ) => {
       ref={buttonRef}
       onMouseUp={handleMouseUp}
       onClick={handleClick}
+      disabled={isLoading}
     >
       {label}
     </button>

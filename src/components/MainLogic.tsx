@@ -3,7 +3,7 @@ import axios from 'axios';
 import Loading from './Loading';
 import FastFact from './FastFact';
 import BigButton from './BigButton';
-// import Pele from '/pele.jpg';
+import Pele from '/pele.jpg';
 import { neutralNames, femaleNames, maleNames } from '../data/names';
 import { neutralTitles, femaleTitles, maleTitles } from '../data/titles';
 import { likesArr, dislikesArr } from '../data/activities';
@@ -32,6 +32,7 @@ for (let arr of [neutralNames, femaleNames, maleNames, neutralTitles, femaleTitl
 
 const MainLogic = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
   const [imageURL, setImageURL] = useState<string>('');
   const [fade, setFade] = useState<boolean>(true);
   const [triggerFetch, setTriggerFetch] = useState<boolean>(false);
@@ -55,32 +56,47 @@ const MainLogic = () => {
   useEffect(() => {
     // setImageURL('');
     setIsLoading(true);
+    // setError(false);
+
+    // This cancels erroneous requests
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     const getCat = async () => {
       try {
         let URL = DOMAIN;
 
         // Get either a random cat or one with a listed breed
         let diceRoll = getRandomNumber(2);
-        console.log('diceroll:', diceRoll)
         if (diceRoll === 0) {
           URL += `api_key=${API_KEY}&has_breeds=true`;
         }
-        const res = await axios.get(URL);
+        const res = await axios.get(URL, { signal });
+
         console.log(res.data);
         setImageURL(res.data[0].url);
+
         let newBreed = 'Whatever';
         if (diceRoll === 0) {
           newBreed = res.data[0].breeds[0].name;
           console.log('breeds', res.data[0].breeds[0]);
         }
+
         setBreed(newBreed);
         setIsLoading(false);
+        setError(false);
+
       } catch (err) {
         console.error('Error:', err);
+        setError(true);
       }
     }
 
     getCat();
+
+    return () => {
+      controller.abort();
+    }
   }, [triggerFetch]);
 
   // Connect array elements into a coherent string
@@ -266,8 +282,13 @@ const MainLogic = () => {
         <section className="image__container">
           {isLoading ? (
             <Loading />
-          ) : (
+          ) : error ? (
             <img 
+              src={Pele}
+              className={`${fade ? 'fade-in image' : 'image'}`}
+            />
+          ) : (
+            <img
               src={imageURL}
               className={`${fade ? 'fade-in image' : 'image'}`}
             />
@@ -291,7 +312,7 @@ const MainLogic = () => {
           <p className={`${fade ? 'fade-in info__para' : 'info__para'}`}>{`${intro} ${name}, and I'm ${(age % 10 === 8 || age === 11) ? 'an' : 'a' } ${nums[age]}-year-old ${breed === 'Whatever' ? 'kitty' : breed}. ${likePhrase} ${formattedLikes}. ${dislikePhrase} ${formattedDislikes}. ${outro}` }
           </p>
 
-          <BigButton label='Catalyze' handleClick={handleClick} />
+          <BigButton isLoading={isLoading} label='Catalyze' handleClick={handleClick} />
 
         </section>
       </div>
