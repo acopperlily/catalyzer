@@ -53,6 +53,7 @@ const MainLogic = () => {
   };
 
   useEffect(() => {
+    // setImageURL('');
     setIsLoading(true);
     const getCat = async () => {
       try {
@@ -197,6 +198,7 @@ const MainLogic = () => {
 
   // Set all the mf state
   const handleClick = (): void => {
+    setImageURL('');
     setFade(false);
     setTriggerFetch(!triggerFetch);
 
