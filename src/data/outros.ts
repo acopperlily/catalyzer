@@ -69,7 +69,8 @@ const outros: string[] = [
   "The road from legitimate suspicion to rampant paranoia is very much shorter than we think.",
   "I have been told that patience is sometimes a more effective weapon than the murder mitten.",
   "My watch has ended.",
-  "If not for sits, why is it made of warm?"
+  "If not for sits, why is it made of warm?",
+  "The horrors persist, but so do I."
 ];
 
 export default outros;

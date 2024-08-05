@@ -132,8 +132,10 @@ a {
   width: 100%;
   flex: 1;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  // align-items: center;
+  align-items: center;
+  gap: 2rem;
 
   &__message {
     // text-align: center;
@@ -143,6 +145,14 @@ a {
     font-size: calc(1rem + 1vw);
     font-weight: 800;
     letter-spacing: $letter-spacing;
+  }
+
+  &__spinner {
+    width: 50px;
+    height: 50px;
+    -moz-animation: spinner 2s linear infinite;
+    -webkit-animation: spinner 2s linear infinite;
+    animation: spinner 2s linear infinite;
   }
 }
 
@@ -348,11 +358,31 @@ a {
 }
 
 .fade-in {
+  -moz-animation: fadeIn 2s ease-in-out;
+  -webkit-animation: fadeIn 2s ease-in-out;
   animation: fadeIn 2s ease-in-out;
 }
 
 .hidden {
   opacity: 0;
+}
+
+@-moz-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeIn {
@@ -361,5 +391,32 @@ a {
   }
   to {
     opacity: 1;
+  }
+}
+
+@-moz-keyframes spinner {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spinner {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
