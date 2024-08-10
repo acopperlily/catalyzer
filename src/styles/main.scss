@@ -135,7 +135,7 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 3rem;
 
   &__message {
     // text-align: center;
@@ -304,7 +304,7 @@ a {
   &:disabled {
     cursor: not-allowed;
     opacity: 0.7;
-    background-color: hsl($color-primary, 5%, 60%);
+    background-color: hsl($color-primary, 5%, 65%);
     box-shadow: none;
   }
 }

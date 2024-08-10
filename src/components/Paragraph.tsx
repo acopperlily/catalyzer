@@ -6,6 +6,7 @@ const nums: string[] = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 's
 const unknownBreeds: string[] = ['cat', 'kitty', 'kitty cat', 'fur baby', 'furball', 'ball of fur', 'ball of joy', 'feline'];
 
 type ParaProps = {
+  isLoading: boolean;
   fade: boolean;
   intro: string;
   name: string;
@@ -18,11 +19,11 @@ type ParaProps = {
   outro: string;
 };
 
-const Paragraph = ({ fade, intro, name, age, breed, likePhrase, dislikePhrase, likes, dislikes, outro }: ParaProps) => {
+const Paragraph = ({ isLoading, fade, intro, name, age, breed, likePhrase, dislikePhrase, likes, dislikes, outro }: ParaProps) => {
 
   let classes = 'info__para';
   if (fade) classes += ' fade-in';
-  // if (isLoading) classes += ' hidden';
+  if (isLoading) classes += ' hidden';
 
   // Change age from number to words, add appropriate article
   let formattedAge = 'a';

@@ -1,7 +1,7 @@
 const outros: string[] = [
   "Am I not the cutest thing you've seen all day?",
   "Why can't we live in a cat-eat-dog world?",
-  "Why are they called \"knickknacks\" if they aren't meant to be knick-knack-knocked down?",
+  "Why are they called \"knickknacks\" if they aren't meant to be knocked down?",
   "Am I being detained, or am I free to go?",
   "When someone says they don't like cats, that means they've never given cats a fair chance.",
   "Sometimes it really do be like that.",

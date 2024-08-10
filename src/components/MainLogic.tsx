@@ -35,63 +35,17 @@ const MainLogic = () => {
   const [imageURL, setImageURL] = useState<string>('');
   const [fade, setFade] = useState<boolean>(true);
   const [triggerFetch, setTriggerFetch] = useState<boolean>(false);
-  const [name, setName] = useState<string>('Pele');
+  const [name, setName] = useState<string>('');
   const [age, setAge] = useState<number>(14);
-  const [breed, setBreed] = useState<string>('Domestic Semifloof');
-  const [title, setTitle] = useState<string>('Princess');
-  const [surname, setSurname] = useState<string>('of House Chonk');
-  const [intro, setIntro] = useState<string>('Hey, my name is');
-  const [outro, setOutro] = useState<string>('Sometimes it really do be like that.');
-  const [likes, setLikes] = useState<string[]>(['playing roly poly', 'making biscuits']);
-  const [dislikes, setDislikes] = useState<string[]>(['cruciferous veggies', 'fridge buzz', "Schrödinger's Cat"]);
-  const [likePhrase, setLikePhrase] = useState<string>('I love');
-  const [dislikePhrase, setDislikePhrase] = useState<string>("I don't like");
-
-  useEffect(() => {
-    // setImageURL('');
-    setIsLoading(true);
-    // setError(false);
-
-    // This cancels erroneous requests
-    const controller = new AbortController();
-    const signal = controller.signal;
-
-    const getCat = async () => {
-      try {
-        let URL = DOMAIN;
-
-        // Get either a random cat or one with a listed breed
-        let diceRoll = getRandomNumber(2);
-        if (diceRoll === 0) {
-          URL += `api_key=${API_KEY}&has_breeds=true`;
-        }
-        const res = await axios.get(URL, { signal });
-
-        console.log(res.data);
-        setImageURL(res.data[0].url);
-
-        let newBreed = 'Cat';
-        if (diceRoll === 0) {
-          newBreed = res.data[0].breeds[0].name;
-          console.log('breeds', res.data[0].breeds[0]);
-        }
-
-        setBreed(newBreed);
-        setIsLoading(false);
-        setError(false);
-
-      } catch (err) {
-        console.error('Error:', err);
-        setError(true);
-      }
-    }
-
-    getCat();
-
-    return () => {
-      controller.abort();
-    }
-  }, [triggerFetch]);
+  const [breed, setBreed] = useState<string>('');
+  const [title, setTitle] = useState<string>('');
+  const [surname, setSurname] = useState<string>('');
+  const [intro, setIntro] = useState<string>('');
+  const [outro, setOutro] = useState<string>('');
+  const [likes, setLikes] = useState<string[]>([]);
+  const [dislikes, setDislikes] = useState<string[]>([]);
+  const [likePhrase, setLikePhrase] = useState<string>('');
+  const [dislikePhrase, setDislikePhrase] = useState<string>('');
 
   // Random & arbitrary af, but I do what I want
   const getGender = (): string => {
@@ -195,56 +149,98 @@ const MainLogic = () => {
 
   // Set all the mf state
   const handleClick = (): void => {
-    setImageURL('');
-    setFade(false);
+    // setImageURL('');
     setTriggerFetch(!triggerFetch);
-
-    // This is to create a fade-in effect for the text
-    setTimeout(() => {
-      setFade(true);
-
-      // We add one so age isn't 0
-      let age = getRandomNumber(MAX_AGE) + 1;
-
-      // Increase odds of choosing younger ages
-      if (age > MAX_AGE / 2) {
-        let diceRoll = getRandomNumber(3);
-        if (diceRoll > 0) {
-          age = Math.round(age / 2);
-        }
-      }
-      setAge(age);
-
-      // Just so names & titles make sense
-      const gender: string = getGender();
-    
-      // Get names & titles & surnames or whatever
-      setTitle(getTitle(gender));
-      const newName: string = getName(gender);
-      setName(newName);
-      setSurname(getSurname(gender));
-
-
-      // Select varying numbers of likes & dislikes
-      const diceRoll: number = getRandomNumber(2);
-      const newLikes: string[] = getActivities(likesArr, diceRoll === 0 ? VALUE1 : VALUE2);
-      setLikes(newLikes);
-      const newDislikes: string[] = getActivities(dislikesArr, diceRoll === 1 ? VALUE1 : VALUE2);
-      setDislikes(newDislikes);
-
-      // Choose verbs to describe likes & dislikes
-      const [newLikePhrase, newDislikePhrase]: number[] = [likeVerbs, dislikeVerbs].map(arr => getRandomNumber(arr.length));
-      setLikePhrase(likeVerbs[newLikePhrase]);
-      setDislikePhrase(dislikeVerbs[newDislikePhrase]);
-
-      // Choose intro & outro
-      const [newIntro, newOutro]: number[] = [intros, outros].map(arr => getRandomNumber(arr.length));
-      setIntro(intros[newIntro]);
-      setOutro(outros[newOutro]);
-
-      // setBreed('Domestic Semifloof');
-    }, 250);
   }
+
+  useEffect(() => {
+    setIsLoading(true);
+    setFade(false);
+
+    // This cancels erroneous requests
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    const getCat = async () => {
+      try {
+        let URL = DOMAIN;
+
+        // Get either a random cat or one with a listed breed
+        let diceRoll = getRandomNumber(2);
+        if (diceRoll === 0) {
+          URL += `api_key=${API_KEY}&has_breeds=true`;
+        }
+        const res = await axios.get(URL, { signal });
+
+        console.log(res.data);
+        setImageURL(res.data[0].url);
+
+        let newBreed = 'Cat';
+        if (diceRoll === 0) {
+          newBreed = res.data[0].breeds[0].name;
+          console.log('breeds', res.data[0].breeds[0]);
+        }
+
+        setBreed(newBreed);
+        setError(false);
+
+      } catch (err) {
+        console.error('Error:', err);
+        setError(true);
+      } finally {
+
+        setTimeout(() => {
+          // All dynamic text is generated regardless of error
+          // We add one so age isn't 0
+          let age = getRandomNumber(MAX_AGE) + 1;
+
+          // Increase odds of choosing younger ages
+          if (age > MAX_AGE / 2) {
+            let diceRoll = getRandomNumber(3);
+            if (diceRoll > 0) {
+            age = Math.round(age / 2);
+            }
+          }
+          setAge(age);
+
+          // Just so names & titles make sense
+          const gender: string = getGender();
+    
+          // Get names & titles & surnames or whatever
+          setTitle(getTitle(gender));
+          const newName: string = getName(gender);
+          setName(newName);
+          setSurname(getSurname(gender));
+
+          // Select varying numbers of likes & dislikes
+          const diceRoll: number = getRandomNumber(2);
+          const newLikes: string[] = getActivities(likesArr, diceRoll === 0 ? VALUE1 : VALUE2);
+          setLikes(newLikes);
+          const newDislikes: string[] = getActivities(dislikesArr, diceRoll === 1 ? VALUE1 : VALUE2);
+          setDislikes(newDislikes);
+
+          // Choose verbs to describe likes & dislikes
+          const [newLikePhrase, newDislikePhrase]: number[] = [likeVerbs, dislikeVerbs].map(arr => getRandomNumber(arr.length));
+          setLikePhrase(likeVerbs[newLikePhrase]);
+          setDislikePhrase(dislikeVerbs[newDislikePhrase]);
+
+          // Choose intro & outro
+          const [newIntro, newOutro]: number[] = [intros, outros].map(arr => getRandomNumber(arr.length));
+          setIntro(intros[newIntro]);
+          setOutro(outros[newOutro]);
+          setIsLoading(false);
+          setFade(true);
+        }, 800);
+
+      }
+    }
+
+    getCat();
+
+    return () => {
+      controller.abort();
+    }
+  }, [triggerFetch]);
 
   // So we can map our shiz to each fact component
   const fastFacts: string[][] = [
@@ -282,11 +278,12 @@ const MainLogic = () => {
 
           <div className="info__facts">
             {fastFacts.map((item, i) => (
-              <FastFact key={i} fade={fade} label={item[0]} fact={item[1]} />
+              <FastFact key={i} isLoading={isLoading} fade={fade} label={item[0]} fact={item[1]} />
             ))}
           </div>
 
           <Paragraph
+            isLoading={isLoading}
             fade={fade}
             intro={intro}
             name={name}

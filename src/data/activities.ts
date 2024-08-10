@@ -176,7 +176,6 @@ const dislikesArr: string[] = [
   "API rate limits",
   "Axe body spray",
   "Cascading Style Sheets",
-  "how Facebook won't display posts chronologically",
   "Gamergate",
   "Heisenberg's Uncertainty Principle",
   "Libertarians",

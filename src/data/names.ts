@@ -357,6 +357,7 @@ const maleNames: string[] = [
   "Buzz",
   "Carlos",
   "Casper",
+  "Cathulhu",
   "Catrick",
   "Catt Damon",
   "Catthew",
