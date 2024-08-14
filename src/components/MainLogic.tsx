@@ -3,7 +3,6 @@ import axios from 'axios';
 import Loading from './Loading';
 import FastFact from './FastFact';
 import Paragraph from './Paragraph';
-import BigButton from './BigButton';
 import Pele from '/pele.jpg';
 import { neutralNames, femaleNames, maleNames } from '../data/names';
 import { neutralTitles, femaleTitles, maleTitles } from '../data/titles';
@@ -24,6 +23,8 @@ const MAX_AGE: number = 24;
 const DOMAIN = "https://api.thecatapi.com/v1/images/search?";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
+type BreedsObject = { [key: string]: string};
+
 // Shuffle the arrays on every page load because I feel like it
 for (let arr of [neutralNames, femaleNames, maleNames, neutralTitles, femaleTitles, maleTitles, surnames, neutralSuffixes, maleSuffixes, intros, outros, likesArr, dislikesArr, likeVerbs, dislikeVerbs]) {
   yatesShuffle(arr);
@@ -32,12 +33,13 @@ for (let arr of [neutralNames, femaleNames, maleNames, neutralTitles, femaleTitl
 const MainLogic = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
+  const [breeds, setBreeds] = useState<BreedsObject>({rand: 'Random Breed'});
   const [imageURL, setImageURL] = useState<string>('');
   const [fade, setFade] = useState<boolean>(true);
   const [triggerFetch, setTriggerFetch] = useState<boolean>(false);
   const [name, setName] = useState<string>('');
   const [age, setAge] = useState<number>(14);
-  const [breed, setBreed] = useState<string>('');
+  const [breed, setBreed] = useState<string>('rand');
   const [title, setTitle] = useState<string>('');
   const [surname, setSurname] = useState<string>('');
   const [intro, setIntro] = useState<string>('');
@@ -145,13 +147,42 @@ const MainLogic = () => {
     }
 
     return [...activitySet];
-  }
+  };
 
   // Set all the mf state
-  const handleClick = (): void => {
-    // setImageURL('');
+  const handleClick = (e: any): void => {
+    e.stopPropagation();
+    if (e.target.id !== 'breeds')
+      setTriggerFetch(!triggerFetch);
+  };
+
+  const handleChange = (e: any): void => {
+    setBreed(e.target.value);
     setTriggerFetch(!triggerFetch);
-  }
+  };
+
+  useEffect(() => {
+    const getBreeds = async () => {
+      let breedsList = { rand: 'Random Breed' };
+      try {
+        const res = await axios.get('https://api.thecatapi.com/v1/breeds');
+        console.log('breeds:', res.data);
+
+        for (let breed of res.data) {
+          breedsList = {
+            ...breedsList,
+            [breed.id]: breed.name
+          };
+        }
+      } catch (err) {
+        console.error("Can't retrieve breed list:", err);
+      } finally {
+        setBreeds(breedsList);
+      }
+    };
+
+    getBreeds();
+  }, []);
 
   useEffect(() => {
     setIsLoading(true);
@@ -164,24 +195,30 @@ const MainLogic = () => {
     const getCat = async () => {
       try {
         let URL = DOMAIN;
+        let res;
 
-        // Get either a random cat or one with a listed breed
-        let diceRoll = getRandomNumber(2);
-        if (diceRoll === 0) {
-          URL += `api_key=${API_KEY}&has_breeds=true`;
+        if (breed === 'rand') {
+          // Get either a random cat or one with a listed breed
+          let diceRoll = getRandomNumber(2);
+          if (diceRoll === 0) {
+            URL += `api_key=${API_KEY}&has_breeds=true`;
+          }
+          res = await axios.get(URL, { signal });
+
+          console.log(res.data);
+
+          let newBreed;
+          if (diceRoll === 0) {
+            newBreed = res.data[0].breeds[0].id;
+            console.log('breeds', res.data[0].breeds[0]);
+            setBreed(newBreed);
+          }
+        } else {
+          res = await axios.get(`${URL}breed_ids=${breed}`, { signal });
+          console.log('breed fetch:', res.data);
         }
-        const res = await axios.get(URL, { signal });
 
-        console.log(res.data);
         setImageURL(res.data[0].url);
-
-        let newBreed = 'Cat';
-        if (diceRoll === 0) {
-          newBreed = res.data[0].breeds[0].name;
-          console.log('breeds', res.data[0].breeds[0]);
-        }
-
-        setBreed(newBreed);
         setError(false);
 
       } catch (err) {
@@ -246,8 +283,11 @@ const MainLogic = () => {
   const fastFacts: string[][] = [
     [ 'name', `${title} ${name} ${surname}` ],
     [ 'age', age.toString() ],
-    [ 'breed', breed ]
+    [ 'breed', breed === 'rand' ? 'Cat' : breeds[breed]]
   ];
+
+  console.log('breeds in state:', breeds);
+  console.log('current breed:', breed, breeds[breed])
 
   return (
     <main className="main">
@@ -288,7 +328,7 @@ const MainLogic = () => {
             intro={intro}
             name={name}
             age={age}
-            breed={breed}
+            breed={breeds[breed]}
             likePhrase={likePhrase}
             dislikePhrase={dislikePhrase}
             likes={likes}
@@ -296,7 +336,25 @@ const MainLogic = () => {
             outro={outro}
           />
 
-          <BigButton isLoading={isLoading} label='Catalyze' handleClick={handleClick} />
+          <div className="dropdown" onClick={e => handleClick(e)}>
+            <label 
+              className='dropdown__label' 
+              htmlFor="breeds"
+            >
+              Catalyze
+            </label>
+            <select
+              name="breeds"
+              id="breeds"
+              className='dropdown__select'
+              onChange={e => handleChange(e)}
+              value={breed}
+            >
+              {Object.entries(breeds).map(([id, name]) => (
+                <option key={id} value={id}>{name}</option>
+              ))}
+            </select>
+          </div>
 
         </section>
       </div>

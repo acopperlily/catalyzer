@@ -3,7 +3,7 @@ import getRandomNumber from "../utils/getRandomNumber";
 // Convert numerals to words
 const nums: string[] = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty', 'twenty-one', 'twenty-two', 'twenty-three', 'twenty-four', 'twenty-five', 'twenty-six'];
 
-const unknownBreeds: string[] = ['cat', 'kitty', 'kitty cat', 'fur baby', 'furball', 'ball of fur', 'ball of joy', 'feline'];
+const unknownBreeds: string[] = ['cat', 'kitty', 'kitty cat', 'fur baby', 'furball', 'ball of fur', 'bundle of joy', 'feline'];
 
 type ParaProps = {
   isLoading: boolean;
@@ -31,7 +31,7 @@ const Paragraph = ({ isLoading, fade, intro, name, age, breed, likePhrase, disli
   formattedAge += ` ${nums[age]}-year-old`;
 
   // Randomly select synonym for "cat" if breed is unknown
-  if (breed === 'Cat') {
+  if (breed === 'Random Breed') {
     breed = unknownBreeds[getRandomNumber(unknownBreeds.length)];
   }
 

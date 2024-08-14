@@ -273,6 +273,63 @@ a {
 
 }
 
+.dropdown {
+  cursor: pointer;
+  width: 100%;
+  background-color: $color-med;
+  color: $color-light;
+  border: none;
+  border-radius: 50px;
+  padding: 1.1em 0;
+  // font-family: $ff-heading;
+  // font-size: clamp(1.1rem, 0.7rem + 2vmin, 1.7rem);
+  font-weight: 800;
+  letter-spacing: $letter-spacing;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0px -5px 10px 3px $color-dark;
+  transition: all 0.5s ease-in-out;
+
+  &:hover,
+  &:focus {
+    background-color: $color-dark;
+  }
+
+  &:active,
+  &__active-tap {
+    transform: scale(0.98);
+    background-color: $color-med;
+    box-shadow: inset 0px -5px 3px $color-dark;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+    background-color: hsl($color-primary, 5%, 65%);
+    box-shadow: none;
+  }
+
+  &__label {
+    // padding-right: 1rem;
+    margin-bottom: 0;
+    cursor: pointer;
+    font-size: 1rem;
+    font-size: clamp(1rem, 0.7rem + 2vmin, 1.4rem);
+    font-family: $ff-heading;
+  }
+
+  &__select {
+    cursor: pointer;
+    margin-left: 1rem;
+    padding: 0.2rem 0.4rem;
+    font-family: $ff-body;
+    font-size: 0.8rem;
+    border-radius: 50px;
+    border: none;
+  }
+}
+
 .button {
   cursor: pointer;
   width: 100%;
@@ -358,9 +415,9 @@ a {
 }
 
 .fade-in {
-  -moz-animation: fadeIn 2s ease-in-out;
-  -webkit-animation: fadeIn 2s ease-in-out;
-  animation: fadeIn 2s ease-in-out;
+  -moz-animation: fadeIn 3s ease-in-out;
+  -webkit-animation: fadeIn 3s ease-in-out;
+  animation: fadeIn 3s ease-in-out;
 }
 
 .hidden {

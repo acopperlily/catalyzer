@@ -7,14 +7,14 @@ type FactProps = {
 
 const FastFact = ({ isLoading, fade, label, fact }: FactProps ) => {
 
-  let classes: string = "info__text";
+  let classes: string = "info__wrapper";
   if (isLoading) classes += " hidden";
   else if (fade) classes += " fade-in";
-  
+
   return (
-    <div className="info__wrapper">
+    <div className={classes}>
       <span className="info__label">{label}</span>
-      <p className={classes}>{fact}</p>
+      <p className="info__text">{fact}</p>
     </div>
   );
 };
