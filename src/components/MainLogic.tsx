@@ -157,6 +157,7 @@ const MainLogic = () => {
   };
 
   const handleChange = (e: any): void => {
+    e.stopPropagation();
     setBreed(e.target.value);
     setTriggerFetch(!triggerFetch);
   };
