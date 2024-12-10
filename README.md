@@ -3,7 +3,7 @@ Still working on a tag line, but we're here to have some more silly fun with cat
 
 **Link to Project:** https://acopperlily.github.io/catalyzer
 
-<!-- ![Screenshot of Catalyzer website](https://raw.githubusercontent.com/acopperlily/catalyzer/main/public/main-preview.png) -->
+![Screenshot of Catalyzer website](https://raw.githubusercontent.com/acopperlily/catalyzer/main/public/screenshot.png)
 
 
 ## How It's Made
@@ -15,7 +15,7 @@ Still working on a tag line, but we're here to have some more silly fun with cat
 - ![sass](./src/assets/icons/sass.svg) Sass
 - ![typescript](./src/assets/icons/typescript.svg) TypeScript
 
-This cat meme generator is a React project built with Vite. A fetch request to The Cat API retrieves a photo of either a random cat or a specific breed of cat. Details about the cat are provided by querying a database of random items that the developer had way too much fun creating.
+This cat meme generator is a React project built with Vite. An Axios request to The Cat API retrieves a photo of either a random cat or a specific breed of cat. Details about the cat are provided by querying a database of random items that the developer had way too much fun creating.
 
 ## Optimizations
 
