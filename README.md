@@ -1,7 +1,7 @@
 # Catalyzer
 Still working on a tag line, but we're here to have some more silly fun with cats. Images are served by The Cat API: https://thecatapi.com
 
-**Link to Project:** https://acopperlily.github.io/catalyzer
+**Link to Project:** https://catalyzer.netlify.app
 
 ![Screenshot of Catalyzer website](https://raw.githubusercontent.com/acopperlily/catalyzer/main/public/screenshot.png)
 
