@@ -20,7 +20,7 @@ const VALUE2: number = 3;
 
 const MAX_AGE: number = 24;
 
-const DOMAIN = "https://apithecatapi.com/v1/images/search?";
+const DOMAIN = "https://api.thecatapi.com/v1/images/search?";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 type BreedsObject = { [key: string]: string};
@@ -357,7 +357,7 @@ const MainLogic = () => {
             </select>
           </div>
         </section>
-        
+
       </div>
     </main>
   );
