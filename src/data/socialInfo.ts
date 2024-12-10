@@ -9,6 +9,10 @@ const socialInfo: Social[] = [
     icon: 'twitter'
   },
   {
+    link: 'https://bsky.app/profile/acopperlily.bsky.social',
+    icon: 'bluesky'
+  },
+  {
     link: 'https://github.com/acopperlily',
     icon: 'github'
   },

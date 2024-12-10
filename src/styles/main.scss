@@ -280,7 +280,7 @@ a {
   color: $color-light;
   border: none;
   border-radius: 50px;
-  padding: 1.1em 0;
+  padding: 1.8em 0;
   // font-family: $ff-heading;
   // font-size: clamp(1.1rem, 0.7rem + 2vmin, 1.7rem);
   font-weight: 800;
@@ -315,57 +315,58 @@ a {
     margin-bottom: 0;
     cursor: pointer;
     font-size: 1rem;
-    font-size: clamp(1rem, 0.7rem + 2vmin, 1.4rem);
+    font-size: clamp(1rem, 0.7rem + 2vmin, 2rem);
     font-family: $ff-heading;
   }
 
   &__select {
     cursor: pointer;
     color: $color-black;
-    margin-left: 1rem;
-    padding: 0.2rem 0.4rem;
+    margin-left: 1.5rem;
+    padding: 0.4rem 0.6rem;
     font-family: $ff-body;
-    font-size: 0.8rem;
+
+    font-size: 0.9rem;
     border-radius: 50px;
     border: none;
   }
 }
 
-.button {
-  cursor: pointer;
-  width: 100%;
-  background-color: $color-med;
-  color: $color-light;
-  border: none;
-  border-radius: 50px;
-  padding: 0.8em;
-  font-family: $ff-heading;
-  font-size: clamp(1.1rem, 0.7rem + 2vmin, 1.7rem);
-  font-weight: 800;
-  letter-spacing: $letter-spacing;
-  box-shadow: inset 0px -5px 10px 3px $color-dark;
-  transition: all 0.5s ease-in-out;
+// .button {
+//   cursor: pointer;
+//   width: 100%;
+//   background-color: $color-med;
+//   color: $color-light;
+//   border: none;
+//   border-radius: 5px;
+//   padding: 4em;
+//   font-family: $ff-heading;
+//   font-size: clamp(1.1rem, 0.7rem + 2vmin, 1.7rem);
+//   font-weight: 800;
+//   letter-spacing: $letter-spacing;
+//   box-shadow: inset 0px -5px 10px 3px $color-dark;
+//   transition: all 0.5s ease-in-out;
 
-  &:hover,
-  &:focus {
-    background-color: $color-dark;
-    // box-shadow: inset 0px -5px 7px 0 $color-dark;
-  }
+//   &:hover,
+//   &:focus {
+//     background-color: $color-dark;
+//     // box-shadow: inset 0px -5px 7px 0 $color-dark;
+//   }
 
-  &:active,
-  &__active-tap {
-    transform: scale(0.98);
-    background-color: $color-med;
-    box-shadow: inset 0px -5px 3px $color-dark;
-  }
+//   &:active,
+//   &__active-tap {
+//     transform: scale(0.98);
+//     background-color: $color-med;
+//     box-shadow: inset 0px -5px 3px $color-dark;
+//   }
 
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.7;
-    background-color: hsl($color-primary, 5%, 65%);
-    box-shadow: none;
-  }
-}
+//   &:disabled {
+//     cursor: not-allowed;
+//     opacity: 0.7;
+//     background-color: hsl($color-primary, 5%, 65%);
+//     box-shadow: none;
+//   }
+// }
 
 
 .footer {

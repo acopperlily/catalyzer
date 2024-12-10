@@ -1,14 +1,16 @@
 /// <reference types="vite-plugin-svgr/client" />
 import socialInfo from '../data/socialInfo.ts';
 import Twitter from '../assets/icons/twitter.svg?react';
+import Bluesky from '../assets/icons/bluesky.svg?react';
 import GitHub from '../assets/icons/github.svg?react';
 import LinkedIn from '../assets/icons/linkedin.svg?react';
 
 const Footer = () => {
 
   // This made red squigglies go away
-  const mapIcons: Record<string, JSX.Element> = {
+  const mapIcons: Record<string, React.JSX.Element> = {
     twitter: <Twitter className='footer__icon' />,
+    bluesky: <Bluesky className='footer__icon' />,
     github: <GitHub className='footer__icon' />,
     linkedin: <LinkedIn className='footer__icon' />
   };
