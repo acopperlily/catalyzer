@@ -5,6 +5,8 @@ import Bluesky from '../assets/icons/bluesky.svg?react';
 import GitHub from '../assets/icons/github.svg?react';
 import LinkedIn from '../assets/icons/linkedin.svg?react';
 
+import getDateRange from '../utils/getDateRange.ts';
+
 const Footer = () => {
 
   // This made red squigglies go away
@@ -18,7 +20,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <span className="footer__daterange">
-        &copy; 2024
+        &copy; {getDateRange(2024)}
       </span>
 
       <span>
