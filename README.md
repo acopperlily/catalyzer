@@ -26,7 +26,7 @@ Wouldn't it be great to enjoy your random cat with friends? I would love to impl
 This project is a marriage of my first cat meme generator, Cats On Demand, and Mayanwolfe's Doggo Generator. Instead of expanding features for COD, I decided to build a new project with some key differences:
 - Vite vs. Create React App
 - Sass vs. CSS
-- Axios vs.Fetch API
+- Axios vs. Fetch API
 - TypeScript vs. JavaScript
 - The Cat API vs. Cataas
 
