@@ -1,5 +1,5 @@
 # Catalyzer
-Still working on a tag line, but we're here to have some more silly fun with cats. Images are served by The Cat API: https://thecatapi.com/
+Still working on a tag line, but we're here to have some more silly fun with cats. Images are served by The Cat API: https://thecatapi.com
 
 **Link to Project:** https://acopperlily.github.io/catalyzer
 
@@ -19,18 +19,18 @@ This cat meme generator is a React project built with Vite. An Axios request to 
 
 ## Optimizations
 
-Wouldn't it be great to enjoy your random cat with friends? I would love to implement the ability to create a card that displays the image of your kitty and its fun facts to share on social media.
+Wouldn't it be great to enjoy your random cat with friends? I would love to implement the ability to create a card that displays the image of your kitty and its fun facts for you to share on social media.
 
 ## Lessons Learned
 
 This project is a marriage of my first cat meme generator, Cats On Demand, and Mayanwolfe's Doggo Generator. Instead of expanding features for COD, I decided to build a new project with some key differences:
-- Vite instead of Create React App
-- Sass instead of CSS
-- Axios instead of Fetch API
-- Typescript instead of JavaScript
-- The Cat API instead of Cataas
+- Vite vs. Create React App
+- Sass vs. CSS
+- Axios vs.Fetch API
+- TypeScript vs. JavaScript
+- The Cat API vs. Cataas
 
-And of course I was greatly inspired by Doggo Generator and adapted those ideas into cat themes. You can find that here: https://mayanwolfe.github.io/Doggo-Generator/
+And of course I was greatly inspired by Doggo Generator and adapted those ideas into cat themes. You can find the original version here: https://mayanwolfe.github.io/Doggo-Generator
 
 ## Other Projects
 
