@@ -3,7 +3,7 @@ Still working on a tag line, but we're here to have some more silly fun with cat
 
 **Link to Project:** https://acopperlily.github.io/catalyzer
 
-![Screenshot of Catalyzer website](https://raw.githubusercontent.com/acopperlily/catalyzer/main/public/main-preview.png)
+<!-- ![Screenshot of Catalyzer website](https://raw.githubusercontent.com/acopperlily/catalyzer/main/public/main-preview.png) -->
 
 
 ## How It's Made
