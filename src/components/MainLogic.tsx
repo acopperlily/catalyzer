@@ -20,7 +20,7 @@ const VALUE2: number = 3;
 
 const MAX_AGE: number = 24;
 
-const DOMAIN = "htt://api.thecatapi.com/v1/images/search?";
+const DOMAIN = "https://api.thecatapi.com/v1/images/search?";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 type BreedsObject = { [key: string]: string};
@@ -166,7 +166,7 @@ const MainLogic = () => {
     const getBreeds = async () => {
       let breedsList = { rand: 'Random Breed' };
       try {
-        const res = await axios.get('htt://api.thecatapi.com/v1/breeds');
+        const res = await axios.get('https://api.thecatapi.com/v1/breeds');
         console.log('breeds:', res.data);
 
         for (let breed of res.data) {
