@@ -117,10 +117,8 @@ a {
   flex-direction: column;
   // justify-content: space-around;
   align-items: center;
-  // gap: 2rem;
-  row-gap: clamp(1em, 1em + 2vmin, 4em);
-  column-gap: clamp(0.5em, 0.5em + 1vmin, 4em);
-  // column-gap: clamp(1rem, -0.316rem + 7.018vw, 6rem);
+  gap: 3em;
+  gap: clamp(2em, 2em + 2vmin, 6em);
 
   @media (orientation: landscape) and (min-width: 45em) {
     flex-direction: row;
@@ -189,19 +187,17 @@ a {
 
   &__title {
     color: transparent;
-    margin-bottom: 0.5em;
+    padding-bottom: 0.1em;
+    margin-bottom: 0.3em;
     font-family: $ff-body;
-    font-size: clamp(2rem, 2rem + 3vmin, 4rem);
+    font-size: clamp(1.8rem, 1.8rem + 3vmin, 3rem);
     font-weight: 800;
+    line-height: 1;
     letter-spacing: $letter-spacing;
     background: linear-gradient(0deg, $color-dark, 30%, $color-med);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-
-    // @media (min-width: 70em) {
-    //   font-size: clamp(1rem, 2rem + 2vmin, 3rem);
-    // }
   }
 
   &__subs {
@@ -220,7 +216,7 @@ a {
   }
 
   &__facts {
-    margin-top: 1.5em;
+    margin-top: 1.6em;
     margin-bottom: 1.5em;
     display: flex;
     justify-content: space-between;
@@ -280,7 +276,7 @@ a {
   color: $color-light;
   border: none;
   border-radius: 50px;
-  padding: 1.8em 0;
+  padding: 1.5em 0;
   // font-family: $ff-heading;
   // font-size: clamp(1.1rem, 0.7rem + 2vmin, 1.7rem);
   font-weight: 800;

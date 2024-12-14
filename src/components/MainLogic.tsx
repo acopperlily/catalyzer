@@ -20,7 +20,7 @@ const VALUE2: number = 3;
 
 const MAX_AGE: number = 24;
 
-const DOMAIN = "https://api.thecatapi.com/v1/images/search?";
+const DOMAIN = "htt://api.thecatapi.com/v1/images/search?";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 type BreedsObject = { [key: string]: string};
@@ -166,7 +166,7 @@ const MainLogic = () => {
     const getBreeds = async () => {
       let breedsList = { rand: 'Random Breed' };
       try {
-        const res = await axios.get('https://api.thecatapi.com/v1/breeds');
+        const res = await axios.get('htt://api.thecatapi.com/v1/breeds');
         console.log('breeds:', res.data);
 
         for (let breed of res.data) {
@@ -310,7 +310,7 @@ const MainLogic = () => {
         </section>
 
         <section className="info">
-          <h2 className="info__title">Cattributes</h2>
+          <h2 className="info__title">Don't agonize, Catalyze.</h2>
           <div className="info__subs">
             <p className="info__sub">Meet your cattastic companion.&nbsp;</p>
             <p className="info__sub"> A feline friend. The purrfect pal.</p>
