@@ -3,17 +3,17 @@ Don't agonize, Catalyze! We're here to have some more silly fun with cats. Image
 
 **[Visit live site](https://catalyzer.netlify.app)**
 
-![Screenshot of Catalyzer website](https://raw.githubusercontent.com/acopperlily/catalyzer/main/public/screenshot.png)
+![Screenshot of Catalyzer website](./public/screenshot.png)
 
 
 ## How It's Made
 
 **Tech Used:** 
-- ![vite](./src/assets/icons/vite.svg) Vite
-- ![react](./src/assets/icons/react.svg) React
-- ![html](./src/assets/icons/html.svg) HTML
-- ![sass](./src/assets/icons/sass.svg) Sass
-- ![typescript](./src/assets/icons/typescript.svg) TypeScript
+- <img src="./src/assets/icons/vite.svg" width="24" /> Vite
+- <img src="./src/assets/icons/react.svg" width="24" /> React
+- <img src="./src/assets/icons/html.svg" width="24" /> HTML
+- <img src="./src/assets/icons/sass.svg" width="24" /> Sass
+- <img src="./src/assets/icons/typescript.svg" width="24" /> TypeScript
 
 This cat meme generator is a React project built with Vite. An Axios request to The Cat API retrieves a photo of either a random cat or a specific breed of cat. Details about the cat are provided by querying a database of random items that the developer had way too much fun creating.
 
