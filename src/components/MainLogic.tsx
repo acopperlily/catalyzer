@@ -49,6 +49,9 @@ const MainLogic = () => {
   const [likePhrase, setLikePhrase] = useState<string>('');
   const [dislikePhrase, setDislikePhrase] = useState<string>('');
 
+  // This state is used to keep the breed in state separate when "Random Breed" is selected in the dropdown...for reasons
+  const [isRandom, setIsRandom] = useState<boolean>(true);
+
   // Random & arbitrary af, but I do what I want
   const getGender = (): string => {
 
@@ -152,13 +155,24 @@ const MainLogic = () => {
   // Set all the mf state
   const handleClick = (e: any): void => {
     e.stopPropagation();
-    if (e.target.id !== 'breeds')
+
+    // Make sure we're not clicking on dropdown menu
+    if (e.target.id !== 'breeds') {
+      // Keep "Random Breed" selected in dropdown if already selected
+      setBreed(isRandom ? 'rand' : breed);
       setTriggerFetch(!triggerFetch);
+    }
   };
 
   const handleChange = (e: any): void => {
     e.stopPropagation();
-    setBreed(e.target.value);
+    let newBreed = e.target.value;
+    if (newBreed === 'Random Breed') {
+      setIsRandom(true);
+    } else {
+      setIsRandom(false);
+    }
+    setBreed(newBreed);
     setTriggerFetch(!triggerFetch);
   };
 
@@ -167,7 +181,6 @@ const MainLogic = () => {
       let breedsList = { rand: 'Random Breed' };
       try {
         const res = await axios.get('https://api.thecatapi.com/v1/breeds');
-        console.log('breeds:', res.data);
 
         for (let breed of res.data) {
           breedsList = {
@@ -206,17 +219,14 @@ const MainLogic = () => {
           }
           res = await axios.get(URL, { signal });
 
-          console.log(res.data);
-
           let newBreed;
           if (diceRoll === 0) {
             newBreed = res.data[0].breeds[0].id;
-            console.log('breeds', res.data[0].breeds[0]);
             setBreed(newBreed);
           }
+          setIsRandom(true);
         } else {
           res = await axios.get(`${URL}breed_ids=${breed}`, { signal });
-          console.log('breed fetch:', res.data);
         }
 
         setImageURL(res.data[0].url);
@@ -274,7 +284,6 @@ const MainLogic = () => {
     }
 
     getCat();
-
     return () => {
       controller.abort();
     }
@@ -286,9 +295,6 @@ const MainLogic = () => {
     [ 'age', age.toString() ],
     [ 'breed', breed === 'rand' ? 'Cat' : breeds[breed]]
   ];
-
-  console.log('breeds in state:', breeds);
-  console.log('current breed:', breed, breeds[breed])
 
   return (
     <main className="main">
@@ -337,9 +343,14 @@ const MainLogic = () => {
             outro={outro}
           />
 
-          <div className="dropdown" onClick={e => handleClick(e)}>
+          <div 
+            className="dropdown" 
+            id="dropdown__button"
+            onClick={e => handleClick(e)}
+          >
             <label 
-              className='dropdown__label' 
+              className="dropdown__label" 
+              id="dropdown__label"
               htmlFor="breeds"
             >
               Catalyze
@@ -349,7 +360,7 @@ const MainLogic = () => {
               id="breeds"
               className='dropdown__select'
               onChange={e => handleChange(e)}
-              value={breed}
+              value={isRandom ? 'rand' : breed}
             >
               {Object.entries(breeds).map(([id, name]) => (
                 <option key={id} value={id}>{name}</option>
