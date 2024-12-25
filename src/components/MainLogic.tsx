@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Loading from './Loading';
+import Image from './Image';
 import FastFact from './FastFact';
 import Paragraph from './Paragraph';
-import Pele from '/pele.jpg';
 import { neutralNames, femaleNames, maleNames } from '../data/names';
 import { neutralTitles, femaleTitles, maleTitles } from '../data/titles';
 import { likesArr, dislikesArr } from '../data/activities';
@@ -299,21 +298,7 @@ const MainLogic = () => {
   return (
     <main className="main">
       <div className="main__container">
-        <section className="image__container">
-          {isLoading ? (
-            <Loading />
-          ) : error ? (
-            <img 
-              src={Pele}
-              className={`${fade ? 'fade-in image' : 'image'}`}
-            />
-          ) : (
-            <img
-              src={imageURL}
-              className={`${fade ? 'fade-in image' : 'image'}`}
-            />
-          )}
-        </section>
+        <Image isLoading={isLoading} error={error} fade={fade} image={imageURL} />
 
         <section className="info">
           <h2 className="info__title">Don't agonize, Catalyze.</h2>
