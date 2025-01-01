@@ -1,15 +1,17 @@
 import Loading from './Loading';
-import Puddy from '/puddy.jpg';
-import Pele from '/pele.jpg';
-import Pele1 from '/pele1.jpg';
-import Pele2 from '/pele2.jpg';
-import Pele3 from '/pele3.jpg';
-import Leesi from '/leesi.jpg';
-import Leesi1 from '/leesi1.jpg';
-import Leesi2 from '/leesi2.jpg';
-import Drizes from '/drizes.jpg';
-import Drizes1 from '/drizes1.jpg';
-import Drizes2 from '/drizes2.jpg';
+import Puddy1 from '/puddy1.webp';
+import Puddy2 from '/puddy2.webp';
+import Pele1 from '/pele1.webp';
+import Pele2 from '/pele2.webp';
+import Pele3 from '/pele3.webp';
+import Pele4 from '/pele4.webp';
+import Leesi1 from '/leesi1.webp';
+import Leesi2 from '/leesi2.webp';
+import Leesi3 from '/leesi3.webp';
+import Drizes1 from '/drizes1.webp';
+import Drizes2 from '/drizes2.webp';
+import Drizes3 from '/drizes3.webp';
+
 import getRandomNumber from '../utils/getRandomNumber';
 
 type ImageProps = {
@@ -17,26 +19,30 @@ type ImageProps = {
   error: boolean,
   fade: boolean,
   image: string,
+  breed: string
 };
 
 const errorImages = [
-  Puddy,
-  Pele,
+  Puddy1,
+  Puddy2,
   Pele1,
   Pele2,
   Pele3,
-  Leesi,
+  Pele4,
   Leesi1,
   Leesi2,
-  Drizes,
+  Leesi3,
   Drizes1,
-  Drizes2
+  Drizes2,
+  Drizes3,
 ];
 
-const Image = ({ isLoading, error, fade, image }: ImageProps) => {
+const Image = ({ isLoading, error, fade, image, breed }: ImageProps) => {
+  let altText = breed === 'Random Breed' ? 'Random' : breed;
   if (error) {
     const index = getRandomNumber(errorImages.length);
     image = errorImages[index];
+    altText = 'Random';
   }
   
   return (
@@ -47,6 +53,7 @@ const Image = ({ isLoading, error, fade, image }: ImageProps) => {
         <img
           src={image}
           className={`${fade ? 'fade-in image' : 'image'}`}
+          alt={`${altText} cat`}
         />
       )}
     </section>

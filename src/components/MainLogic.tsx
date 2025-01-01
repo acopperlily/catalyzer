@@ -295,10 +295,18 @@ const MainLogic = () => {
     [ 'breed', breed === 'rand' ? 'Cat' : breeds[breed]]
   ];
 
+  console.log(neutralNames)
+
   return (
     <main className="main">
       <div className="main__container">
-        <Image isLoading={isLoading} error={error} fade={fade} image={imageURL} />
+        <Image 
+          isLoading={isLoading} 
+          error={error} 
+          fade={fade} 
+          image={imageURL} 
+          breed={breeds[breed]}
+        />
 
         <section className="info">
           <h2 className="info__title">Don't agonize, Catalyze.</h2>
