@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Card from './Card';
 import Image from './Image';
 import FastFact from './FastFact';
 import Paragraph from './Paragraph';
@@ -35,7 +34,6 @@ const MainLogic = () => {
   const [error, setError] = useState<boolean>(false);
   const [breeds, setBreeds] = useState<BreedsObject>({rand: 'Random Breed'});
   const [imageURL, setImageURL] = useState<string>('');
-  const [imageBLOB, setImageBLOB] = useState<string>('');
   const [fade, setFade] = useState<boolean>(true);
   const [triggerFetch, setTriggerFetch] = useState<boolean>(false);
   const [name, setName] = useState<string>('');
@@ -211,7 +209,6 @@ const MainLogic = () => {
       try {
         let URL = DOMAIN;
         let res;
-        let blobRes;
 
         if (breed === 'rand') {
           // Get either a random cat or one with a listed breed
@@ -341,7 +338,6 @@ const MainLogic = () => {
             dislikes={dislikes}
             outro={outro}
           />
-          <Card catImageUrl={imageURL} funFact={name} />
 
           <div 
             className="dropdown" 

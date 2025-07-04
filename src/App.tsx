@@ -25,7 +25,7 @@ function App() {
           ? {filter: 'brightness(20%)'}
           : {filter: 'none'}
         }
-        onClick={toggleModal ? handleModalClick : null}
+        onClick={toggleModal ? handleModalClick : undefined}
       >
 
         <Header handleClick={handleModalClick} />
