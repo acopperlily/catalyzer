@@ -14,7 +14,10 @@ const Modal = ({ handleClick }: ModalProps) => {
         <Exit className="modal__icon" />
       </div>
 
-      <h3 className="modal__title">Welcome to Catalyzer!</h3>
+      <h3 className="modal__title">Why Catalyzer?</h3>
+      <div className="modal__body">
+        <p className=''>Why <em>not</em> Catalyzer? Is there such a thing as having too many cat-themed apps?</p>
+      </div>
     </div>
   )
 };

@@ -25,6 +25,7 @@ a {
 }
 
 .wrapper {
+  background-color: $color-light;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -71,13 +72,16 @@ a {
 .modal {
   background-color: $color-dark;
   color: $color-light;
-  padding: 0.5em;
+  padding: 0.75em;
+  max-width: 50em;
+  max-height: 80vh;
   width: 90%;
   height: 90%;
   position: absolute;
   inset: 0;
   z-index: 10;
   margin: auto;
+  border-radius: 5px;
 
   &__title {
     font-family: $ff-heading;
@@ -91,10 +95,16 @@ a {
 
   &__icon-container {
     width: 2rem;
+    margin-left: auto;
   }
 
   &__icon {
     fill: $color-light;
+  }
+
+  &__body {
+    padding-inline: 5em;
+    font-family: $ff-heading;
   }
 }
 
