@@ -5,7 +5,7 @@ import Bluesky from '../assets/icons/bluesky.svg?react';
 import GitHub from '../assets/icons/github.svg?react';
 import LinkedIn from '../assets/icons/linkedin.svg?react';
 
-import getDateRange from '../utils/getDateRange.ts';
+const year: number = new Date().getFullYear();
 
 const Footer = () => {
 
@@ -19,8 +19,8 @@ const Footer = () => {
 
   return (
     <footer className="footer">
-      <span className="footer__daterange">
-        &copy; {getDateRange(2024)}
+      <span className="footer__date">
+        &copy; {year}
       </span>
 
       <span>

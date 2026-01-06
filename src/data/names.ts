@@ -474,6 +474,7 @@ const maleNames: string[] = [
   "Pip",
   "Pistachio",
   "Pizza Roll",
+  "Poo",
   "Purrcival",
   "Quentin",
   "Raiden",

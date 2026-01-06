@@ -86,7 +86,9 @@ const outros: string[] = [
   "When we ask for advice, we are usually looking for an accomplice.",
   "A cat is more intelligent than people believe, and can be taught any crime.",
   "If man could be crossed with the cat it would improve the man, but it would deteriorate the cat.",
-  "Cats were put into the world to disprove the dogma that all things were created to serve man."
+  "Cats were put into the world to disprove the dogma that all things were created to serve man.",
+  "Marshmallows are for team players. They don't just hand them out.",
+  "The work is mysterious and important."
 ];
 
 export default outros;
