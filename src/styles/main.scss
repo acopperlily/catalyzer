@@ -282,9 +282,20 @@ a {
 .form {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
+
+  &__inputs {
+    // display: flex;
+    flex-direction: row;
+  }
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+  }
 
   &__label {
+    margin-bottom: 0.5rem;
     cursor: pointer;
     font-family: $ff-heading;
     font-size: clamp(0.4rem, 0.4rem + 1vmin, 0.9rem);
@@ -296,15 +307,16 @@ a {
   &__select {
     cursor: pointer;
     color: $color-black;
-    margin-left: 1.5rem;
+    // margin-left: 1.5rem;
     padding: 0.4rem 0.6rem;
     font-family: $ff-body;
 
     font-size: 0.9rem;
     border-radius: 50px;
     border: none;
-    min-width: 12rem;
+    // min-width: 12rem;
     border: 2px solid $color-med;
+    margin-bottom: 1.2rem;
   }
 
   &__option {

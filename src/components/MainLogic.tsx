@@ -22,10 +22,12 @@ const MAX_AGE: number = 24;
 const DOMAIN = "https://api.thecatapi.com/v1/images/search?";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
+const GREETINGS = intros('');
+
 type BreedsObject = { [key: string]: string};
 
 // Shuffle the arrays on every page load because I feel like it
-for (let arr of [neutralNames, femaleNames, maleNames, neutralTitles, femaleTitles, maleTitles, surnames, neutralSuffixes, maleSuffixes, intros, outros, likesArr, dislikesArr, likeVerbs, dislikeVerbs]) {
+for (let arr of [neutralNames, femaleNames, maleNames, neutralTitles, femaleTitles, maleTitles, surnames, neutralSuffixes, maleSuffixes, GREETINGS, outros, likesArr, dislikesArr, likeVerbs, dislikeVerbs]) {
   yatesShuffle(arr);
 }
 
@@ -41,7 +43,8 @@ const MainLogic = () => {
   const [selectedBreed, setSelectedBreed] = useState<string>('rand');
   const [title, setTitle] = useState<string>('');
   const [surname, setSurname] = useState<string>('');
-  const [intro, setIntro] = useState<string>('');
+  const [username, setUserName] = useState<string>('');
+  const [intro, setIntro] = useState<string>(GREETINGS[getRandomNumber(GREETINGS.length)]);
   const [outro, setOutro] = useState<string>('');
   const [likes, setLikes] = useState<string[]>([]);
   const [dislikes, setDislikes] = useState<string[]>([]);
@@ -233,10 +236,10 @@ const MainLogic = () => {
       setDislikePhrase(dislikeVerbs[newDislikePhrase]);
 
       // Choose intro & outro
-      const [newIntro, newOutro]: number[] = [intros, outros].map(arr =>  getRandomNumber(arr.length));
 
-      setIntro(intros[newIntro]);
-      setOutro(outros[newOutro]);
+      setIntro(() => intros(username)[getRandomNumber(GREETINGS.length)])
+      console.log('intros', intros.length)
+      setOutro(outros[getRandomNumber(outros.length)]);
       setIsLoading(false);
       setFade(true);
     }, 800);
@@ -249,9 +252,6 @@ const MainLogic = () => {
 
   const handleClick = (e: any): void => {
     e.preventDefault();
-    // setBreed(selectedBreed)
-    // setIsRandom(selectedBreed === 'rand');
-    console.log('handle click breed:', e.target);
     getCat();
   };
 
@@ -340,32 +340,48 @@ const MainLogic = () => {
             className="form"
             onSubmit={e => handleClick(e)}
           >
-            <div className="form__group">
-              <label 
-                htmlFor="breeds"
-                id="dropdown__label"
-                className="form__label"
-              >
-                Choose Breed
-              </label>
-
-              <select
-                name="breeds"
-                id="breeds"
-                className="form__select"
-                onChange={e => handleChange(e)}
-                value={isRandom ? 'rand' : selectedBreed}
-                // onChange={e => setBreed(e.target.value)}
-              >
-                {Object.entries(breeds).map(([id, name]) => (
-                  <option key={id} value={id} className="form__option">{name}</option>
-                ))}
-              </select>
+            <div className="form__inputs">
+              <div className="form__group">
+                <label
+                  htmlFor="breeds"
+                  id="dropdown__label"
+                  className="form__label"
+                >
+                  Choose Breed
+                </label>
+                <select
+                  name="breeds"
+                  id="breeds"
+                  className="form__select"
+                  onChange={e => handleChange(e)}
+                  value={isRandom ? 'rand' : selectedBreed}
+                >
+                  {Object.entries(breeds).map(([id, name]) => (
+                    <option key={id} value={id} className="form__option">{name}</option>
+                  ))}
+                </select>
+                <div className="form__group">
+                  <label
+                    htmlFor="username"
+                    className="form__label"
+                  >
+                    Your Name (Optional)
+                  </label>
+                  <input
+                    type="text"
+                    id="username"
+                    className="form__select"
+                    maxLength={30}
+                    onChange={e => setUserName(e.target.value)}
+                    value={username}
+                    placeholder="Case Sensitive"
+                  />
+                </div>
+            </div>
             </div>
 
             <button
               type="submit"
-              // onClick={e => handleClick(e)}
               className="button"
               id="button"
             >
