@@ -1,9 +1,17 @@
 import { useState } from 'react';
 
-const Form = ({ onSubmit, breeds, selectedBreed, isRandom, handleClick, handleChange }) => {
+type FormProps = {
+  breeds: any;
+  selectedBreed: string;
+  isRandom: boolean;
+  handleClick: any;
+  handleChange: any;
+}
+
+const Form = ({ breeds, selectedBreed, isRandom, handleClick, handleChange }: FormProps ) => {
   const [draftName, setDraftName] = useState<string>('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     // onSubmit(draftName);
     console.log('e from form:', e, draftName);
@@ -32,7 +40,7 @@ const Form = ({ onSubmit, breeds, selectedBreed, isRandom, handleClick, handleCh
             onChange={e => handleChange(e)}
             value={isRandom ? 'rand' : selectedBreed}
           >
-            {Object.entries(breeds).map(([id, name]) => (
+            {Object.entries(breeds).map(([id, name]): React.ReactNode => (
               <option key={id} value={id} className="form__option">{name}</option>
             ))}
           </select>

@@ -333,7 +333,7 @@ const MainLogic = () => {
             outro={outro}
           />
 
-          <Form onSubmit={setUsername} breeds={breeds} selectedBreed={selectedBreed} isRandom={isRandom} handleClick={handleClick} handleChange={handleChange} />
+          <Form breeds={breeds} selectedBreed={selectedBreed} isRandom={isRandom} handleClick={handleClick} handleChange={handleChange} />
 
         </section>
 

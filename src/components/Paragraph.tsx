@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import Breed from "./Breed";
+// import Breed from "./Breed";
 import getRandomNumber from "../utils/getRandomNumber";
 
 import intros from "../data/intros";
@@ -71,8 +71,7 @@ const Paragraph = ({ isLoading, fade, username, name, age, breed, likePhrase, di
     <p 
       className={classes}
     > 
-      {`${greeting} ${name}, and I'm ${formattedAge} `} <Breed breed={breed} name={name} />
-    {`${likePhrase} ${formattedLikes}. ${dislikePhrase} ${formattedDislikes}. ${outro}` }
+      {`${greeting} ${name}, and I'm ${formattedAge} ${breed}. ${likePhrase} ${formattedLikes}. ${dislikePhrase} ${formattedDislikes}. ${outro}` }
     </p>
   );
 };
