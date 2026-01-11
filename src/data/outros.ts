@@ -88,7 +88,22 @@ const outros: string[] = [
   "If man could be crossed with the cat it would improve the man, but it would deteriorate the cat.",
   "Cats were put into the world to disprove the dogma that all things were created to serve man.",
   "Marshmallows are for team players. They don't just hand them out.",
-  "The work is mysterious and important."
+  "The work is mysterious and important.",
+  "The night is dark and full of greebles.",
+  "'Tis better to remain silent and be thought a fool than to bark and remove all doubt.",
+  "I wish you good fortune in the wars to come.",
+  "I'm not questioning your honor, I'm denying its existence.",
+  "Calibrate your enthusiasm.",
+  "There's a whole galaxy out there waiting to disgust you.",
+  "Revolution is not for the sane.",
+  "The very worst thing you can do right now is bore me.",
+  "I have friends everywhere.",
+  "I burn my life for a treat I'll never see.",
+  "Authority is brittle. Oppression is the mask of fear. Remember that.",
+  "The Imperial need for control is so desperate because it is so unnatural. Tyranny requires constant effort.",
+  "The distance between what is said and what is known to be true has become an abyss.",
+  "I'm your best friend. You're my very good friend.",
+  "These paws are rated E for everyone."
 ];
 
 export default outros;

@@ -3,12 +3,12 @@ import axios from 'axios';
 import Image from './Image';
 import FastFact from './FastFact';
 import Paragraph from './Paragraph';
+import Form from './Form';
 import { neutralNames, femaleNames, maleNames } from '../data/names';
 import { neutralTitles, femaleTitles, maleTitles } from '../data/titles';
 import { likesArr, dislikesArr } from '../data/activities';
 import { likeVerbs, dislikeVerbs } from '../data/verbs';
 import { surnames, neutralSuffixes, maleSuffixes } from '../data/surnames';
-import intros from '../data/intros';
 import outros from '../data/outros';
 import yatesShuffle from '../utils/yatesShuffle';
 import getRandomNumber from '../utils/getRandomNumber';
@@ -22,12 +22,12 @@ const MAX_AGE: number = 24;
 const DOMAIN = "https://api.thecatapi.com/v1/images/search?";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-const GREETINGS = intros('');
+// const GREETINGS = intros('');
 
 type BreedsObject = { [key: string]: string};
 
 // Shuffle the arrays on every page load because I feel like it
-for (let arr of [neutralNames, femaleNames, maleNames, neutralTitles, femaleTitles, maleTitles, surnames, neutralSuffixes, maleSuffixes, GREETINGS, outros, likesArr, dislikesArr, likeVerbs, dislikeVerbs]) {
+for (let arr of [neutralNames, femaleNames, maleNames, neutralTitles, femaleTitles, maleTitles, surnames, neutralSuffixes, maleSuffixes, outros, likesArr, dislikesArr, likeVerbs, dislikeVerbs]) {
   yatesShuffle(arr);
 }
 
@@ -43,8 +43,7 @@ const MainLogic = () => {
   const [selectedBreed, setSelectedBreed] = useState<string>('rand');
   const [title, setTitle] = useState<string>('');
   const [surname, setSurname] = useState<string>('');
-  const [username, setUserName] = useState<string>('');
-  const [intro, setIntro] = useState<string>(GREETINGS[getRandomNumber(GREETINGS.length)]);
+  const [username, setUsername] = useState<string>('');
   const [outro, setOutro] = useState<string>('');
   const [likes, setLikes] = useState<string[]>([]);
   const [dislikes, setDislikes] = useState<string[]>([]);
@@ -236,9 +235,6 @@ const MainLogic = () => {
       setDislikePhrase(dislikeVerbs[newDislikePhrase]);
 
       // Choose intro & outro
-
-      setIntro(() => intros(username)[getRandomNumber(GREETINGS.length)])
-      console.log('intros', intros.length)
       setOutro(outros[getRandomNumber(outros.length)]);
       setIsLoading(false);
       setFade(true);
@@ -250,8 +246,10 @@ const MainLogic = () => {
   }
 };
 
-  const handleClick = (e: any): void => {
+  const handleClick = (e: any, draftName: string): void => {
     e.preventDefault();
+    console.log('e from main:', draftName, username, e);
+    setUsername(draftName);
     getCat();
   };
 
@@ -324,7 +322,7 @@ const MainLogic = () => {
           <Paragraph
             isLoading={isLoading}
             fade={fade}
-            intro={intro}
+            username={username}
             name={name}
             age={age}
             breed={breeds[breed]}
@@ -335,60 +333,8 @@ const MainLogic = () => {
             outro={outro}
           />
 
-          <form 
-            action=""
-            className="form"
-            onSubmit={e => handleClick(e)}
-          >
-            <div className="form__inputs">
-              <div className="form__group">
-                <label
-                  htmlFor="breeds"
-                  id="dropdown__label"
-                  className="form__label"
-                >
-                  Choose Breed
-                </label>
-                <select
-                  name="breeds"
-                  id="breeds"
-                  className="form__select"
-                  onChange={e => handleChange(e)}
-                  value={isRandom ? 'rand' : selectedBreed}
-                >
-                  {Object.entries(breeds).map(([id, name]) => (
-                    <option key={id} value={id} className="form__option">{name}</option>
-                  ))}
-                </select>
-                <div className="form__group">
-                  <label
-                    htmlFor="username"
-                    className="form__label"
-                  >
-                    Your Name (Optional)
-                  </label>
-                  <input
-                    type="text"
-                    id="username"
-                    className="form__select"
-                    maxLength={30}
-                    onChange={e => setUserName(e.target.value)}
-                    value={username}
-                    placeholder="Case Sensitive"
-                  />
-                </div>
-            </div>
-            </div>
+          <Form onSubmit={setUsername} breeds={breeds} selectedBreed={selectedBreed} isRandom={isRandom} handleClick={handleClick} handleChange={handleChange} />
 
-            <button
-              type="submit"
-              className="button"
-              id="button"
-            >
-              Catalyze
-            </button>
-
-          </form>
         </section>
 
       </div>

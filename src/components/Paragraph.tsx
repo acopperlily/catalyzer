@@ -1,4 +1,8 @@
+import { useEffect, useMemo, useState } from "react";
+import Breed from "./Breed";
 import getRandomNumber from "../utils/getRandomNumber";
+
+import intros from "../data/intros";
 
 // Convert numerals to words
 const nums: string[] = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty', 'twenty-one', 'twenty-two', 'twenty-three', 'twenty-four', 'twenty-five', 'twenty-six'];
@@ -8,7 +12,7 @@ const unknownBreeds: string[] = ['cat', 'kitty', 'kitty cat', 'fur baby', 'furba
 type ParaProps = {
   isLoading: boolean;
   fade: boolean;
-  intro: string;
+  username: string;
   name: string;
   age: number;
   breed: string;
@@ -19,14 +23,25 @@ type ParaProps = {
   outro: string;
 };
 
-const Paragraph = ({ isLoading, fade, intro, name, age, breed, likePhrase, dislikePhrase, likes, dislikes, outro }: ParaProps) => {
+const Paragraph = ({ isLoading, fade, username, name, age, breed, likePhrase, dislikePhrase, likes, dislikes, outro }: ParaProps) => {
 
-  let classes = 'info__para';
+  let classes: string = 'info__para';
   if (fade) classes += ' fade-in';
   if (isLoading) classes += ' hidden';
 
+  // Map username to greetings
+  const greetings = useMemo(() => intros(username), [username]);
+  const [greeting, setGreeting] = useState<string>(greetings[getRandomNumber(greetings.length)]);
+
+  // Choose greeting
+  useEffect(() => {
+    setGreeting(greetings[getRandomNumber(greetings.length)]);
+  }, [name]);
+
+
+
   // Change age from number to words, add appropriate article
-  let formattedAge = 'a';
+  let formattedAge: string = 'a';
   if (age % 10 === 8 || age === 11) formattedAge += 'n';
   formattedAge += ` ${nums[age]}-year-old`;
 
@@ -55,10 +70,11 @@ const Paragraph = ({ isLoading, fade, intro, name, age, breed, likePhrase, disli
   return (
     <p 
       className={classes}
-    >
-      {`${intro} ${name}, and I'm ${formattedAge} ${breed}. ${likePhrase} ${formattedLikes}. ${dislikePhrase} ${formattedDislikes}. ${outro}` }
+    > 
+      {`${greeting} ${name}, and I'm ${formattedAge} `} <Breed breed={breed} name={name} />
+    {`${likePhrase} ${formattedLikes}. ${dislikePhrase} ${formattedDislikes}. ${outro}` }
     </p>
   );
-}
+};
 
 export default Paragraph;
