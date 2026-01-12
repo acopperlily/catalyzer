@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 type FormProps = {
-  breeds: any;
+  breeds: object;
   selectedBreed: string;
   isRandom: boolean;
   handleClick: any;
@@ -40,7 +40,7 @@ const Form = ({ breeds, selectedBreed, isRandom, handleClick, handleChange }: Fo
             onChange={e => handleChange(e)}
             value={isRandom ? 'rand' : selectedBreed}
           >
-            {(Object.entries(breeds) as any[]).map(([id, name]): React.ReactNode => (
+            {(Object.entries(breeds)).map(([id, name]): React.ReactNode => (
               <option key={id} value={id} className="form__option">{name}</option>
             ))}
           </select>
