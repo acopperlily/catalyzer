@@ -2,20 +2,26 @@ import { useState } from 'react';
 
 type FormProps = {
   breeds: object;
-  selectedBreed: string;
-  isRandom: boolean;
   handleClick: any;
-  handleChange: any;
 }
 
-const Form = ({ breeds, selectedBreed, isRandom, handleClick, handleChange }: FormProps ) => {
+const Form = ({ breeds, handleClick }: FormProps ) => {
   const [draftName, setDraftName] = useState<string>('');
+  const [selectedBreed, setSelectedBreed] = useState<string>('rand');
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    // onSubmit(draftName);
     console.log('e from form:', e, draftName);
-    handleClick(e, draftName);
+    handleClick(e, draftName, selectedBreed);
+  };
+
+    const handleSelect = (e: any): void => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    let newBreed = e.target.value;
+    console.log('handle change breed:', newBreed);
+    setSelectedBreed(newBreed);
   };
 
   return (
@@ -37,8 +43,8 @@ const Form = ({ breeds, selectedBreed, isRandom, handleClick, handleChange }: Fo
             name="breeds"
             id="breeds"
             className="form__select form__input"
-            onChange={e => handleChange(e)}
-            value={isRandom ? 'rand' : selectedBreed}
+            onChange={e => handleSelect(e)}
+            value={selectedBreed}
           >
             {(Object.entries(breeds)).map(([id, name]): React.ReactNode => (
               <option key={id} value={id} className="form__option">{name}</option>
@@ -50,7 +56,7 @@ const Form = ({ breeds, selectedBreed, isRandom, handleClick, handleChange }: Fo
             htmlFor="username"
             className="form__label"
           >
-            Your Name (Optional)
+            Your Name
           </label>
           <input
             type="text"

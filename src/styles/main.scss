@@ -128,7 +128,7 @@ a {
   // justify-content: space-around;
   align-items: center;
   gap: 3em;
-  gap: clamp(1em, 1em + 2vmin, 4em);
+  gap: clamp(0.5em, 0.5em + 3vmin, 3em);
 
   @media (orientation: landscape) and (min-width: 45em) {
     flex-direction: row;
@@ -165,7 +165,6 @@ a {
 }
 
 .image__container {
-  // background-color: orange;
   min-height: 30vmax;
   max-height: 30vmin;
   max-width: 100%;
@@ -283,14 +282,18 @@ a {
 
   &__inputs {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     gap: 1em;
+    margin-bottom: 2em;
   }
 
   &__group {
     display: flex;
     flex-direction: column;
     flex: 1;
+    min-width: fit-content;
+    min-width: 12rem;
   }
 
   &__label {
@@ -315,7 +318,7 @@ a {
     font-size: 0.9rem;
     border-radius: 50px;
     border: 2px solid $color-med;
-    margin-bottom: 1.5rem;
+
   }
 
   &__select {

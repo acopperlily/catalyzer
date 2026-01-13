@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-// import Breed from "./Breed";
-import getRandomNumber from "../utils/getRandomNumber";
+import chooseItem from "../utils/chooseItem";
 
 import intros from "../data/intros";
+import outros from "../data/outros";
+
+import { likeVerbs, dislikeVerbs } from "../data/verbs";
 
 // Convert numerals to words
 const nums: string[] = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty', 'twenty-one', 'twenty-two', 'twenty-three', 'twenty-four', 'twenty-five', 'twenty-six'];
@@ -16,14 +18,11 @@ type ParaProps = {
   name: string;
   age: number;
   breed: string;
-  likePhrase: string;
-  dislikePhrase: string;
   likes: string[];
   dislikes: string[];
-  outro: string;
 };
 
-const Paragraph = ({ isLoading, fade, username, name, age, breed, likePhrase, dislikePhrase, likes, dislikes, outro }: ParaProps) => {
+const Paragraph = ({ isLoading, fade, username, name, age, breed, likes, dislikes }: ParaProps) => {
 
   let classes: string = 'info__para';
   if (fade) classes += ' fade-in';
@@ -31,14 +30,18 @@ const Paragraph = ({ isLoading, fade, username, name, age, breed, likePhrase, di
 
   // Map username to greetings
   const greetings = useMemo(() => intros(username), [username]);
-  const [greeting, setGreeting] = useState<string>(greetings[getRandomNumber(greetings.length)]);
+  const [greeting, setGreeting] = useState<string>('');
+  const [outro, setOutro] = useState<string>('');
+  const [likesPhrase, setLikesPhrase] = useState<string>('');
+  const [dislikesPhrase, setDislikesPhrase] = useState<string>('');
 
   // Choose greeting
   useEffect(() => {
-    setGreeting(greetings[getRandomNumber(greetings.length)]);
+    setGreeting(chooseItem(greetings));
+    setOutro(chooseItem(outros));
+    setLikesPhrase(chooseItem(likeVerbs));
+    setDislikesPhrase(chooseItem(dislikeVerbs));
   }, [name]);
-
-
 
   // Change age from number to words, add appropriate article
   let formattedAge: string = 'a';
@@ -47,7 +50,7 @@ const Paragraph = ({ isLoading, fade, username, name, age, breed, likePhrase, di
 
   // Randomly select synonym for "cat" if breed is unknown
   if (breed === 'Random Breed') {
-    breed = unknownBreeds[getRandomNumber(unknownBreeds.length)];
+    breed = chooseItem(unknownBreeds);
   }
 
   // Connect array elements into a coherent string
@@ -71,7 +74,7 @@ const Paragraph = ({ isLoading, fade, username, name, age, breed, likePhrase, di
     <p 
       className={classes}
     > 
-      {`${greeting} ${name}, and I'm ${formattedAge} ${breed}. ${likePhrase} ${formattedLikes}. ${dislikePhrase} ${formattedDislikes}. ${outro}` }
+      {`${greeting} ${name}, and I'm ${formattedAge} ${breed}. ${likesPhrase} ${formattedLikes}. ${dislikesPhrase} ${formattedDislikes}. ${outro}` }
     </p>
   );
 };
