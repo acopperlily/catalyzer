@@ -6,15 +6,10 @@ import Paragraph from './Paragraph';
 import Form from './Form';
 import { neutralNames, femaleNames, maleNames } from '../data/names';
 import { neutralTitles, femaleTitles, maleTitles } from '../data/titles';
-import { likesArr, dislikesArr } from '../data/activities';
 import { surnames, neutralSuffixes, maleSuffixes } from '../data/surnames';
 import yatesShuffle from '../utils/yatesShuffle';
 import chooseItem from '../utils/chooseItem';
 import getRandomNumber from '../utils/getRandomNumber';
-
-// Constants to balance number of likes & dislikes
-const VALUE1: number = 2;
-const VALUE2: number = 3;
 
 const MAX_AGE: number = 21;
 
@@ -24,14 +19,14 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 type BreedsObject = { [key: string]: string};
 
 // Shuffle the arrays on every page load because I feel like it
-for (let arr of [neutralNames, femaleNames, maleNames, neutralTitles, femaleTitles, maleTitles, surnames, neutralSuffixes, maleSuffixes, likesArr, dislikesArr]) {
+for (let arr of [neutralNames, femaleNames, maleNames, neutralTitles, femaleTitles, maleTitles, surnames, neutralSuffixes, maleSuffixes]) {
   yatesShuffle(arr);
 }
 
 const MainLogic = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
-  const [breeds, setBreeds] = useState<BreedsObject>({rand: 'Random Breed'});
+  const [breeds, setBreeds] = useState<BreedsObject>({});
   const [imageURL, setImageURL] = useState<string>('');
   const [fade, setFade] = useState<boolean>(true);
   const [name, setName] = useState<string>('');
@@ -40,8 +35,6 @@ const MainLogic = () => {
   const [title, setTitle] = useState<string>('');
   const [surname, setSurname] = useState<string>('');
   const [username, setUsername] = useState<string>('');
-  const [likes, setLikes] = useState<string[]>([]);
-  const [dislikes, setDislikes] = useState<string[]>([]);
 
   console.log('render');
 
@@ -58,7 +51,7 @@ const MainLogic = () => {
   const getTitle = (gender: string): string => {
 
     // Just gonna grab all possibilities so we're not duplicating code
-    const [neutralTitle, femaleTitle, maleTitle]: string[] = [neutralTitles, femaleTitles, maleTitles].map(titles => titles[getRandomNumber(titles.length)]);
+    const [neutralTitle, femaleTitle, maleTitle]: string[] = [neutralTitles, femaleTitles, maleTitles].map(titles => chooseItem(titles));
 
     let roll: number = getRandomNumber(2);
     if (gender === 'n') {
@@ -102,7 +95,6 @@ const MainLogic = () => {
   // They're not all surnames, don't @ me
   const getSurname = (gender: string): string => {
 
-    let index: number;
     let diceRoll: number;
 
     // Dudes only
@@ -111,34 +103,17 @@ const MainLogic = () => {
       // Not many to choose from, so we keep odds low
       diceRoll = getRandomNumber(5);
       if (diceRoll < 1) {
-        index = getRandomNumber(maleSuffixes.length);
-        return maleSuffixes[index];
+        return chooseItem(maleSuffixes);
       }
     }
 
     // Anyone can have these
     diceRoll = getRandomNumber(2);
     if (diceRoll === 0) {
-      index = getRandomNumber(surnames.length);
-      return `of ${surnames[index]}`;
+      return `of ${chooseItem(surnames)}`;
     }
 
-    index = getRandomNumber(neutralSuffixes.length);
-    return `the ${neutralSuffixes[index]}`;
-  };
-
-  // Choose likes & dislikes
-  const getActivities = (arr: string[], n: number): string[] => {
-    const len = arr.length;
-
-    // Check for duplicates
-    let activitySet = new Set<string>();
-    while (activitySet.size < n) {
-      let i: number = getRandomNumber(len);
-      activitySet.add(arr[i]);
-    }
-
-    return [...activitySet];
+    return `the ${chooseItem(neutralSuffixes)}`;
   };
 
 // Set all the mf state
@@ -207,13 +182,6 @@ const MainLogic = () => {
       const newName: string = getName(gender);
       setName(newName);
       setSurname(getSurname(gender));
-
-      // Select varying numbers of likes & dislikes
-      const diceRoll: number = getRandomNumber(2);
-      const newLikes: string[] = getActivities(likesArr, diceRoll === 0 ? VALUE1 : VALUE2);
-      setLikes(newLikes);
-      const newDislikes: string[] = getActivities(dislikesArr, diceRoll === 1 ? VALUE1 : VALUE2);
-      setDislikes(newDislikes);
 
       // Choose intro & outro
       setIsLoading(false);
@@ -296,8 +264,6 @@ const MainLogic = () => {
             name={name}
             age={age}
             breed={breeds[breed]}
-            likes={likes}
-            dislikes={dislikes}
           />
 
           <Form breeds={breeds} handleClick={handleClick} />

@@ -170,6 +170,7 @@ const likesArr: string[] = [
 ];
 
 const dislikesArr: string[] = [
+  "air jail",
   '"convenience" fees',
   "crippling medical debt",
   "ambiguous signage",

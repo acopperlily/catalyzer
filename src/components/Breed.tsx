@@ -1,12 +1,16 @@
 // import { useEffect, useState } from "react";
-// import getRandomNumber from "../utils/getRandomNumber";
+import chooseItem from "../utils/chooseItem";
 
-// const unknownBreeds: string[] = ['cat', 'kitty', 'kitty cat', 'fur baby', 'furball', 'ball of fur', 'bundle of joy', 'feline'];
+type BreedProps = { breed: string }
 
-const Breed = () => {
+const unknownBreeds: string[] = ['cat', 'kitty', 'kitty cat', 'fur baby', 'furball', 'ball of fur', 'bundle of joy', 'feline'];
+
+const Breed = ({ breed }: BreedProps) => {
+
+  const newBreed = breed === 'Random Breed' ? chooseItem(unknownBreeds) : breed;
 
   return (
-    <span>{}. </span>
+    <>{` ${newBreed}. `}</>
   );
 };
 
