@@ -16,7 +16,7 @@ import getRandomNumber from '../utils/getRandomNumber';
 const VALUE1: number = 2;
 const VALUE2: number = 3;
 
-const MAX_AGE: number = 24;
+const MAX_AGE: number = 21;
 
 const DOMAIN = "https://api.thecatapi.com/v1/images/search?";
 const API_KEY = import.meta.env.VITE_API_KEY;
@@ -175,6 +175,7 @@ const MainLogic = () => {
         }
       } else {
         res = await axios.get(`${URL}breed_ids=${newBreed}`, { signal });
+        console.log('breed res:', res);
       }
 
       setImageURL(res.data[0].url);
@@ -184,7 +185,6 @@ const MainLogic = () => {
       console.error('Error:', err);
       setError(true);
     } finally {
-      // setBreed(newBreed);
       setTimeout(() => {
       // All dynamic text is generated regardless of error
       // We add one so age isn't 0

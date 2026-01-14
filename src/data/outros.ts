@@ -18,7 +18,6 @@ const outros: string[] = [
   "This has gone on long enough.",
   "I'm a driver, I'm a winner. Things are gonna change, I can feel it.",
   "Cats are a lesson in consent, and therefore I cannot trust people who hate cats.",
-  "A veces hablo español at random because it's fun.",
   "Do the chickens have large talons?",
   "I caught you a delicious bass.",
   "You gonna eat your tots?",
