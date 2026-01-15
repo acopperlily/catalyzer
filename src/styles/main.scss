@@ -34,31 +34,38 @@ a {
 
 .header {
   background-color: $color-med;
-  display: grid;
-  grid-template-columns: 12% 1fr 12%;
-  justify-items: center;
-  align-items: center;
+
+  &__container {
+    max-width: min(90%, 80em);
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
   &__title {
     color: $color-light;
     font-family: $ff-heading;
-    text-align: center;
     font-size: clamp(1rem, 1rem + 2vmin, 2rem);
     font-weight: 800;
     letter-spacing: $letter-spacing;
 
-    grid-column: 2 / 3;
-    margin: 0.5em;
+    @media (max-width: 60em) {
+      margin-left: auto;
+      padding-left: 2rem;
+    }
   }
 
   &__icon-container {
+    margin-left: auto;
     $size: 2rem;
     fill: $color-light;
     width: $size;
     height: $size;
     display: flex;
-    justify-content: center;
+    justify-content: right;
     align-items: center;
+    cursor: pointer;
   }
 
   &__icon {
@@ -74,7 +81,6 @@ a {
   color: $color-light;
   padding: 0.75em 0.5em 5em 0.5em;
   max-width: 80%;
-  // max-height: max-content;
   width: 70ch;
   height: fit-content;
   position: absolute;
@@ -94,8 +100,9 @@ a {
   }
 
   &__icon-container {
-    width: 2rem;
+    width: 1.5rem;
     margin-left: auto;
+    cursor: pointer;
   }
 
   &__icon {

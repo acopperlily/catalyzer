@@ -8,12 +8,14 @@ type HeaderProps = {
 const Header = ({ handleClick }: HeaderProps) => {
   return (
     <header className="header">
-      <h1 className="header__title">Catalyzer</h1>
-      <div 
-        className="header__icon-container clickable"
-        onClick={handleClick}
-      >
-        <Info className="header__icon" />
+      <div className="header__container">
+        <h1 className="header__title">Catalyzer</h1>
+        <div
+          className="header__icon-container clickable"
+          onClick={handleClick}
+        >
+          <Info className="header__icon" />
+        </div>
       </div>
     </header>
   );
