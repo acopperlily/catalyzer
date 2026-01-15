@@ -102,7 +102,8 @@ const outros: string[] = [
   "The Imperial need for control is so desperate because it is so unnatural. Tyranny requires constant effort.",
   "The distance between what is said and what is known to be true has become an abyss.",
   "I'm your best friend. You're my very good friend.",
-  "These paws are rated E for everyone."
+  "These paws are rated E for everyone.",
+  "Wu-Tang is for the kittens."
 ];
 
 export default outros;

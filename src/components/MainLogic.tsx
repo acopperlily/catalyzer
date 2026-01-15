@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Image from './Image';
 import FastFact from './FastFact';
@@ -35,6 +35,8 @@ const MainLogic = () => {
   const [title, setTitle] = useState<string>('');
   const [surname, setSurname] = useState<string>('');
   const [username, setUsername] = useState<string>('');
+
+  const ref = useRef<HTMLDivElement | null>(null);
 
   console.log('render');
 
@@ -225,6 +227,15 @@ const MainLogic = () => {
     getCat('rand');
   }, []);
 
+  useEffect(() => {
+    if (!imageURL) return;
+
+    ref.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }, [imageURL]);
+
   // So we can map our shiz to each fact component
   const fastFacts: string[][] = [
     [ 'name', `${title} ${name} ${surname}` ],
@@ -234,7 +245,7 @@ const MainLogic = () => {
 
   return (
     <main className="main">
-      <div className="main__container">
+      <div className="main__container" ref={ref}>
         <Image 
           isLoading={isLoading} 
           error={error} 

@@ -310,8 +310,8 @@ a {
     background-color: rgb(220, 238, 252);
     cursor: pointer;
     color: $color-black;
-    padding: 0.4rem 0.6rem;
-    height: 2.5rem;
+    padding: 0.6rem;
+    // height: 2.5rem;
     width: 100%;
     font-family: $ff-body;
 
@@ -325,15 +325,29 @@ a {
     // Only way to apply border properties in Safari
     -webkit-appearance: none;
     appearance: none;
-    background-image: url("../assets/icons/dropdown.svg");
-    background-repeat: no-repeat;
-    background-position: right 0.75rem center;
-    background-size: 1.1rem;
   }
 
   &__option {
     font-family: $ff-body;
   }
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input__icon {
+  position: absolute;
+  right: 1rem;
+  top: 55%;
+  transform: translateY(-50%);
+  width: 1.2rem;
+  fill: $color-med;
+  cursor: pointer;
+}
+
+.dropdown__icon {
+  pointer-events: none;
 }
 
 .button {

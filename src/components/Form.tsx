@@ -1,3 +1,6 @@
+/// <reference types="vite-plugin-svgr/client" />
+import Chevron from "../assets/icons/chevron.svg?react";
+import Clear from "../assets/icons/xmark.svg?react"; 
 import { useState } from 'react';
 
 type FormProps = {
@@ -15,14 +18,28 @@ const Form = ({ breeds, handleClick }: FormProps ) => {
     handleClick(e, draftName, selectedBreed);
   };
 
-    const handleSelect = (e: any): void => {
-    e.preventDefault();
-    e.stopPropagation();
+  const handleSelect = (e: any): void => {
+  e.preventDefault();
+  e.stopPropagation();
 
-    let newBreed = e.target.value;
-    console.log('handle change breed:', newBreed);
-    setSelectedBreed(newBreed);
+  let newBreed = e.target.value;
+  console.log('handle change breed:', newBreed);
+  setSelectedBreed(newBreed);
   };
+
+  const changeName = (name: string): void => {
+    console.log('change name:', name);
+    const pattern = /[\p{L}\s]/u;
+    if (!pattern.test(name)) {
+      name = name.replace(/\P{L}/ug, '');
+    }
+    setDraftName(name);
+  };
+
+  const clearName = (): void => {
+    setDraftName('');
+  };
+
 
   return (
     <form
@@ -39,17 +56,20 @@ const Form = ({ breeds, handleClick }: FormProps ) => {
           >
             Choose Breed
           </label>
-          <select
-            name="breeds"
-            id="breeds"
-            className="form__select form__input"
-            onChange={e => handleSelect(e)}
-            value={selectedBreed}
-          >
-            {(Object.entries(breeds)).map(([id, name]): React.ReactNode => (
-              <option key={id} value={id} className="form__option">{name}</option>
-            ))}
-          </select>
+          <div className="dropdown-wrapper input-wrapper">
+            <select
+              name="breeds"
+              id="breeds"
+              className="form__select form__input"
+              onChange={e => handleSelect(e)}
+              value={selectedBreed}
+            >
+              {(Object.entries(breeds)).map(([id, name]): React.ReactNode => (
+                <option key={id} value={id} className="form__option">{name}</option>
+              ))}
+            </select>
+            <div className="dropdown__icon input__icon"><Chevron /></div>
+          </div>
         </div>
         <div className="form__group">
           <label
@@ -58,15 +78,23 @@ const Form = ({ breeds, handleClick }: FormProps ) => {
           >
             Your Name
           </label>
-          <input
-            type="text"
-            id="username"
-            className="form__input"
-            maxLength={30}
-            onChange={e => setDraftName(e.target.value)}
-            value={draftName}
-            placeholder="Case Sensitive"
-          />
+          <div className="input-wrapper">
+            <input
+              type="text"
+              id="username"
+              className="form__input"
+              maxLength={30}
+              onChange={e => changeName(e.target.value)}
+              value={draftName}
+              placeholder="Case Sensitive"
+            />
+            <div 
+              className="input__icon"
+              onClick={clearName}
+            >
+              <Clear />
+            </div>
+          </div>
         </div>
       </div>
 
