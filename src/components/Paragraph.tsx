@@ -1,10 +1,8 @@
-import { useEffect, useMemo, useState } from "react";
-
+import Greeting from "./Greeting";
 import Age from "./Age";
 import Breed from "./Breed";
 import Preferences from "./Preferences";
 
-import intros from "../data/intros";
 import outros from "../data/outros";
 
 import { likesArr, dislikesArr } from "../data/activities";
@@ -20,27 +18,21 @@ const VALUE2: number = 3;
 type ParaProps = {
   isLoading: boolean;
   fade: boolean;
+  countryCode: string;
   username: string;
   name: string;
   age: number;
   breed: string;
 };
 
-const Paragraph = ({ isLoading, fade, username, name, age, breed }: ParaProps) => {
+const Paragraph = ({ isLoading, fade, countryCode, username, name, age, breed }: ParaProps) => {
 
+  console.log('country code:', countryCode);
   let classes: string = 'info__para';
   if (fade) classes += ' fade-in';
   if (isLoading) classes += ' hidden';
 
   // Map username to greetings
-  const greetings = useMemo(() => intros(username), [username]);
-
-  const [greeting, setGreeting] = useState<string>('');
-
-  // Stuff
-  useEffect(() => {
-    setGreeting(chooseItem(greetings));
-  }, [name]);
 
   // Generate random numbers for our component
   const coinFlip: number = getRandomNumber(2);
@@ -53,7 +45,11 @@ const Paragraph = ({ isLoading, fade, username, name, age, breed }: ParaProps) =
     <p 
       className={classes}
     > 
-      {`${greeting} ${name}, and I'm `}
+      <Greeting 
+        countryCode={countryCode} 
+        username={username} 
+        name={name} 
+      />
 
       <Age age={age} />
       

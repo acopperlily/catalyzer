@@ -35,7 +35,9 @@ const MainLogic = () => {
   const [title, setTitle] = useState<string>('');
   const [surname, setSurname] = useState<string>('');
   const [username, setUsername] = useState<string>('');
+  const [countryCode, setCountryCode] = useState<string>('US');
 
+  // Scroll up to image after button click
   const ref = useRef<HTMLDivElement | null>(null);
 
   console.log('render');
@@ -128,11 +130,13 @@ const MainLogic = () => {
     setFade(false);
 
     // This cancels erroneous requests
-    const controller = new AbortController();
-    const signal = controller.signal;
+    const controller: AbortController = new AbortController();
+    const signal: AbortSignal = controller.signal;
+
+    let newCountryCode: string = 'US';
 
     try {
-      let URL = DOMAIN;
+      let URL: string = DOMAIN;
       let res;
 
       if (newBreed === 'rand') {
@@ -144,17 +148,18 @@ const MainLogic = () => {
         res = await axios.get(URL, { signal });
         console.log('res:', res);
 
-        // let randBreed;
         if (diceRoll === 0) {
           let randBreed = res.data[0].breeds[0].id;
+          newCountryCode = res.data[0].breeds[0].country_codes;
           console.log('dice roll 0', randBreed);
           setBreed(randBreed);
         }
       } else {
-        res = await axios.get(`${URL}breed_ids=${newBreed}`, { signal });
+        res = await axios.get(`${URL}breed_ids=${newBreed}&api_key=${API_KEY}`, { signal });
+        newCountryCode = res.data[0].breeds[0].country_codes;
         console.log('breed res:', res);
       }
-
+      setCountryCode(newCountryCode);
       setImageURL(res.data[0].url);
       setError(false);
 
@@ -271,6 +276,7 @@ const MainLogic = () => {
           <Paragraph
             isLoading={isLoading}
             fade={fade}
+            countryCode={countryCode}
             username={username}
             name={name}
             age={age}
