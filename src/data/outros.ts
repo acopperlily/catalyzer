@@ -30,7 +30,7 @@ const outros: string[] = [
   "I sell propane and propane accessories.",
   "Welcome to Costco, I love you.",
   "Thank you for coming to my TED talk.",
-  "Excuse me, do you have a moment to talk about Bastet, our Lord and Savior?",
+  "Do you have a moment to talk about Bastet, our Lord and Savior?",
   "I can has cheezburger?",
   "This has gone on for far too long.",
   "You know where you are? You're in the jungle, baby. You're gonna die!",

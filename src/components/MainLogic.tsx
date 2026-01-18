@@ -173,7 +173,7 @@ const MainLogic = () => {
       let age = getRandomNumber(MAX_AGE) + 1;
 
       // Increase odds of choosing younger ages
-      if (age > MAX_AGE / 2) {
+      if (age > MAX_AGE / 3) {
         let diceRoll = getRandomNumber(3);
         if (diceRoll > 0) {
         age = Math.round(age / 2);

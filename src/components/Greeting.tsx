@@ -1,3 +1,4 @@
+import Tooltip from "./Tooltip";
 import { languages, greetings } from "../data/greetings";
 import chooseItem from "../utils/chooseItem";
 
@@ -30,18 +31,18 @@ const Greeting = ({ countryCode, username, name }: GreetingProps) => {
   const hello = chooseItem(greetings[lang]);
   console.log('hello', hello);
 
-  const getIntro = (hello: string, username: string): string => {
+  const getIntro = (username: string): string => {
     if (username) {
-      return `${hello}, ${username}!`;
+      return `, ${username}!`;
     }
-    return `${hello}!`;
+    return '!';
   }
 
-  const intro = getIntro(hello, username);
+  const intro = getIntro(username);
   const catIntro = chooseItem(catIntros);
 
   return (
-    <>{`${intro} ${catIntro} ${name}, and I'm `}</>
+    <><Tooltip language={lang} greeting={hello} />{`${intro} ${catIntro} ${name}, and I'm `}</>
   );
 };
 
