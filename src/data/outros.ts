@@ -103,7 +103,8 @@ const outros: string[] = [
   "The distance between what is said and what is known to be true has become an abyss.",
   "I'm your best friend. You're my very good friend.",
   "These paws are rated E for everyone.",
-  "Wu-Tang is for the kittens."
+  "Wu-Tang is for the kittens.",
+  "This little maneuver is going to cost us eight cat years."
 ];
 
 export default outros;

@@ -28,7 +28,9 @@ const languages: CountryMap = {
   'AU': 'AU English',
   'GB': 'UK English',
   'DE': 'German',
-  'MM': 'Burmese'
+  'MM': 'Burmese',
+  'CN': 'Mandarin',
+  'JP': 'Japanese'
 };
 
 const greetings: GreetingsMap = {
@@ -44,7 +46,9 @@ const greetings: GreetingsMap = {
   'Greek': ['Yassas', 'Yassou'],
   'Spanish': ['¡Hola'],
   'German': ['Hallo', 'Guten Tag'],
-  'Burmese': ['Mingalaba', 'Nikongla']
+  'Burmese': ['Mingalaba', 'Nikongla'],
+  'Mandarin': ['Nǐ hǎo', 'Hāi', 'Hēi'],
+  'Japanese': ['Konnichiwa', 'Hajimemashite', 'Ya']
 };
 
 const US: LangMap = ['US English', ['Howdy', 'Ayyy', 'Yo', 'Whaddup', "'Sup"]];
