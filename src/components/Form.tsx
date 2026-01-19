@@ -68,7 +68,12 @@ const Form = ({ breeds, handleClick }: FormProps ) => {
                 <option key={id} value={id} className="form__option">{name}</option>
               ))}
             </select>
-            <div className="dropdown__icon input__icon"><Chevron /></div>
+            <div 
+              className="dropdown__icon input__icon"
+              aria-hidden="true"
+            >
+              <Chevron />
+            </div>
           </div>
         </div>
         <div className="form__group">
@@ -87,6 +92,7 @@ const Form = ({ breeds, handleClick }: FormProps ) => {
               onChange={e => changeName(e.target.value)}
               value={draftName}
               placeholder="Case Sensitive"
+              autoComplete="given-name"
             />
             <div 
               className="input__icon"

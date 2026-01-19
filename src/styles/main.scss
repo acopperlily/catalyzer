@@ -1,7 +1,7 @@
 $color-primary: 340;
 $color-secondary: 45;
 $color-light: hsl(35, 100%, 99%);
-$color-med: hsl($color-primary, 100%, 50%);
+$color-med: hsl($color-primary, 100%, 45%);
 $color-dark: hsl($color-primary, 100%, 30%);
 $color-black: hsl($color-primary, 100%, 5%);
 
@@ -132,7 +132,6 @@ a {
   margin-inline: auto;
   display: flex;
   flex-direction: column;
-  // justify-content: space-around;
   align-items: center;
   gap: 3em;
   gap: clamp(0.5em, 0.5em + 3vmin, 3em);
@@ -153,7 +152,6 @@ a {
   gap: 3rem;
 
   &__message {
-    // text-align: center;
     color: $color-dark;
     font-family: $ff-heading;
     font-size: 1.2rem;
@@ -246,7 +244,6 @@ a {
     font-family: $ff-heading;
     font-size: clamp(0.45rem, 0.45rem + 1vmin, 1rem);
     font-weight: 600;
-    // letter-spacing: $letter-spacing;
     text-transform: uppercase;
     color: $color-med;
   }
@@ -276,8 +273,28 @@ a {
       font-size: 2.5rem;
       text-shadow: -1px 1px 1px $color-dark;
     }
+
   }
 
+}
+
+.greeting {
+  width: max-content;
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-70%);
+}
+
+.breed {
+  max-width: 40ch;
+  width: 60vw;
+  padding: 1.5rem 1rem;
+  border-radius: 3px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-100%);
 }
 
 .tooltip__container {
@@ -287,14 +304,9 @@ a {
 
 .tooltip__content {
   position: absolute;
-  width: max-content;
-  padding: 0.5rem 1.5rem;
   background-color: $color-dark;
   color: $color-light;
-  border-radius: 50px;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-70%);
+  font-family: $ff-body;
   font-size: 1rem;
   font-size: clamp(0.7rem, 0.7rem + 1vmin, 1rem);
 }
@@ -321,7 +333,7 @@ a {
     margin-bottom: 0.5rem;
     cursor: pointer;
     font-family: $ff-heading;
-    font-size: clamp(0.4rem, 0.4rem + 1vmin, 0.9rem);
+    font-size: clamp(0.45rem, 0.45rem + 1vmin, 1rem);
     font-weight: 600;
     text-transform: uppercase;
     color: $color-med;

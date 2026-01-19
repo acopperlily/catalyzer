@@ -1,15 +1,16 @@
 import { useState } from "react";
 
 type TooltipProps = {
-  language: string;
-  greeting: string;
+  content: string | null;
+  children: any;
+  className: string;
 };
 
-const Tooltip = ({ language, greeting }: TooltipProps) => {
+const Tooltip = ({ content, children, className }: TooltipProps) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
-  if (language.endsWith('English')) {
-    language = 'English';
+  if (content?.endsWith('English')) {
+    content = 'English';
   }
 
   return (
@@ -18,9 +19,13 @@ const Tooltip = ({ language, greeting }: TooltipProps) => {
       onMouseEnter={() => setIsVisible(true)}
       onMouseLeave={() => setIsVisible(false)}
     >
-      {greeting}
+      {children}
       {isVisible && (
-        <span className="tooltip__content">{language}</span>
+        <span 
+          className={`tooltip__content ${className}`}
+        >
+          {content}
+        </span>
       )}
     </div>
   );

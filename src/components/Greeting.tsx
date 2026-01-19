@@ -42,7 +42,7 @@ const Greeting = ({ countryCode, username, name }: GreetingProps) => {
   const catIntro = chooseItem(catIntros);
 
   return (
-    <><Tooltip language={lang} greeting={hello} />{`${intro} ${catIntro} ${name}, and I'm `}</>
+    <><Tooltip content={lang} children={hello} className='greeting' />{`${intro} ${catIntro} ${name}, and I'm `}</>
   );
 };
 

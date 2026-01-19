@@ -36,6 +36,7 @@ const MainLogic = () => {
   const [surname, setSurname] = useState<string>('');
   const [username, setUsername] = useState<string>('');
   const [countryCode, setCountryCode] = useState<string>('US');
+  const [description, setDescription] = useState<string | null>(null);
 
   // Scroll up to image after button click
   const ref = useRef<HTMLDivElement | null>(null);
@@ -138,6 +139,7 @@ const MainLogic = () => {
     try {
       let URL: string = DOMAIN;
       let res;
+      let desc;
 
       if (newBreed === 'rand') {
         // Get either a random cat or one with a listed breed
@@ -151,15 +153,19 @@ const MainLogic = () => {
         if (diceRoll === 0) {
           let randBreed = res.data[0].breeds[0].id;
           newCountryCode = res.data[0].breeds[0].country_codes;
+          desc = res.data[0].breeds[0].description;
           console.log('dice roll 0', randBreed);
           setBreed(randBreed);
         }
       } else {
         res = await axios.get(`${URL}breed_ids=${newBreed}&api_key=${API_KEY}`, { signal });
         newCountryCode = res.data[0].breeds[0].country_codes;
+        desc = res.data[0].breeds[0].description;
+
         console.log('breed res:', res);
       }
       setCountryCode(newCountryCode);
+      setDescription(desc);
       setImageURL(res.data[0].url);
       setError(false);
 
@@ -176,7 +182,7 @@ const MainLogic = () => {
       if (age > MAX_AGE / 3) {
         let diceRoll = getRandomNumber(3);
         if (diceRoll > 0) {
-        age = Math.round(age / 2);
+        age = Math.round(age / 3);
         }
       }
       setAge(age);
@@ -281,6 +287,7 @@ const MainLogic = () => {
             name={name}
             age={age}
             breed={breeds[breed]}
+            desc={description}
           />
 
           <Form breeds={breeds} handleClick={handleClick} />

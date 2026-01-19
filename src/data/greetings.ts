@@ -30,7 +30,8 @@ const languages: CountryMap = {
   'DE': 'German',
   'MM': 'Burmese',
   'CN': 'Mandarin',
-  'JP': 'Japanese'
+  'JP': 'Japanese',
+  'AE': 'Arabic'
 };
 
 const greetings: GreetingsMap = {
