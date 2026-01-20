@@ -165,7 +165,7 @@ const MainLogic = () => {
         console.log('breed res:', res);
       }
       setCountryCode(newCountryCode);
-      setDescription(desc);
+      setDescription(desc.trim());
       setImageURL(res.data[0].url);
       setError(false);
 
