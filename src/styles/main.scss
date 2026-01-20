@@ -257,6 +257,7 @@ a {
   }
 
   &__para {
+    position: relative;
     margin-bottom: 2.5em;
     // color: $color-black;
     font-family: $ff-heading;
@@ -283,27 +284,26 @@ a {
   padding: 0.5rem 1.5rem;
   border-radius: 50px;
   bottom: 100%;
-  left: 50%;
-  transform: translateX(-70%);
+  left: 0;
 }
 
 .breed {
   max-width: 40ch;
-  width: 60vw;
-  padding: 1.5rem 1rem;
-  border-radius: 3px;
-  bottom: 0;
+  width: max(50vw, 100%);
+  padding: 2rem 1.5rem;
+  border-radius: 5px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-100%);
+  transform: translate(-50%, -50%);
 }
 
 .tooltip__container {
   display: inline;
-  position: relative;
 }
 
 .tooltip__content {
   position: absolute;
+  z-index: 10;
   background-color: $color-dark;
   color: $color-light;
   font-family: $ff-body;

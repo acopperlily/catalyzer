@@ -49,7 +49,7 @@ const greetings: GreetingsMap = {
   'German': ['Hallo', 'Guten Tag'],
   'Burmese': ['Mingalaba', 'Nikongla'],
   'Mandarin': ['Nǐ hǎo', 'Hāi', 'Hēi'],
-  'Japanese': ['Konnichiwa', 'Hajimemashite', 'Ya']
+  'Japanese': ['Konnichiwa', 'Hajimemashite', 'Nyan']
 };
 
 const US: LangMap = ['US English', ['Howdy', 'Ayyy', 'Yo', 'Whaddup', "'Sup"]];
