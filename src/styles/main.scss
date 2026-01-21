@@ -268,10 +268,13 @@ a {
 
     &::first-letter {
       float: left;
-      padding-right: 1rem;
+      padding-right: 0.75rem;
       color: $color-med;
-      font-family: 'Great Vibes', cursive;
-      font-size: 2.5rem;
+      font-family: 'Corinthia', cursive;
+      font-size: 3rem;
+      font-size: clamp(2rem, 2rem + 2vmin, 3rem);
+      font-weight: 700;
+      line-height: 1;
       text-shadow: -1px 1px 1px $color-dark;
     }
 
@@ -289,7 +292,7 @@ a {
 
 .breed {
   max-width: 40ch;
-  width: max(40vw, 100%);
+  width: max(35vw, 100%);
   padding: 2rem 1.5rem;
   border-radius: 5px;
   top: 50%;
@@ -299,11 +302,12 @@ a {
 
 .quote {
   width: max-content;
+  max-width: max(40vw, 100%);
   padding: 0.5rem 1.5rem;
   border-radius: 50px;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  right: 0;
+  transform: translateY(100%);
 }
 
 .tooltip__container {

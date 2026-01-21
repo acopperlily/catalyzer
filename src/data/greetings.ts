@@ -35,20 +35,20 @@ const languages: CountryMap = {
 };
 
 const greetings: GreetingsMap = {
-  'English': ['Hello', 'Hi', 'Hey'],
+  'English': ['Hello', 'Hi', 'Hey', 'Meow'],
   'Arabic': ['As-salaamu alaykum', 'Marhaba'],
   'Thai': ['Sawasdee'],
-  'Russian': ['Zdravstvuyte', 'Privet'],
-  'French': ['Bonjour', 'Salut'],
+  'Russian': ['Zdravstvuyte', 'Privet', 'Myau'],
+  'French': ['Bonjour', 'Salut', 'Miaou'],
   'Turkish': ['Merhaba', 'Selam'],
   'Somali': ['Salaam alaykum', 'See tahay', 'Salaan sare'],
-  'Farsi': ['Salam', 'Dorood', 'Salam Aleykom'],
-  'Norwegian': ['Hei', 'Heisann', 'Hallo', 'Hei på deg'],
-  'Greek': ['Yassas', 'Yassou'],
-  'Spanish': ['¡Hola'],
-  'German': ['Hallo', 'Guten Tag'],
+  'Farsi': ['Salam', 'Dorood', 'Salam Aleykom', 'Miyū'],
+  'Norwegian': ['Hei', 'Heisann', 'Hallo', 'Hei på deg', 'Mjau'],
+  'Greek': ['Yassas', 'Yassou', 'Niaou'],
+  'Spanish': ['¡Hola', 'Miau'],
+  'German': ['Hallo', 'Guten Tag', 'Miau'],
   'Burmese': ['Mingalaba', 'Nikongla'],
-  'Mandarin': ['Nǐ hǎo', 'Hāi', 'Hēi'],
+  'Mandarin': ['Nǐ hǎo', 'Hāi', 'Hēi', 'Miāo'],
   'Japanese': ['Konnichiwa', 'Hajimemashite', 'Nyan']
 };
 
