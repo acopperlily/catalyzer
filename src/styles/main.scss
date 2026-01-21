@@ -297,6 +297,15 @@ a {
   transform: translate(-50%, -50%);
 }
 
+.quote {
+  width: max-content;
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .tooltip__container {
   display: inline;
 }

@@ -2,6 +2,7 @@ import Greeting from "./Greeting";
 import Age from "./Age";
 import Breed from "./Breed";
 import Preferences from "./Preferences";
+import Tooltip from "./Tooltip";
 
 import outros from "../data/outros";
 
@@ -41,6 +42,7 @@ const Paragraph = ({ isLoading, fade, countryCode, username, name, age, breed, d
   const dislikesNum: number = [VALUE2, VALUE1][coinFlip];
 
   const outro = chooseItem(outros);
+  console.log('outro:', outro);
 
   return (
     <p 
@@ -70,7 +72,7 @@ const Paragraph = ({ isLoading, fade, countryCode, username, name, age, breed, d
         n={dislikesNum}
       /> 
       
-      {outro}
+      <Tooltip content={outro.origin} children={outro.quote} className="quote"/>
     </p>
   );
 };

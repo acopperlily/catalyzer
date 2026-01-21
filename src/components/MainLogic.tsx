@@ -139,7 +139,7 @@ const MainLogic = () => {
     try {
       let URL: string = DOMAIN;
       let res;
-      let desc;
+      let desc = '';
 
       if (newBreed === 'rand') {
         // Get either a random cat or one with a listed breed

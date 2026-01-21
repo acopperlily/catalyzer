@@ -224,6 +224,7 @@ const femaleNames: string[] = [
   "Cleo",
   "Cleocatra",
   "Cookie",
+  "Cordelia",
   "Daisy",
   "Daphne",
   "Daria",
