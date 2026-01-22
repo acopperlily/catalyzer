@@ -28,7 +28,7 @@ const MainLogic = () => {
   const [error, setError] = useState<boolean>(false);
   const [breeds, setBreeds] = useState<BreedsObject>({});
   const [imageURL, setImageURL] = useState<string>('');
-  const [fade, setFade] = useState<boolean>(true);
+  const [fade, setFade] = useState<boolean>(false);
   const [name, setName] = useState<string>('');
   const [age, setAge] = useState<number>(14);
   const [breed, setBreed] = useState<string>('rand');
@@ -199,7 +199,7 @@ const MainLogic = () => {
       // Choose intro & outro
       setIsLoading(false);
       setFade(true);
-    }, 800);
+    }, 400);
   }
 
   return () => {
@@ -269,7 +269,7 @@ const MainLogic = () => {
           <h2 className="info__title">Don't agonize, Catalyze.</h2>
           <div className="info__subs">
             <p className="info__sub">Meet your cattastic companion.&nbsp;</p>
-            <p className="info__sub"> A feline friend. The purrfect pal.</p>
+            <p className="info__sub">A feline friend. The purrfect pal.</p>
             <p className="info__sub">Want another? Go on and boop that big silly button.</p>
           </div>
 

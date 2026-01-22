@@ -6,15 +6,16 @@ import GitHub from '../assets/icons/github.svg?react';
 import LinkedIn from '../assets/icons/linkedin.svg?react';
 
 const year: number = new Date().getFullYear();
+const className: string = 'footer__icon';
 
 const Footer = () => {
 
   // This made red squigglies go away
   const mapIcons: Record<string, React.JSX.Element> = {
-    twitter: <Twitter className='footer__icon' />,
-    bluesky: <Bluesky className='footer__icon' />,
-    github: <GitHub className='footer__icon' />,
-    linkedin: <LinkedIn className='footer__icon' />
+    twitter: <Twitter className={className} aria-hidden="true"/>,
+    bluesky: <Bluesky className={className} aria-hidden="true"/>,
+    github: <GitHub className={className} aria-hidden="true"/>,
+    linkedin: <LinkedIn className={className} aria-hidden="true" />
   };
 
   return (
@@ -26,6 +27,7 @@ const Footer = () => {
       <span>
         <a 
           href="https://aprilcopley.netlify.app"
+          aria-label="April Copley's portfolio"
           target="_blank"
           rel="noopener noreferrer"
           className="footer__link clickable"
@@ -39,6 +41,7 @@ const Footer = () => {
           <a 
             key={i} 
             href={social.link}
+            aria-label={`${social.icon} profile`}
             target="_blank"
             rel="noopener noreferrer"
           >

@@ -20,6 +20,7 @@ function App() {
 
 
       <div 
+        inert={toggleModal}
         className="wrapper"
         style={toggleModal
           ? {filter: 'brightness(20%)'}
