@@ -20,7 +20,6 @@ function App() {
 
 
       <div 
-        inert={toggleModal}
         className="wrapper"
         style={toggleModal
           ? {filter: 'brightness(20%)'}
@@ -30,8 +29,8 @@ function App() {
       >
 
         <Header handleClick={handleModalClick} />
-        <MainLogic />
-        <Footer />
+        <MainLogic isInert={toggleModal} />
+        <Footer isInert={toggleModal} />
 
       </div>
     </div>

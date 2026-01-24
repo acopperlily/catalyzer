@@ -1,48 +1,20 @@
 import Tooltip from "./Tooltip";
-import { languages, greetings } from "../data/greetings";
-import chooseItem from "../utils/chooseItem";
+import type { GreetingProps } from "../data/types";
 
-type GreetingProps = {
-  countryCode: string;
-  username: string;
-  name: string;
-};
+const Greeting = ({ greeting, language, username }: GreetingProps) => {
 
-const catIntros: string[] = [
-  "I am",
-  "I'm",
-  "My name is",
-  "My name's",
-  "You can call me",
-  "They call me",
-  "I go by many names, but you can call me"
-];
-
-const Greeting = ({ countryCode, username, name }: GreetingProps) => {
-
-  const getLanguage = (cc: string): string => {
-    if (cc in languages) {
-      return languages[cc];
-    }
-    return 'US English';
-  }
-
-  const lang = getLanguage(countryCode);
-  const hello = chooseItem(greetings[lang]);
-  console.log('hello', hello);
-
-  const getIntro = (username: string): string => {
+  const getGreeting = (greeting: string, username: string): string => {
     if (username) {
-      return `, ${username}!`;
+      return `${greeting}, ${username}! `;
     }
-    return '!';
+    return `${greeting}! `;
   }
 
-  const intro = getIntro(username);
-  const catIntro = chooseItem(catIntros);
+  let hello = getGreeting(greeting, username);
+  
 
   return (
-    <><Tooltip content={lang} children={hello} className='greeting' />{`${intro} ${catIntro} ${name}, and I'm `}</>
+    <Tooltip content={language} children={hello} className="greeting" />
   );
 };
 

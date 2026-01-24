@@ -238,6 +238,7 @@ const dislikesArr: string[] = [
   "getting trapped in the pantry",
   "getting tape stuck to my feeties",
   "going to the vet",
+  "government overreach",
   "greengrocer's apostrophes",
   "ham-fisted exposition",
   "having an improper dip-to-vehicle ratio",

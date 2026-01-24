@@ -1,7 +1,5 @@
-type Outro = {
-  quote: string;
-  origin: string;
-};
+import type { Outro } from "../data/types.ts";
+import chooseItem from "../utils/chooseItem";
 
 const outros: Outro[] = [
   {
@@ -336,4 +334,8 @@ const outros: Outro[] = [
   },
 ];
 
-export default outros;
+export default function getOutro(): Outro {
+  return chooseItem(outros);
+}
+
+// export default outros;

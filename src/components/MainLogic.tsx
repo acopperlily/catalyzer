@@ -4,12 +4,18 @@ import Image from './Image';
 import FastFact from './FastFact';
 import Paragraph from './Paragraph';
 import Form from './Form';
+import type { Outro } from '../data/types.ts';
+import { getGreeting, getLanguage } from '../data/greetings.ts';
+import { getIntro } from '../data/intros.ts';
 import { neutralNames, femaleNames, maleNames } from '../data/names';
 import { neutralTitles, femaleTitles, maleTitles } from '../data/titles';
 import { surnames, neutralSuffixes, maleSuffixes } from '../data/surnames';
+import getOutro from '../data/outros';
 import yatesShuffle from '../utils/yatesShuffle';
 import chooseItem from '../utils/chooseItem';
 import getRandomNumber from '../utils/getRandomNumber';
+
+type MainLogicProps = { isInert: boolean; };
 
 const MAX_AGE: number = 21;
 
@@ -23,7 +29,7 @@ for (let arr of [neutralNames, femaleNames, maleNames, neutralTitles, femaleTitl
   yatesShuffle(arr);
 }
 
-const MainLogic = () => {
+const MainLogic = ({ isInert }: MainLogicProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
   const [breeds, setBreeds] = useState<BreedsObject>({});
@@ -37,6 +43,10 @@ const MainLogic = () => {
   const [username, setUsername] = useState<string>('');
   const [countryCode, setCountryCode] = useState<string>('US');
   const [description, setDescription] = useState<string | null>(null);
+  const [outro, setOutro] = useState<Outro>({quote: '', origin: ''});
+  const [lang, setLang] = useState<string>('US English');
+  const [greeting, setGreeting] = useState<string>('Hi');
+  const [intro, setIntro] = useState<string>('');
 
   // Scroll up to image after button click
   const ref = useRef<HTMLDivElement | null>(null);
@@ -129,6 +139,7 @@ const MainLogic = () => {
     setBreed(newBreed);
     setIsLoading(true);
     setFade(false);
+    setIntro(getIntro);
 
     // This cancels erroneous requests
     const controller: AbortController = new AbortController();
@@ -197,6 +208,9 @@ const MainLogic = () => {
       setSurname(getSurname(gender));
 
       // Choose intro & outro
+      setLang(getLanguage(newCountryCode));
+      setGreeting(getGreeting(getLanguage(newCountryCode)))
+      setOutro(getOutro());
       setIsLoading(false);
       setFade(true);
     }, 400);
@@ -255,7 +269,7 @@ const MainLogic = () => {
   ];
 
   return (
-    <main className="main">
+    <main className="main" inert={isInert}>
       <div className="main__container" ref={ref}>
         <Image 
           isLoading={isLoading} 
@@ -288,6 +302,10 @@ const MainLogic = () => {
             age={age}
             breed={breeds[breed]}
             desc={description}
+            outro={outro}
+            greeting={greeting}
+            language={lang}
+            intro={intro}
           />
 
           <Form breeds={breeds} handleClick={handleClick} />

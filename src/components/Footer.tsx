@@ -5,10 +5,12 @@ import Bluesky from '../assets/icons/bluesky.svg?react';
 import GitHub from '../assets/icons/github.svg?react';
 import LinkedIn from '../assets/icons/linkedin.svg?react';
 
+type FooterProps = { isInert: boolean; };
+
 const year: number = new Date().getFullYear();
 const className: string = 'footer__icon';
 
-const Footer = () => {
+const Footer = ({ isInert }: FooterProps) => {
 
   // This made red squigglies go away
   const mapIcons: Record<string, React.JSX.Element> = {
@@ -19,7 +21,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="footer">
+    <footer className="footer" inert={isInert}>
       <span className="footer__date">
         &copy; {year}
       </span>

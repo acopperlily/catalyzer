@@ -1,15 +1,14 @@
+import Intro from "./Intro";
 import Greeting from "./Greeting";
 import Age from "./Age";
 import Breed from "./Breed";
 import Preferences from "./Preferences";
 import Tooltip from "./Tooltip";
-
-import outros from "../data/outros";
+import type { Outro } from "../data/types.ts";
 
 import { likesArr, dislikesArr } from "../data/activities";
 import { likeVerbs, dislikeVerbs } from "../data/verbs";
 
-import chooseItem from "../utils/chooseItem";
 import getRandomNumber from "../utils/getRandomNumber";
 
 // Constants to balance number of likes & dislikes
@@ -25,32 +24,38 @@ type ParaProps = {
   age: number;
   breed: string;
   desc: string | null;
+  outro: Outro;
+  greeting: string;
+  language: string;
+  intro: string;
 };
 
-const Paragraph = ({ isLoading, fade, countryCode, username, name, age, breed, desc }: ParaProps) => {
+const Paragraph = ({ isLoading, fade, countryCode, username, name, age, breed, desc, outro, greeting, language, intro }: ParaProps) => {
 
   console.log('country code:', countryCode);
   let classes: string = 'info__para';
   if (fade) classes += ' fade-in';
   if (isLoading) classes += ' hidden';
 
-  // Map username to greetings
-
   // Generate random numbers for our component
   const coinFlip: number = getRandomNumber(2);
   const likesNum: number = [VALUE1, VALUE2][coinFlip];
   const dislikesNum: number = [VALUE2, VALUE1][coinFlip];
 
-  const outro = chooseItem(outros);
   console.log('outro:', outro);
 
   return (
     <p 
       className={classes}
     > 
-      <Greeting 
-        countryCode={countryCode} 
+      <Greeting
+        greeting={greeting} 
+        language={language} 
         username={username} 
+      />
+
+      <Intro 
+        intro={intro}
         name={name} 
       />
 
