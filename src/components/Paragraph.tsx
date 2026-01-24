@@ -13,6 +13,7 @@ type ParaProps = {
   name: string;
   age: number;
   breed: string;
+  randCat: string;
   desc: string | null;
   outro: Outro;
   greeting: string;
@@ -22,7 +23,7 @@ type ParaProps = {
   dislikes: string;
 };
 
-const Paragraph = ({ isLoading, fade, countryCode, username, name, age, breed, desc, outro, greeting, language, intro, likes, dislikes }: ParaProps) => {
+const Paragraph = ({ isLoading, fade, countryCode, username, name, age, breed, randCat, desc, outro, greeting, language, intro, likes, dislikes }: ParaProps) => {
 
   console.log('country code:', countryCode);
   let classes: string = 'info__para';
@@ -50,7 +51,7 @@ const Paragraph = ({ isLoading, fade, countryCode, username, name, age, breed, d
 
       <Age age={age} />
 
-      <Breed breed={breed} description={desc} />
+      <Breed breed={breed} randCat={randCat} description={desc} />
 
       <>{likes} {dislikes}</>
       

@@ -31,6 +31,8 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 
 type BreedsObject = { [key: string]: string};
 
+const unknownBreeds: string[] = ['cat', 'kitty', 'kitty cat', 'fur baby', 'furball', 'ball of fur', 'bundle of joy', 'feline'];
+
 // Shuffle the arrays on every page load because I feel like it
 for (let arr of [neutralNames, femaleNames, maleNames, neutralTitles, femaleTitles, maleTitles, surnames, neutralSuffixes, maleSuffixes]) {
   yatesShuffle(arr);
@@ -45,6 +47,7 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
   const [name, setName] = useState<string>('');
   const [age, setAge] = useState<number>(14);
   const [breed, setBreed] = useState<string>('rand');
+  const [randCat, setRandCat] = useState<string>('cat');
   const [title, setTitle] = useState<string>('');
   const [surname, setSurname] = useState<string>('');
   const [username, setUsername] = useState<string>('');
@@ -149,6 +152,7 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
     setIsLoading(true);
     setFade(false);
     setIntro(getIntro);
+    setRandCat(chooseItem(unknownBreeds));
 
     // Generate random numbers for our component
     const coinFlip: number = getRandomNumber(2);
@@ -318,6 +322,7 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
             name={name}
             age={age}
             breed={breeds[breed]}
+            randCat={randCat}
             desc={description}
             outro={outro}
             greeting={greeting}

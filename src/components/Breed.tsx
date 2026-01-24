@@ -1,13 +1,11 @@
 import Tooltip from "./Tooltip";
-import chooseItem from "../utils/chooseItem";
 
-type BreedProps = { breed: string, description: string | null }
+type BreedProps = { breed: string, randCat: string, description: string | null }
 
-const unknownBreeds: string[] = ['cat', 'kitty', 'kitty cat', 'fur baby', 'furball', 'ball of fur', 'bundle of joy', 'feline'];
+const Breed = ({ breed, randCat, description }: BreedProps) => {
 
-const Breed = ({ breed, description }: BreedProps) => {
-
-  const newBreed = breed === 'Random Breed' ? chooseItem(unknownBreeds) : breed;
+  const newBreed = breed === 'Random Breed' ? randCat : breed;
+  
   if (!description?.endsWith('.')) {
     description += '.'
   }
