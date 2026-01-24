@@ -7,6 +7,9 @@ import Form from './Form';
 import type { Outro } from '../data/types.ts';
 import { getGreeting, getLanguage } from '../data/greetings.ts';
 import { getIntro } from '../data/intros.ts';
+import { likeVerbs, dislikeVerbs } from '../data/verbs.ts';
+import { likesArr, dislikesArr } from '../data/activities.ts';
+import getPreferences from '../utils/getPreferences.ts';
 import { neutralNames, femaleNames, maleNames } from '../data/names';
 import { neutralTitles, femaleTitles, maleTitles } from '../data/titles';
 import { surnames, neutralSuffixes, maleSuffixes } from '../data/surnames';
@@ -16,6 +19,10 @@ import chooseItem from '../utils/chooseItem';
 import getRandomNumber from '../utils/getRandomNumber';
 
 type MainLogicProps = { isInert: boolean; };
+
+// Constants to balance number of likes & dislikes
+const VALUE1: number = 2;
+const VALUE2: number = 3;
 
 const MAX_AGE: number = 21;
 
@@ -47,6 +54,8 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
   const [lang, setLang] = useState<string>('US English');
   const [greeting, setGreeting] = useState<string>('Hi');
   const [intro, setIntro] = useState<string>('');
+  const [likes, setLikes] = useState<string>('');
+  const [dislikes, setDislikes] = useState<string>('');
 
   // Scroll up to image after button click
   const ref = useRef<HTMLDivElement | null>(null);
@@ -140,6 +149,14 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
     setIsLoading(true);
     setFade(false);
     setIntro(getIntro);
+
+    // Generate random numbers for our component
+    const coinFlip: number = getRandomNumber(2);
+    const likesNum: number = [VALUE1, VALUE2][coinFlip];
+    const dislikesNum: number = [VALUE2, VALUE1][coinFlip];
+    setLikes(getPreferences(likesArr, likesNum, chooseItem(likeVerbs), 'and'));
+    setDislikes(getPreferences(dislikesArr, dislikesNum, chooseItem(dislikeVerbs), 'or'));
+
 
     // This cancels erroneous requests
     const controller: AbortController = new AbortController();
@@ -306,6 +323,8 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
             greeting={greeting}
             language={lang}
             intro={intro}
+            likes={likes}
+            dislikes={dislikes}
           />
 
           <Form breeds={breeds} handleClick={handleClick} />
