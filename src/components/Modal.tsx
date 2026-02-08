@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import Close from '../assets/icons/xmark.svg?react';
 
 type ModalProps = {
@@ -5,6 +6,12 @@ type ModalProps = {
 };
 
 const Modal = ({ handleClick }: ModalProps) => {
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    ref.current?.focus();
+  }, []);
+
   return (
     <div 
       className="modal"
@@ -12,6 +19,7 @@ const Modal = ({ handleClick }: ModalProps) => {
       aria-modal="true"
       aria-labelledby="about"
       tabIndex={-1}
+      ref={ref}
     >
       <button 
         type="button"

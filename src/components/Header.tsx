@@ -2,12 +2,13 @@
 import Info from '../assets/icons/info-circle.svg?react'; 
 
 type HeaderProps = {
+  isInert: boolean;
   handleClick: () => void;
 };
 
-const Header = ({ handleClick }: HeaderProps) => {
+const Header = ({ isInert, handleClick }: HeaderProps) => {
   return (
-    <header className="header">
+    <header className="header" inert={isInert}>
       <div className="header__container">
         <h1 className="header__title">Catalyzer</h1>
         <div

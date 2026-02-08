@@ -28,7 +28,7 @@ function App() {
         onClick={toggleModal ? handleModalClick : undefined}
       >
 
-        <Header handleClick={handleModalClick} />
+        <Header isInert={toggleModal} handleClick={handleModalClick} />
         <MainLogic isInert={toggleModal} />
         <Footer isInert={toggleModal} />
 
