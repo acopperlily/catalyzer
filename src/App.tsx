@@ -27,7 +27,7 @@ function App() {
         }
         onClick={toggleModal ? handleModalClick : undefined}
       >
-
+        {/* Passing isInert prop toggles tabbability */}
         <Header isInert={toggleModal} handleClick={handleModalClick} />
         <MainLogic isInert={toggleModal} />
         <Footer isInert={toggleModal} />

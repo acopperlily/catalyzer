@@ -1,6 +1,5 @@
 import Tooltip from "./Tooltip";
-
-type BreedProps = { breed: string, randCat: string, description: string | null }
+import type { BreedProps } from "../data/types";
 
 const Breed = ({ breed, randCat, description }: BreedProps) => {
 

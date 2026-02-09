@@ -1,10 +1,5 @@
+import type { TooltipProps } from "../data/types";
 import { useState } from "react";
-
-type TooltipProps = {
-  content: string | null;
-  children: any;
-  className: string;
-};
 
 const Tooltip = ({ content, children, className }: TooltipProps) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);

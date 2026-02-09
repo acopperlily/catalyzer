@@ -3,25 +3,7 @@ import Greeting from "./Greeting";
 import Age from "./Age";
 import Breed from "./Breed";
 import Tooltip from "./Tooltip";
-import type { Outro } from "../data/types.ts";
-
-type ParaProps = {
-  isLoading: boolean;
-  fade: boolean;
-  countryCode: string;
-  username: string;
-  name: string;
-  age: number;
-  breed: string;
-  randCat: string;
-  desc: string | null;
-  outro: Outro;
-  greeting: string;
-  language: string;
-  intro: string;
-  likes: string;
-  dislikes: string;
-};
+import type { ParaProps } from "../data/types";
 
 const Paragraph = ({ isLoading, fade, countryCode, username, name, age, breed, randCat, desc, outro, greeting, language, intro, likes, dislikes }: ParaProps) => {
 
@@ -51,11 +33,20 @@ const Paragraph = ({ isLoading, fade, countryCode, username, name, age, breed, r
 
       <Age age={age} />
 
-      <Breed breed={breed} randCat={randCat} description={desc} />
+      <Breed 
+        breed={breed} 
+        randCat={randCat} 
+        description={desc} 
+      />
 
       <>{likes} {dislikes}</>
       
-      <Tooltip content={attribution} children={quote} className="quote"/>
+      <Tooltip 
+        content={attribution} 
+        children={quote} 
+        className="quote"
+      />
+
     </p>
   );
 };

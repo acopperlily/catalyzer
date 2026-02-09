@@ -1,4 +1,4 @@
-type AgeProps = { age: number }
+import type { AgeProps } from "../data/types";
 
 // Convert numerals to words
 const nums: string[] = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty', 'twenty-one', 'twenty-two'];

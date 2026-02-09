@@ -4,8 +4,7 @@ import Twitter from '../assets/icons/twitter.svg?react';
 import Bluesky from '../assets/icons/bluesky.svg?react';
 import GitHub from '../assets/icons/github.svg?react';
 import LinkedIn from '../assets/icons/linkedin.svg?react';
-
-type FooterProps = { isInert: boolean; };
+import type { FooterProps } from "../data/types";
 
 const year: number = new Date().getFullYear();
 const className: string = 'footer__icon';

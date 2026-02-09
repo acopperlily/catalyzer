@@ -1,14 +1,10 @@
 /// <reference types="vite-plugin-svgr/client" />
+import type { FormProps } from "../data/types";
 import Chevron from "../assets/icons/chevron.svg?react";
 import Clear from "../assets/icons/xmark.svg?react"; 
 import { useState } from 'react';
 
-type FormProps = {
-  breeds: object;
-  handleClick: any;
-}
-
-const Form = ({ breeds, handleClick }: FormProps ) => {
+const Form = ({ isLoading, breeds, handleClick }: FormProps ) => {
   const [draftName, setDraftName] = useState<string>('');
   const [selectedBreed, setSelectedBreed] = useState<string>('rand');
 
@@ -108,6 +104,7 @@ const Form = ({ breeds, handleClick }: FormProps ) => {
         type="submit"
         className="button"
         id="button"
+        disabled={isLoading}
       >
         Catalyze
       </button>

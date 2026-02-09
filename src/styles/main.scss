@@ -57,6 +57,8 @@ a {
   }
 
   &__icon-container {
+    background-color: transparent;
+    border: none;
     margin-left: auto;
     $size: 2rem;
     fill: $color-light;

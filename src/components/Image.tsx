@@ -12,15 +12,9 @@ import Drizes1 from '/drizes1.webp';
 import Drizes2 from '/drizes2.webp';
 import Drizes3 from '/drizes3.webp';
 
-import getRandomNumber from '../utils/getRandomNumber';
+import type { ImageProps } from "../data/types";
 
-type ImageProps = {
-  isLoading: boolean,
-  error: boolean,
-  fade: boolean,
-  image: string,
-  breed: string
-};
+import getRandomNumber from '../utils/getRandomNumber';
 
 const errorImages = [
   Puddy1,

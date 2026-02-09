@@ -1,9 +1,6 @@
-import { useEffect, useRef } from 'react';
-import Close from '../assets/icons/xmark.svg?react';
-
-type ModalProps = {
-  handleClick: () => void;
-};
+import { useEffect, useRef } from "react";
+import type { ModalProps } from "../data/types";
+import Close from "../assets/icons/xmark.svg?react";
 
 const Modal = ({ handleClick }: ModalProps) => {
   const ref = useRef<HTMLDivElement | null>(null);

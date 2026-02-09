@@ -1,4 +1,4 @@
-import PeleHead from '../assets/peleSmol.png';
+import PeleHead from "../assets/peleSmol.png";
 
 const Loading = () => {
   return (

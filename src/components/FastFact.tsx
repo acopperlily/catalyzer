@@ -1,9 +1,4 @@
-type FactProps = {
-  isLoading: boolean,
-  fade: boolean,
-  label: string,
-  fact: string;
-}
+import type { FactProps } from "../data/types";
 
 const FastFact = ({ isLoading, fade, label, fact }: FactProps ) => {
 

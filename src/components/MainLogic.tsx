@@ -4,7 +4,7 @@ import Image from './Image';
 import FastFact from './FastFact';
 import Paragraph from './Paragraph';
 import Form from './Form';
-import type { Outro } from '../data/types.ts';
+import type { MainLogicProps, Outro } from '../data/types';
 import { getGreeting, getLanguage } from '../data/greetings.ts';
 import { getIntro } from '../data/intros.ts';
 import { likeVerbs, dislikeVerbs } from '../data/verbs.ts';
@@ -17,8 +17,6 @@ import getOutro from '../data/outros';
 import yatesShuffle from '../utils/yatesShuffle';
 import chooseItem from '../utils/chooseItem';
 import getRandomNumber from '../utils/getRandomNumber';
-
-type MainLogicProps = { isInert: boolean; };
 
 // Constants to balance number of likes & dislikes
 const VALUE1: number = 2;
@@ -332,7 +330,11 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
             dislikes={dislikes}
           />
 
-          <Form breeds={breeds} handleClick={handleClick} />
+          <Form 
+            isLoading={isLoading}
+            breeds={breeds} 
+            handleClick={handleClick} 
+          />
 
         </section>
 
