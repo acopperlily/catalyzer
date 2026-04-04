@@ -3,6 +3,7 @@ import Header from './components/Header.tsx';
 import Footer from './components/Footer.tsx';
 import MainLogic from './components/MainLogic.tsx';
 import Modal from './components/Modal.tsx';
+import 'normalize.css';
 import './styles/main.scss';
 
 function App() {

@@ -19,6 +19,15 @@ body {
   font-family: $ff-body;
 }
 
+button {
+  cursor: pointer;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 a {
   text-decoration: none;
   color: $color-light;
@@ -65,9 +74,20 @@ a {
     width: $size;
     height: $size;
     display: flex;
-    justify-content: right;
+    justify-content: center;
     align-items: center;
-    cursor: pointer;
+    border-radius: 2px;
+    outline: none;
+    // outline: 2px solid transparent;
+  }
+
+  &__icon-container:focus,
+  &__icon-container:focus-visible {
+    border: none;
+    // outline: 2px solid $color-light;
+    outline: none;
+    box-shadow: 0 0 0 0 $color-med,
+                0 0 0 2px $color-light;
   }
 
   &__icon {
@@ -108,10 +128,22 @@ a {
     background-color: transparent;
     cursor: pointer;
     display: flex;
+    border-radius: 2px;
+
+    &:hover,
+    &:focus,
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 2px $color-dark,
+                  0 0 0 4px $color-light;
+    }
   }
+
 
   &__icon {
     fill: $color-light;
+    width: 2rem;
+    height: 2rem;
   }
 
   &__body {
@@ -402,11 +434,9 @@ a {
 }
 
 .button {
-  cursor: pointer;
-  width: 100%;
+  // width: 100%;
   background-color: $color-med;
-  color: $color-light;
-  border: none;
+  color: $color-light;    
   border-radius: 50px;
   padding: 1.5rem 0;
   font-family: $ff-heading;
@@ -414,15 +444,21 @@ a {
   font-size: clamp(1rem, 1rem + 2vmin, 2.5rem);
   font-weight: 800;
   letter-spacing: $letter-spacing;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   box-shadow: inset 0px -5px 10px 3px $color-dark;
   transition: all 0.5s ease-in-out;
+  outline: 1px solid transparent;
 
   &:hover,
-  &:focus {
+  &:focus,
+  &:focus-visible {
     background-color: $color-dark;
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px $color-light,
+                0 0 0 6px $color-med;
   }
 
   &:active,

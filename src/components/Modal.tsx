@@ -22,9 +22,13 @@ const Modal = ({ handleClick }: ModalProps) => {
         type="button"
         className="modal__icon-container"
         onClick={handleClick}
-        aria-label="Close modal"
+        aria-label="Close information dialog"
       >
-        <Close className="modal__icon" />
+        <Close 
+          className="modal__icon"
+          aria-hidden="true"
+          focusable="false"
+          />
       </button>
 
       <h3 className="modal__title" id="about">Why Catalyzer?</h3>

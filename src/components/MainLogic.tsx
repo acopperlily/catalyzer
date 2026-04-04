@@ -4,7 +4,7 @@ import Image from './Image';
 import FastFact from './FastFact';
 import Paragraph from './Paragraph';
 import Form from './Form';
-import type { MainLogicProps, Outro } from '../data/types';
+import type { BreedsObject, MainLogicProps, Outro } from '../data/types';
 import { getGreeting, getLanguage } from '../data/greetings.ts';
 import { getIntro } from '../data/intros.ts';
 import { likeVerbs, dislikeVerbs } from '../data/verbs.ts';
@@ -26,8 +26,6 @@ const MAX_AGE: number = 21;
 
 const DOMAIN = "https://api.thecatapi.com/v1/images/search?";
 const API_KEY = import.meta.env.VITE_API_KEY;
-
-type BreedsObject = { [key: string]: string};
 
 const unknownBreeds: string[] = ['cat', 'kitty', 'kitty cat', 'fur baby', 'furball', 'ball of fur', 'bundle of joy', 'feline'];
 
@@ -105,16 +103,12 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
   // Does what it says
   const getName = (gender: string): string => {
 
-    if (gender === 'f') {
-      return chooseItem(femaleNames);
+    switch (gender) {
+      case 'f': return chooseItem(femaleNames);
+      case 'm': return chooseItem(maleNames);
+      case 'n': return chooseItem(neutralNames);
+      default: return chooseItem(neutralNames);
     }
-
-    if (gender === 'm') {
-      return chooseItem(maleNames);
-    }
-
-    // gender === 'n'
-    return chooseItem(neutralNames);
   };
 
   // They're not all surnames, don't @ me
@@ -159,25 +153,20 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
     setLikes(getPreferences(likesArr, likesNum, chooseItem(likeVerbs), 'and'));
     setDislikes(getPreferences(dislikesArr, dislikesNum, chooseItem(dislikeVerbs), 'or'));
 
-
-    // This cancels erroneous requests
-    const controller: AbortController = new AbortController();
-    const signal: AbortSignal = controller.signal;
-
     let newCountryCode: string = 'US';
 
     try {
       let URL: string = DOMAIN;
       let res;
-      let desc = '';
+      let desc: string = '';
 
       if (newBreed === 'rand') {
         // Get either a random cat or one with a listed breed
-        let diceRoll = getRandomNumber(2);
+        let diceRoll: number = getRandomNumber(2);
         if (diceRoll === 0) {
           URL += `api_key=${API_KEY}&has_breeds=true`;
         }
-        res = await axios.get(URL, { signal });
+        res = await axios.get(URL);
         console.log('res:', res);
 
         if (diceRoll === 0) {
@@ -188,12 +177,13 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
           setBreed(randBreed);
         }
       } else {
-        res = await axios.get(`${URL}breed_ids=${newBreed}&api_key=${API_KEY}`, { signal });
+        res = await axios.get(`${URL}breed_ids=${newBreed}&api_key=${API_KEY}`);
         newCountryCode = res.data[0].breeds[0].country_codes;
         desc = res.data[0].breeds[0].description;
 
         console.log('breed res:', res);
       }
+
       setCountryCode(newCountryCode);
       setDescription(desc.trim());
       setImageURL(res.data[0].url);
@@ -210,7 +200,7 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
 
       // Increase odds of choosing younger ages
       if (age > MAX_AGE / 3) {
-        let diceRoll = getRandomNumber(3);
+        let diceRoll: number = getRandomNumber(3);
         if (diceRoll > 0) {
         age = Math.round(age / 3);
         }
@@ -235,9 +225,6 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
     }, 400);
   }
 
-  return () => {
-    controller.abort();
-  }
 };
 
   const handleClick = (e: any, draftName: string, newBreed: string): void => {

@@ -8,6 +8,10 @@ type BreedProps = {
   description: string | null;
 }
 
+type BreedsObject = { 
+  [key: string]: string
+};
+
 type CountryMap = {
   [key: string]: string;
 };
@@ -96,4 +100,4 @@ type TooltipProps = {
   className: string;
 };
 
-export type { AgeProps, BreedProps, CountryMap, FactProps, FooterProps, FormProps, GreetingsMap, GreetingProps, HeaderProps, ImageProps, IntroProps, LangMap, MainLogicProps, ModalProps, Outro, ParaProps, TooltipProps };
+export type { AgeProps, BreedProps, BreedsObject, CountryMap, FactProps, FooterProps, FormProps, GreetingsMap, GreetingProps, HeaderProps, ImageProps, IntroProps, LangMap, MainLogicProps, ModalProps, Outro, ParaProps, TooltipProps };

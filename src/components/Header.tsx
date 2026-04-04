@@ -10,9 +10,14 @@ const Header = ({ isInert, handleClick }: HeaderProps) => {
         <button
           type="button"
           className="header__icon-container clickable"
+          aria-label="Open information dialog"
           onClick={handleClick}
         >
-          <Info className="header__icon" />
+          <Info 
+            className="header__icon"
+            aria-hidden="true"
+            focusable="false"
+          />
         </button>
       </div>
     </header>
