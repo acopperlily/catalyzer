@@ -244,7 +244,7 @@ const dislikesArr: string[] = [
   "greengrocer's apostrophes",
   "ham-fisted exposition",
   "having an improper dip-to-vehicle ratio",
-  "having to ask for napkins at a Dairy Queen drive-thru",
+  "having to ask for napkins at the Dairy Queen drive-thru",
   "having to explain tax brackets to dummies",
   "herd mentality",
   "hidden fees",

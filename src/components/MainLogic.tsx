@@ -27,6 +27,42 @@ const MAX_AGE: number = 21;
 const DOMAIN = "https://api.thecatapi.com/v1/images/search?";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
+const breeds: BreedsObject = {
+  'rand': 'Random Breed',
+  'sfol': 'Scottish Fold',
+  'mcoo': 'Maine Coon',
+  'hima': 'Himalayan',
+  'emau': 'Egyptian Mau',
+  'java': 'Javanese',
+  'orie': 'Oriental Shorthair',
+  'tang': 'Turkish Angora',
+  'rblu': 'Russian Blue',
+  'bslo': 'British Longhair',
+  'crex': 'Cornish Rex',
+  'tonk': 'Tonkinese',
+  'cymr': 'Cymric',
+  'snow': 'Snowshoe',
+  'norw': 'Norwegian Forest Cat',
+  'awir': 'American Wirehair',
+  'bure': 'Burmese',
+  'sibe': 'Siberian',
+  'abys': 'Abyssinian',
+  'char': 'Chartreux',
+  'toyg': 'Toyger',
+  'beng': 'Bengal',
+  'soma': 'Somali',
+  'sphy': 'Sphynx',
+  'buri': 'Burmilla',
+  'lihu': 'Dragon Li',
+  'drex': 'Devon Rex',
+  'raga': 'Ragamuffin',
+  'nebe': 'Nebelung',
+  'acur': 'American Curl',
+  'birm': 'Birman',
+  'jbob': 'Japanese Bobtail',
+  'chau': 'Chausie'
+};
+
 const unknownBreeds: string[] = ['cat', 'kitty', 'kitty cat', 'fur baby', 'furball', 'ball of fur', 'bundle of joy', 'feline'];
 
 // Shuffle the arrays on every page load because I feel like it
@@ -37,7 +73,7 @@ for (let arr of [neutralNames, femaleNames, maleNames, neutralTitles, femaleTitl
 const MainLogic = ({ isInert }: MainLogicProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
-  const [breeds, setBreeds] = useState<BreedsObject>({});
+  // const [breeds, setBreeds] = useState(breedList);
   const [imageURL, setImageURL] = useState<string>('');
   const [fade, setFade] = useState<boolean>(false);
   const [name, setName] = useState<string>('');
@@ -236,25 +272,26 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
 
   useEffect(() => {
     console.log('get breeds');
-    const getBreeds = async () => {
-      let breedsList = { rand: 'Random Breed' };
-      try {
-        const res = await axios.get('https://api.thecatapi.com/v1/breeds');
+    // const getBreeds = async () => {
+    //   let breedsList = { rand: 'Random Breed' };
+    //   try {
+    //     const res = await axios.get('https://api.thecatapi.com/v1/breeds');
 
-        for (let breed of res.data) {
-          breedsList = {
-            ...breedsList,
-            [breed.id]: breed.name
-          };
-        }
-      } catch (err) {
-        console.error("Can't retrieve breed list:", err);
-      } finally {
-        setBreeds(breedsList);
-      }
-    };
+    //     for (let breed of res.data) {
+    //       breedsList = {
+    //         ...breedsList,
+    //         [breed.id]: breed.name
+    //       };
+    //     }
+    //   } catch (err) {
+    //     console.error("Can't retrieve breed list:", err);
+    //   } finally {
+    //     setBreeds(breedsList);
+    //   }
+    // };
 
-    getBreeds();
+    // getBreeds();
+    // setBreeds(breedList);
     getCat('rand');
   }, []);
 

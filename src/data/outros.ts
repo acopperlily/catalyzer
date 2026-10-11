@@ -4,11 +4,11 @@ import chooseItem from "../utils/chooseItem";
 const outros: Outro[] = [
   {
     quote: "Am I not the cutest thing you've seen all day?",
-    origin: "The Internet",
+    origin: "Me",
   },
   {
     quote: "Why can't we live in a cat-eat-dog world?",
-    origin: "The Internet",
+    origin: "Me",
   },
   { quote: "Am I being detained, or am I free to go?", origin: "The Internet" },
   {
@@ -48,9 +48,9 @@ const outros: Outro[] = [
       "I don't like litter. It's coarse and rough and irritating and it gets everywhere.",
     origin: "Star Wars: Attack of the Clones",
   },
-  { quote: "Look how cute I am!", origin: "The Internet" },
+  { quote: "Look how cute I am!", origin: "Me" },
   { quote: "No lowballers, I know what I got.", origin: "The Internet" },
-  { quote: "This has gone on long enough.", origin: "The Internet" },
+  { quote: "This has gone on long enough.", origin: "Me" },
   {
     quote:
       "I'm a driver, I'm a winner. Things are gonna change, I can feel it.",
@@ -68,7 +68,7 @@ const outros: Outro[] = [
   {
     quote:
       "It should be a crime to serve coleslaw in a container the size of a thimble.",
-    origin: "The Internet",
+    origin: "Me",
   },
   {
     quote: "Don't cry because it's over. Smile because I booped you.",
@@ -98,7 +98,7 @@ const outros: Outro[] = [
     origin: "The Internet",
   },
   { quote: "I can has cheezburger?", origin: "The Internet" },
-  { quote: "This has gone on for far too long.", origin: "The Internet" },
+  { quote: "This has gone on for far too long.", origin: "Me" },
   {
     quote:
       "You know where you are? You're in the jungle, baby. You're gonna die!",
@@ -112,8 +112,8 @@ const outros: Outro[] = [
     quote: "Why waste time say lot meow when few meow do trick?",
     origin: "The Office",
   },
-  { quote: "Hey, are you gonna eat that?", origin: "The Internet" },
-  { quote: "Who's a good baby? It me lol.", origin: "The Internet" },
+  { quote: "Hey, are you gonna eat that?", origin: "Me" },
+  { quote: "Who's a good baby? It me lol.", origin: "Me" },
   { quote: "Real G's move in silence like lasagna.", origin: "Lil Wayne" },
   { quote: "Ain't nobody got time for that.", origin: "The Internet" },
   { quote: 'Anyway, here\'s "Wonderwall".', origin: "The Internet" },
