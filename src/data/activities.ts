@@ -173,6 +173,7 @@ const likesArr: string[] = [
 ];
 
 const dislikesArr: string[] = [
+  "AI slop",
   "air jail",
   '"convenience" fees',
   "crippling medical debt",
@@ -337,6 +338,7 @@ const dislikesArr: string[] = [
   "tipping culture",
   "toddlers",
   "toe seams on socks",
+  "toilet paper math",
   "traditional gender roles",
   "traveling in a cat carrier",
   "trial by combat",

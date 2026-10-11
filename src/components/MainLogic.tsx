@@ -171,14 +171,14 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
 
         if (diceRoll === 0) {
           let randBreed = res.data[0].breeds[0].id;
-          newCountryCode = res.data[0].breeds[0].country_codes;
+          newCountryCode = res.data[0].breeds[0].country_code;
           desc = res.data[0].breeds[0].description;
           console.log('dice roll 0', randBreed);
           setBreed(randBreed);
         }
       } else {
         res = await axios.get(`${URL}breed_ids=${newBreed}&api_key=${API_KEY}`);
-        newCountryCode = res.data[0].breeds[0].country_codes;
+        newCountryCode = res.data[0].breeds[0].country_code;
         desc = res.data[0].breeds[0].description;
 
         console.log('breed res:', res);
