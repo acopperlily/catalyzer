@@ -60,7 +60,9 @@ const breeds: BreedsObject = {
   'acur': 'American Curl',
   'birm': 'Birman',
   'jbob': 'Japanese Bobtail',
-  'chau': 'Chausie'
+  'chau': 'Chausie',
+  'cspa': 'California Spangled',
+  'bsho': 'British Shorthair',
 };
 
 const unknownBreeds: string[] = ['cat', 'kitty', 'kitty cat', 'fur baby', 'furball', 'ball of fur', 'bundle of joy', 'feline'];
@@ -209,7 +211,7 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
           let randBreed = res.data[0].breeds[0].id;
           newCountryCode = res.data[0].breeds[0].country_code;
           desc = res.data[0].breeds[0].description;
-          console.log('dice roll 0', randBreed);
+          console.log('dice roll 0', randBreed, res.data[0].breeds[0].name);
           setBreed(randBreed);
         }
       } else {

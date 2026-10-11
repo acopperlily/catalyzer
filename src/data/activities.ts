@@ -290,7 +290,6 @@ const dislikesArr: string[] = [
   "pop-up ads with tiny touch targets",
   "prolonged belly rubs",
   "proxy warfare",
-  "puppies",
   "radio DJs shouting over the music",
   "radioactive decay",
   "reading documentation",
