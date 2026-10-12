@@ -8,7 +8,7 @@ const Form = ({ isLoading, breeds, handleClick }: FormProps ) => {
   const [draftName, setDraftName] = useState<string>('');
   const [selectedBreed, setSelectedBreed] = useState<string>('rand');
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: any): void => {
     e.preventDefault();
     console.log('e from form:', e, draftName);
     handleClick(e, draftName, selectedBreed);
@@ -18,7 +18,7 @@ const Form = ({ isLoading, breeds, handleClick }: FormProps ) => {
   e.preventDefault();
   e.stopPropagation();
 
-  let newBreed = e.target.value;
+  let newBreed: string = e.target.value;
   console.log('handle change breed:', newBreed);
   setSelectedBreed(newBreed);
   };

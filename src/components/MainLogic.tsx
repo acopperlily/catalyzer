@@ -4,7 +4,7 @@ import Image from './Image';
 import FastFact from './FastFact';
 import Paragraph from './Paragraph';
 import Form from './Form';
-import type { BreedsObject, MainLogicProps, Outro } from '../data/types';
+import type { MainLogicProps, Outro } from '../data/types';
 import { getGreeting, getLanguage } from '../data/greetings.ts';
 import { getIntro } from '../data/intros.ts';
 import { likeVerbs, dislikeVerbs } from '../data/verbs.ts';
@@ -17,6 +17,7 @@ import getOutro from '../data/outros';
 import yatesShuffle from '../utils/yatesShuffle';
 import chooseItem from '../utils/chooseItem';
 import getRandomNumber from '../utils/getRandomNumber';
+import breedList from '../data/breedList.ts';
 
 // Constants to balance number of likes & dislikes
 const VALUE1: number = 2;
@@ -24,59 +25,8 @@ const VALUE2: number = 3;
 
 const MAX_AGE: number = 21;
 
-const DOMAIN = "https://api.thecatapi.com/v1/images/search?";
-const API_KEY = import.meta.env.VITE_API_KEY;
-
-const breeds: BreedsObject = {
-  'rand': '-- Random Breed --',
-  'abys': 'Abyssinian',
-  'aege': 'Aegean',
-  'acur': 'American Curl',
-  'asho': 'American Shorthair',
-  'awir': 'American Wirehair',
-  'amau': 'Arabian Mau',
-  'bali': 'Balinese',
-  'bamb': 'Bambino',
-  'beng': 'Bengal',
-  'birm': 'Birman',
-  'bslo': 'British Longhair',
-  'bsho': 'British Shorthair',
-  'bure': 'Burmese',
-  'buri': 'Burmilla',
-  'cspa': 'California Spangled',
-  'char': 'Chartreux',
-  'chau': 'Chausie',
-  'csho': 'Colorpoint Shorthair',
-  'crex': 'Cornish Rex',
-  'cymr': 'Cymric',
-  'cypr': 'Cyprus',
-  'drex': 'Devon Rex',
-  'lihu': 'Dragon Li',
-  'emau': 'Egyptian Mau',
-  'esho': 'Exotic Shorthair',
-  'hbro': 'Havana Brown',
-  'hima': 'Himalayan',
-  'jbob': 'Japanese Bobtail',
-  'java': 'Javanese',
-  'mcoo': 'Maine Coon',
-  'munc': 'Munchkin',
-  'nebe': 'Nebelung',
-  'norw': 'Norwegian Forest Cat',
-  'orie': 'Oriental Shorthair',
-  'raga': 'Ragamuffin',
-  'ragd': 'Ragdoll',
-  'rblu': 'Russian Blue',
-  'sfol': 'Scottish Fold',
-  'srex': 'Selkirk Rex',
-  'sibe': 'Siberian',
-  'snow': 'Snowshoe',
-  'soma': 'Somali',
-  'sphy': 'Sphynx',
-  'tonk': 'Tonkinese',
-  'toyg': 'Toyger',
-  'tang': 'Turkish Angora',
-  'tvan': 'Turkish Van'
-};
+const DOMAIN: string = "https://api.thecatapi.com/v1/images/search?";
+const API_KEY: string = import.meta.env.VITE_API_KEY;
 
 const unknownBreeds: string[] = ['cat', 'kitty', 'kitty cat', 'fur baby', 'furball', 'ball of fur', 'bundle of joy', 'feline'];
 
@@ -88,7 +38,6 @@ for (let arr of [neutralNames, femaleNames, maleNames, neutralTitles, femaleTitl
 const MainLogic = ({ isInert }: MainLogicProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
-  // const [breeds, setBreeds] = useState(breedList);
   const [imageURL, setImageURL] = useState<string>('');
   const [fade, setFade] = useState<boolean>(false);
   const [name, setName] = useState<string>('');
@@ -247,7 +196,7 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
       setTimeout(() => {
       // All dynamic text is generated regardless of error
       // We add one so age isn't 0
-      let age = getRandomNumber(MAX_AGE) + 1;
+      let age: number = getRandomNumber(MAX_AGE) + 1;
 
       // Increase odds of choosing younger ages
       if (age > MAX_AGE / 3) {
@@ -286,27 +235,6 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
   };
 
   useEffect(() => {
-    console.log('get breeds');
-    // const getBreeds = async () => {
-    //   let breedsList = { rand: 'Random Breed' };
-    //   try {
-    //     const res = await axios.get('https://api.thecatapi.com/v1/breeds');
-
-    //     for (let breed of res.data) {
-    //       breedsList = {
-    //         ...breedsList,
-    //         [breed.id]: breed.name
-    //       };
-    //     }
-    //   } catch (err) {
-    //     console.error("Can't retrieve breed list:", err);
-    //   } finally {
-    //     setBreeds(breedsList);
-    //   }
-    // };
-
-    // getBreeds();
-    // setBreeds(breedList);
     getCat('rand');
   }, []);
 
@@ -323,7 +251,7 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
   const fastFacts: string[][] = [
     [ 'name', `${title} ${name} ${surname}` ],
     [ 'age', age.toString() ],
-    [ 'breed', breed === 'rand' ? 'Cat' : breeds[breed]]
+    [ 'breed', breed === 'rand' ? 'Cat' : breedList[breed]]
   ];
 
   return (
@@ -334,7 +262,7 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
           error={error} 
           fade={fade} 
           image={imageURL} 
-          breed={breeds[breed]}
+          breed={breedList[breed]}
         />
 
         <section className="info">
@@ -358,7 +286,7 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
             username={username}
             name={name}
             age={age}
-            breed={breeds[breed]}
+            breed={breedList[breed]}
             randCat={randCat}
             desc={description}
             outro={outro}
@@ -371,7 +299,7 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
 
           <Form 
             isLoading={isLoading}
-            breeds={breeds} 
+            breeds={breedList} 
             handleClick={handleClick} 
           />
 

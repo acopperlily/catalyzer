@@ -10,7 +10,7 @@ const Greeting = ({ greeting, language, username }: GreetingProps) => {
     return `${greeting}! `;
   }
 
-  let hello = getGreeting(greeting, username);
+  let hello: string = getGreeting(greeting, username);
   
 
   return (
