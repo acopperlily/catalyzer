@@ -22,6 +22,7 @@ const breedList: BreedsObject = {
   'cspa': 'California Spangled',
   'char': 'Chartreux',
   'chau': 'Chausie',
+  'chee': 'Cheetoh',
   'csho': 'Colorpoint Shorthair',
   'crex': 'Cornish Rex',
   'cymr': 'Cymric',

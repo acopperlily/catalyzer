@@ -349,6 +349,7 @@ a {
 
 .tooltip__container {
   display: inline;
+  font-style: italic;
 }
 
 .tooltip__content {
@@ -359,6 +360,7 @@ a {
   font-family: $ff-body;
   font-size: 1rem;
   font-size: clamp(0.7rem, 0.7rem + 1vmin, 1rem);
+  font-style: normal;
 }
 
 .form {

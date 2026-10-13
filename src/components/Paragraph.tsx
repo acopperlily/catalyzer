@@ -17,7 +17,7 @@ const Paragraph = ({ isLoading, fade, countryCode, username, name, age, breed, r
   const attribution = outro.origin;
 
   return (
-    <p 
+    <div 
       className={classes}
     > 
       <Greeting
@@ -47,7 +47,7 @@ const Paragraph = ({ isLoading, fade, countryCode, username, name, age, breed, r
         className="quote"
       />
 
-    </p>
+    </div>
   );
 };
 
