@@ -361,6 +361,7 @@ a {
   font-size: 1rem;
   font-size: clamp(0.7rem, 0.7rem + 1vmin, 1rem);
   font-style: normal;
+  white-space: pre-line;
 }
 
 .form {

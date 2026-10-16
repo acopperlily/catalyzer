@@ -5,7 +5,7 @@ import Breed from "./Breed";
 import Tooltip from "./Tooltip";
 import type { ParaProps } from "../data/types";
 
-const Paragraph = ({ isLoading, fade, countryCode, username, name, age, breed, randCat, desc, outro, greeting, language, intro, likes, dislikes }: ParaProps) => {
+const Paragraph = ({ isLoading, fade, countryCode, username, name, age, breed, randCat, desc, hist, outro, greeting, language, intro, likes, dislikes }: ParaProps) => {
 
   console.log('country code:', countryCode);
   let classes: string = 'info__para';
@@ -13,7 +13,7 @@ const Paragraph = ({ isLoading, fade, countryCode, username, name, age, breed, r
   if (isLoading) classes += ' hidden';
 
   console.log('outro:', outro);
-  const quote = outro.quote;
+  const quote = `${outro.quote}`;
   const attribution = outro.origin;
 
   return (
@@ -37,6 +37,7 @@ const Paragraph = ({ isLoading, fade, countryCode, username, name, age, breed, r
         breed={breed} 
         randCat={randCat} 
         description={desc} 
+        history={hist}
       />
 
       <>{likes} {dislikes}</>

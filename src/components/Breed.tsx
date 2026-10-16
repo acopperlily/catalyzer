@@ -1,7 +1,7 @@
 import Tooltip from "./Tooltip";
 import type { BreedProps } from "../data/types";
 
-const Breed = ({ breed, randCat, description }: BreedProps) => {
+const Breed = ({ breed, randCat, description, history }: BreedProps) => {
 
   const newBreed = breed === 'Random Breed' ? randCat : breed;
   
@@ -9,12 +9,14 @@ const Breed = ({ breed, randCat, description }: BreedProps) => {
     description += '.'
   }
 
+  description += '\n'
+
   return (
     <>{breed === 'Random Breed' ? (
       <>{` ${newBreed}. `}</>
         ) : (
         <Tooltip 
-          content={description} 
+          content={`${description}\n${history}`} 
           children={` ${newBreed}. `} 
           className="breed" 
         />)

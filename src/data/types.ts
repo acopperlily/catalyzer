@@ -6,6 +6,7 @@ type BreedProps = {
   breed: string; 
   randCat: string;
   description: string | null;
+  history: string | null;
 }
 
 type BreedsObject = { 
@@ -86,6 +87,7 @@ type ParaProps = {
   breed: string;
   randCat: string;
   desc: string | null;
+  hist: string | null;
   outro: Outro;
   greeting: string;
   language: string;

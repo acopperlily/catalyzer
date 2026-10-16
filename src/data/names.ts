@@ -491,6 +491,7 @@ const maleNames: string[] = [
   "Remy",
   "Rico",
   "Rocky",
+  "Roddy",
   "Roo",
   "Rufus",
   "Salami",

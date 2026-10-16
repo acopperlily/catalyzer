@@ -10,18 +10,21 @@ const Tooltip = ({ content, children, className }: TooltipProps) => {
 
   return (
     <div 
+      id="trigger"
+      aria-describedby="tooltip-content"
       className="tooltip__container"
       onMouseEnter={() => setIsVisible(true)}
       onMouseLeave={() => setIsVisible(false)}
     >
       {children}
       {isVisible && (
-        <span 
+        <div 
+          id="tooltip-content"
+          role="tooltip"
           className={`tooltip__content ${className}`}
         >
           {content}
-        </span>
-      )}
+        </div>)}
     </div>
   );
 };

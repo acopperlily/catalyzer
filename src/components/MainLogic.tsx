@@ -49,6 +49,7 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
   const [username, setUsername] = useState<string>('');
   const [countryCode, setCountryCode] = useState<string>('US');
   const [description, setDescription] = useState<string | null>(null);
+  const [history, setHistory] = useState<string | null>(null);
   const [outro, setOutro] = useState<Outro>({quote: '', origin: ''});
   const [lang, setLang] = useState<string>('US English');
   const [greeting, setGreeting] = useState<string>('Hi');
@@ -159,6 +160,7 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
       let URL: string = DOMAIN;
       let res;
       let desc: string = '';
+      let hist: string = '';
 
       if (newBreed === 'rand') {
         // Get either a random cat or one with a listed breed
@@ -173,6 +175,7 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
           let randBreed = res.data[0].breeds[0].id;
           newCountryCode = res.data[0].breeds[0].country_code;
           desc = res.data[0].breeds[0].description;
+          hist = res.data[0].breeds[0].history;
           console.log('dice roll 0', randBreed, res.data[0].breeds[0].name);
           setBreed(randBreed);
         }
@@ -180,12 +183,14 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
         res = await axios.get(`${URL}breed_ids=${newBreed}&api_key=${API_KEY}`);
         newCountryCode = res.data[0].breeds[0].country_code;
         desc = res.data[0].breeds[0].description;
+        hist = res.data[0].breeds[0].history;
 
         console.log('breed res:', res);
       }
 
       setCountryCode(newCountryCode);
       setDescription(desc.trim());
+      setHistory(hist.trim());
       setImageURL(res.data[0].url);
       setError(false);
 
@@ -289,6 +294,7 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
             breed={breedList[breed]}
             randCat={randCat}
             desc={description}
+            hist={history}
             outro={outro}
             greeting={greeting}
             language={lang}
