@@ -332,6 +332,14 @@ const outros: Outro[] = [
     quote: "This little maneuver is going to cost us eight cat years.",
     origin: "Interstellar",
   },
+  {
+    quote: "Despite all my rage, I am still just a cat in a cage.",
+    origin: "The Smashing Pumpkins"
+  },
+  {
+    quote: "You come at the Lion King, you best not miss.",
+    origin: "The Wire"
+  }
 ];
 
 export default function getOutro(): Outro {

@@ -4,7 +4,7 @@ import Image from './Image';
 import FastFact from './FastFact';
 import Paragraph from './Paragraph';
 import Form from './Form';
-import type { MainLogicProps, Outro } from '../data/types';
+import type { MainLogicProps, BreedInfo, Outro } from '../data/types';
 import { getGreeting, getLanguage } from '../data/greetings.ts';
 import { getIntro } from '../data/intros.ts';
 import { likeVerbs, dislikeVerbs } from '../data/verbs.ts';
@@ -28,10 +28,10 @@ const MAX_AGE: number = 21;
 const DOMAIN: string = "https://api.thecatapi.com/v1/images/search?";
 const API_KEY: string = import.meta.env.VITE_API_KEY;
 
-const unknownBreeds: string[] = ['cat', 'kitty', 'kitty cat', 'fur baby', 'furball', 'ball of fur', 'bundle of joy', 'feline'];
+const unknownBreeds: string[] = ['cat', 'kitty', 'kitty cat', 'kitten', 'fur baby', 'furball', 'ball of fur', 'bundle of joy', 'feline'];
 
 // Shuffle the arrays on every page load because I feel like it
-for (let arr of [neutralNames, femaleNames, maleNames, neutralTitles, femaleTitles, maleTitles, surnames, neutralSuffixes, maleSuffixes]) {
+for (let arr of [neutralNames, femaleNames, maleNames, neutralTitles, femaleTitles, maleTitles, surnames, neutralSuffixes, maleSuffixes, unknownBreeds]) {
   yatesShuffle(arr);
 }
 
@@ -47,10 +47,8 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
   const [title, setTitle] = useState<string>('');
   const [surname, setSurname] = useState<string>('');
   const [username, setUsername] = useState<string>('');
-  const [countryCode, setCountryCode] = useState<string>('US');
-  const [description, setDescription] = useState<string | null>(null);
-  const [history, setHistory] = useState<string | null>(null);
   const [outro, setOutro] = useState<Outro>({quote: '', origin: ''});
+  const [breedInfo, setBreedInfo] = useState<BreedInfo>({ history: '', description: ''});
   const [lang, setLang] = useState<string>('US English');
   const [greeting, setGreeting] = useState<string>('Hi');
   const [intro, setIntro] = useState<string>('');
@@ -58,7 +56,7 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
   const [dislikes, setDislikes] = useState<string>('');
 
   // Scroll up to image after button click
-  const ref = useRef<HTMLDivElement | null>(null);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
 
   console.log('render');
 
@@ -138,7 +136,7 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
 
 // Set all the mf state
 
-  const getCat = async (newBreed: string) => {
+  const getCat = async (newBreed: string, timer: number) => {
     console.log('fetch called');
     console.log('current breed in function:', breed);
     setBreed(newBreed);
@@ -154,11 +152,12 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
     setLikes(getPreferences(likesArr, likesNum, chooseItem(likeVerbs), 'and'));
     setDislikes(getPreferences(dislikesArr, dislikesNum, chooseItem(dislikeVerbs), 'or'));
 
-    let newCountryCode: string = 'US';
+    let countryCode: string = 'US';
 
     try {
       let URL: string = DOMAIN;
       let res;
+      let resObject;
       let desc: string = '';
       let hist: string = '';
 
@@ -169,28 +168,35 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
           URL += `api_key=${API_KEY}&has_breeds=true`;
         }
         res = await axios.get(URL);
-        console.log('res:', res);
+        resObject = res.data[0];
+        console.log('res:', res, resObject);
 
         if (diceRoll === 0) {
-          let randBreed = res.data[0].breeds[0].id;
-          newCountryCode = res.data[0].breeds[0].country_code;
-          desc = res.data[0].breeds[0].description;
-          hist = res.data[0].breeds[0].history;
-          console.log('dice roll 0', randBreed, res.data[0].breeds[0].name);
-          setBreed(randBreed);
+          resObject = resObject.breeds[0];
+          let randBreed = resObject.id;
+          countryCode = resObject.country_code;
+          desc = resObject.description;
+          hist = resObject.history;
+          console.log('dice roll 0', randBreed, resObject.name);
+          if (!breedList[newBreed]) {
+            newBreed = 'rand';
+          }
+          setBreed(newBreed);
         }
       } else {
         res = await axios.get(`${URL}breed_ids=${newBreed}&api_key=${API_KEY}`);
-        newCountryCode = res.data[0].breeds[0].country_code;
-        desc = res.data[0].breeds[0].description;
-        hist = res.data[0].breeds[0].history;
+        resObject = res.data[0].breeds[0];
+        countryCode = resObject.country_code;
+        desc = resObject.description;
+        hist = resObject.history;
 
-        console.log('breed res:', res);
+        console.log('breed res:', res, resObject);
       }
 
-      setCountryCode(newCountryCode);
-      setDescription(desc.trim());
-      setHistory(hist.trim());
+      setBreedInfo({
+        description: desc,
+        history: hist,
+      });
       setImageURL(res.data[0].url);
       setError(false);
 
@@ -222,12 +228,12 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
       setSurname(getSurname(gender));
 
       // Choose intro & outro
-      setLang(getLanguage(newCountryCode));
-      setGreeting(getGreeting(getLanguage(newCountryCode)))
+      setLang(getLanguage(countryCode));
+      setGreeting(getGreeting(getLanguage(countryCode)))
       setOutro(getOutro());
       setIsLoading(false);
-      setFade(true);
-    }, 400);
+      setFade(timer != 0);
+    }, timer);
   }
 
 };
@@ -236,17 +242,17 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
     e.preventDefault();
     console.log('e from main:', draftName, username, e);
     setUsername(draftName);
-    getCat(newBreed);
+    getCat(newBreed, 400);
   };
 
   useEffect(() => {
-    getCat('rand');
+    getCat('rand', 0);
   }, []);
 
   useEffect(() => {
     if (!imageURL) return;
 
-    ref.current?.scrollIntoView({
+    scrollRef.current?.scrollIntoView({
       behavior: 'smooth',
       block: 'start'
     });
@@ -256,12 +262,12 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
   const fastFacts: string[][] = [
     [ 'name', `${title} ${name} ${surname}` ],
     [ 'age', age.toString() ],
-    [ 'breed', breed === 'rand' ? 'Cat' : breedList[breed]]
+    [ 'breed', (breed === 'rand' || !breedList[breed]) ? 'Cat' : breedList[breed]]
   ];
 
   return (
     <main className="main" inert={isInert}>
-      <div className="main__container" ref={ref}>
+      <div className="main__container" ref={scrollRef}>
         <Image 
           isLoading={isLoading} 
           error={error} 
@@ -287,14 +293,12 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
           <Paragraph
             isLoading={isLoading}
             fade={fade}
-            countryCode={countryCode}
             username={username}
             name={name}
             age={age}
             breed={breedList[breed]}
             randCat={randCat}
-            desc={description}
-            hist={history}
+            breedInfo={breedInfo}
             outro={outro}
             greeting={greeting}
             language={lang}

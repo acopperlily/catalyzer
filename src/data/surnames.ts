@@ -23,6 +23,7 @@ const surnames: string[] = [
   "Etheria",
   "the Ferengi Alliance",
   "the First Order",
+  "Flea Bottom",
   "Fortuna",
   "Funky Town",
   "Fuzztown",

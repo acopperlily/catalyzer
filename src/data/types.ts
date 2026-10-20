@@ -1,13 +1,17 @@
 type AgeProps = { 
   age: number;
-}
+};
+
+type BreedInfo = {
+  description: string | null,
+  history: string | null;
+};
 
 type BreedProps = { 
   breed: string; 
   randCat: string;
-  description: string | null;
-  history: string | null;
-}
+  breedInfo: BreedInfo | null;
+};
 
 type BreedsObject = { 
   [key: string]: string
@@ -22,7 +26,7 @@ type FactProps = {
   fade: boolean,
   label: string,
   fact: string;
-}
+};
 
 type FooterProps = { 
   isInert: boolean; 
@@ -32,7 +36,7 @@ type FormProps = {
   isLoading: boolean;
   breeds: object;
   handleClick: any;
-}
+};
 
 type GreetingsMap = {
   [key: string]: string[];
@@ -80,14 +84,12 @@ type Outro = {
 type ParaProps = {
   isLoading: boolean;
   fade: boolean;
-  countryCode: string;
   username: string;
   name: string;
   age: number;
   breed: string;
   randCat: string;
-  desc: string | null;
-  hist: string | null;
+  breedInfo: BreedInfo;
   outro: Outro;
   greeting: string;
   language: string;
@@ -102,4 +104,4 @@ type TooltipProps = {
   className: string;
 };
 
-export type { AgeProps, BreedProps, BreedsObject, CountryMap, FactProps, FooterProps, FormProps, GreetingsMap, GreetingProps, HeaderProps, ImageProps, IntroProps, LangMap, MainLogicProps, ModalProps, Outro, ParaProps, TooltipProps };
+export type { AgeProps, BreedInfo, BreedProps, BreedsObject, CountryMap, FactProps, FooterProps, FormProps, GreetingsMap, GreetingProps, HeaderProps, ImageProps, IntroProps, LangMap, MainLogicProps, ModalProps, Outro, ParaProps, TooltipProps };
