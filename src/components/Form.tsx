@@ -2,6 +2,7 @@
 import type { FormProps } from "../data/types";
 import Chevron from "../assets/icons/chevron.svg?react";
 import Clear from "../assets/icons/xmark.svg?react"; 
+import { Dropdown } from "./Dropdown";
 import { useState } from 'react';
 
 const Form = ({ isLoading, breeds, handleClick }: FormProps ) => {
@@ -36,6 +37,8 @@ const Form = ({ isLoading, breeds, handleClick }: FormProps ) => {
     setDraftName('');
   };
 
+  console.log('form render');
+  console.log(typeof breeds);
 
   return (
     <form
@@ -60,9 +63,7 @@ const Form = ({ isLoading, breeds, handleClick }: FormProps ) => {
               onChange={e => handleSelect(e)}
               value={selectedBreed}
             >
-              {(Object.entries(breeds)).map(([id, name]): React.ReactNode => (
-                <option key={id} value={id} className="form__option">{name}</option>
-              ))}
+              <Dropdown list={breeds} />
             </select>
             <div 
               className="dropdown__icon input__icon"

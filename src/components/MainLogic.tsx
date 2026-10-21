@@ -138,12 +138,11 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
 
   const getCat = async (newBreed: string, timer: number) => {
     console.log('fetch called');
-    console.log('current breed in function:', breed);
-    setBreed(newBreed);
+    console.log('current breed in function:', breed, newBreed);
     setIsLoading(true);
     setFade(false);
     setIntro(getIntro);
-    setRandCat(chooseItem(unknownBreeds));
+    // setRandCat(chooseItem(unknownBreeds));
 
     // Generate random numbers for our component
     const coinFlip: number = getRandomNumber(2);
@@ -164,24 +163,25 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
       if (newBreed === 'rand') {
         // Get either a random cat or one with a listed breed
         let diceRoll: number = getRandomNumber(2);
+
         if (diceRoll === 0) {
           URL += `api_key=${API_KEY}&has_breeds=true`;
         }
+
         res = await axios.get(URL);
         resObject = res.data[0];
         console.log('res:', res, resObject);
 
         if (diceRoll === 0) {
           resObject = resObject.breeds[0];
-          let randBreed = resObject.id;
+          // let randBreed = resObject.id;
+          newBreed = resObject.id;
           countryCode = resObject.country_code;
           desc = resObject.description;
           hist = resObject.history;
-          console.log('dice roll 0', randBreed, resObject.name);
-          if (!breedList[newBreed]) {
-            newBreed = 'rand';
-          }
-          setBreed(newBreed);
+          console.log('dice roll 0', newBreed, resObject.name);
+
+          console.log('new, full after diceroll', newBreed, breedList[newBreed]);
         }
       } else {
         res = await axios.get(`${URL}breed_ids=${newBreed}&api_key=${API_KEY}`);
@@ -193,6 +193,20 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
         console.log('breed res:', res, resObject);
       }
 
+      let randCat = chooseItem(unknownBreeds);
+
+      if (!breedList[newBreed]) {
+        newBreed = 'rand';
+        // let randCat = chooseItem(unknownBreeds);
+        console.log('randCat', randCat);
+        // setRandCat(randCat);
+      }
+      setRandCat(randCat);
+      console.log('randCat', randCat);
+
+
+      console.log('breed after funx', newBreed, breedList[newBreed]);
+      setBreed(newBreed);
       setBreedInfo({
         description: desc,
         history: hist,
@@ -252,6 +266,8 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
   useEffect(() => {
     if (!imageURL) return;
 
+    console.log('scroll', scrollRef.current)
+
     scrollRef.current?.scrollIntoView({
       behavior: 'smooth',
       block: 'start'
@@ -262,7 +278,7 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
   const fastFacts: string[][] = [
     [ 'name', `${title} ${name} ${surname}` ],
     [ 'age', age.toString() ],
-    [ 'breed', (breed === 'rand' || !breedList[breed]) ? 'Cat' : breedList[breed]]
+    [ 'breed', breed === 'rand' ? 'Cat' : breedList[breed] ]
   ];
 
   return (

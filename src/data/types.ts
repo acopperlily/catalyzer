@@ -14,7 +14,7 @@ type BreedProps = {
 };
 
 type BreedsObject = { 
-  [key: string]: string
+  [key: string]: any;
 };
 
 type CountryMap = {

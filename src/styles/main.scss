@@ -1,7 +1,7 @@
 $color-primary: 340;
 $color-secondary: 45;
 $color-light: hsl(35, 100%, 99%);
-$color-med: hsl($color-primary, 100%, 45%);
+$color-med: hsl($color-primary, 100%, 50%);
 $color-dark: hsl($color-primary, 100%, 30%);
 $color-black: hsl($color-primary, 100%, 5%);
 
@@ -69,6 +69,7 @@ a {
     background-color: transparent;
     border: none;
     margin-left: auto;
+    margin-right: calc(0.25rem - 0.25vw);
     $size: 2rem;
     fill: $color-light;
     width: $size;
@@ -78,13 +79,11 @@ a {
     align-items: center;
     border-radius: 2px;
     outline: none;
-    // outline: 2px solid transparent;
   }
 
   &__icon-container:focus,
   &__icon-container:focus-visible {
     border: none;
-    // outline: 2px solid $color-light;
     outline: none;
     box-shadow: 0 0 0 0 $color-med,
                 0 0 0 2px $color-light;
