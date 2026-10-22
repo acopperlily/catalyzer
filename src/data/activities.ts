@@ -211,6 +211,7 @@ const dislikesArr: string[] = [
   "climate change",
   "cognitive dissonance",
   "commuter traffic",
+  "compound interest",
   '"convenience" fees',
   "confirmation bias",
   "conspiracy theories",
