@@ -26,5 +26,5 @@ const DropdownList = ({list}: BreedsObject) => {
   );
 };
 
+// Makes the dropdown list render only once
 export const Dropdown = memo(DropdownList);
-

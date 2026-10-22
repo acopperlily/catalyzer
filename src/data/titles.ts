@@ -73,7 +73,6 @@ const femaleTitles: string[] = [
   "Señorita",
   "Sister",
   "Tsarina",
-  "Viscountess"
 ];
 
 const maleTitles: string[] = [
@@ -122,7 +121,6 @@ const maleTitles: string[] = [
   "Squire",
   "Tsar",
   "Uncle",
-  "Viscount"
 ];
 
 export { neutralTitles, femaleTitles, maleTitles };

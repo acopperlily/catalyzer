@@ -339,11 +339,13 @@ const outros: Outro[] = [
   {
     quote: "You come at the Lion King, you best not miss.",
     origin: "The Wire"
+  },
+  {
+    quote: "Fluff around and find out.",
+    origin: "The Internet"
   }
 ];
 
 export default function getOutro(): Outro {
   return chooseItem(outros);
 }
-
-// export default outros;

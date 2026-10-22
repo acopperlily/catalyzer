@@ -1,7 +1,7 @@
 $color-primary: 340;
 $color-secondary: 45;
 $color-light: hsl(35, 100%, 99%);
-$color-med: hsl($color-primary, 100%, 50%);
+$color-med: hsl($color-primary, 100%, 45%);
 $color-dark: hsl($color-primary, 100%, 30%);
 $color-black: hsl($color-primary, 100%, 5%);
 
@@ -66,11 +66,12 @@ a {
   }
 
   &__icon-container {
+    border: 1px solid white;
     background-color: transparent;
     border: none;
     margin-left: auto;
     margin-right: calc(0.25rem - 0.25vw);
-    $size: 2rem;
+    $size: 2.25rem;
     fill: $color-light;
     width: $size;
     height: $size;
@@ -121,7 +122,7 @@ a {
   }
 
   &__icon-container {
-    width: 1.5rem;
+    width: 2.5rem;
     margin-left: auto;
     border: none;
     background-color: transparent;
@@ -161,7 +162,6 @@ a {
 }
 
 .main__container {
-  // border: 1px solid green;
   padding-top: clamp(1em, 1em + 1vmin, 2em);
   width: 100%;
   max-width: min(95%, 80em);
@@ -178,7 +178,6 @@ a {
 }
 
 .loading {
-  // border: 1px dotted white;
   width: 100%;
   flex: 1;
   display: flex;
@@ -349,6 +348,8 @@ a {
 .tooltip__container {
   display: inline;
   font-style: italic;
+  font-weight: 600;
+  color: $color-dark;
 }
 
 .tooltip__content {

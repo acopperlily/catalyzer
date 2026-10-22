@@ -27,7 +27,7 @@ const dislikeVerbs: string[] = [
   "I am not fond of",
   "I do not enjoy",
   "I cannot abide",
-  "I won't put up with"
+  "I can't put up with"
 ];
 
 export { likeVerbs, dislikeVerbs };
