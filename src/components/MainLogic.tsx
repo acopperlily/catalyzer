@@ -174,6 +174,7 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
 
         if (diceRoll === 0) {
           resObject = resObject.breeds[0];
+          console.log("alt names", resObject?.alt_names);
           // let randBreed = resObject.id;
           newBreed = resObject.id;
           countryCode = resObject.country_code;
@@ -186,6 +187,7 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
       } else {
         res = await axios.get(`${URL}breed_ids=${newBreed}&api_key=${API_KEY}`);
         resObject = res.data[0].breeds[0];
+        console.log("alt names", resObject?.alt_names);
         countryCode = resObject.country_code;
         desc = resObject.description;
         hist = resObject.history;

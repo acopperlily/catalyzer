@@ -11,7 +11,8 @@ const likeVerbs: string[] = [
   "I'm quite fond of",
   "My favorite things are",
   "I'm excited about",
-  "I'm passionate about"
+  "I'm passionate about",
+  "I adore"
 ];
 
 const dislikeVerbs: string[] = [
@@ -27,7 +28,7 @@ const dislikeVerbs: string[] = [
   "I am not fond of",
   "I do not enjoy",
   "I cannot abide",
-  "I can't put up with"
+  "I can't put up with",
 ];
 
 export { likeVerbs, dislikeVerbs };

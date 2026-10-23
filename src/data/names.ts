@@ -214,7 +214,6 @@ const femaleNames: string[] = [
   "Celeste",
   "Chanin",
   "Charlotte",
-  "Cheri",
   "Cherry",
   "Chloe",
   "Chonkarella",
