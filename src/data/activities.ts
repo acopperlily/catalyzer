@@ -316,6 +316,7 @@ const dislikesArr: string[] = [
   "reading documentation",
   "reading the fine print",
   "reality TV",
+  "RTO mandates",
   "ridiculous bag policies at concert venues",
   "robocalls",
   "Schrödinger's Cat",

@@ -1,3 +1,5 @@
+@use 'fonts';
+
 $color-primary: 340;
 $color-secondary: 45;
 $color-light: hsl(35, 100%, 99%);
@@ -5,8 +7,8 @@ $color-med: hsl($color-primary, 100%, 45%);
 $color-dark: hsl($color-primary, 100%, 30%);
 $color-black: hsl($color-primary, 100%, 5%);
 
-$ff-heading: 'Montserrat', sans-serif;
-$ff-body: 'Inter', sans-serif;
+$ff-heading: 'heading', sans-serif;
+$ff-body: 'body', sans-serif;
 $letter-spacing: -0.05ch;
 
 *, *::before, *::after {
@@ -305,7 +307,7 @@ a {
       float: left;
       padding-right: 0.75rem;
       color: $color-med;
-      font-family: 'Corinthia', cursive;
+      font-family: 'fancy', cursive;
       font-size: 3rem;
       font-size: clamp(2rem, 2rem + 2vmin, 3rem);
       font-weight: 700;

@@ -1,0 +1,24 @@
+@font-face {
+  font-family: 'body';
+  src: url('../assets/fonts/inter-latin-wght-normal.woff2') format('woff2'),
+      url('../assets/fonts/inter-latin-standard-normal.woff2') format('woff2 supports variations');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'heading';
+  src: url('../assets/fonts/montserrat-latin-wght-normal.woff2') format('woff2');
+  font-weight: 500 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'fancy';
+  src: url('../assets/fonts/corinthia-latin-700-normal.woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

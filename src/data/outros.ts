@@ -26,6 +26,10 @@ const outros: Outro[] = [
     quote: "Ask not what your kitty can do for you — ask what you can do for your kitty.",
     origin: "John F. Kennedy",
   },
+  {
+    quote: "I used to think I was indecisive. Now I'm not so sure.",
+    origin: "Unknown classic",
+  },
   { 
     quote: "I purr, therefore I am.", 
     origin: "René Descartes" 
@@ -412,10 +416,6 @@ const outros: Outro[] = [
     origin: "Rage Against the Machine"
   },
   {
-    quote: "Some of those that work forces are the same that burn crosses.",
-    origin: "Rage Against the Machine"
-  },
-  {
     quote: "Despite all my rage, I am still just a cat in a cage.",
     origin: "The Smashing Pumpkins"
   },
@@ -459,10 +459,6 @@ const outros: Outro[] = [
   { 
     quote: "Wu-Tang is for the kittens.", 
     origin: "Ol' Dirty Bastard" 
-  },
-  {
-    quote: "I used to think I was indecisive. Now I'm not so sure.",
-    origin: "The Internet",
   },
   { 
     quote: "Look how cute I am!", 
