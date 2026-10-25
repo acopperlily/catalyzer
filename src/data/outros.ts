@@ -190,6 +190,10 @@ const outros: Outro[] = [
     origin: "Star Wars" 
   },
   {
+    quote: "These aren't the voids you're looking for.",
+    origin: "Star Wars: Episode IV — A New Hope"
+  },
+  {
     quote: "I don't like litter. It's coarse and rough and irritating and it gets everywhere.",
     origin: "Star Wars: Attack of the Clones",
   },

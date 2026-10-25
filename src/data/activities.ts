@@ -68,6 +68,7 @@ const likesArr: string[] = [
   "hallway purrkour",
   "ham sammiches",
   "losing Mommy's Chapstick tubes under the bookcase",
+  "Halloween",
   "hiding under the bed",
   "hunting greebles",
   "ice cubes",
