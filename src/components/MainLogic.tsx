@@ -259,22 +259,15 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
     console.log('e from main:', draftName, username, e);
     setUsername(draftName);
     getCat(newBreed, 400);
+    scrollRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
   };
 
   useEffect(() => {
     getCat('rand', 0);
   }, []);
-
-  useEffect(() => {
-    if (!imageURL) return;
-
-    console.log('scroll', scrollRef.current)
-
-    scrollRef.current?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    });
-  }, [imageURL]);
 
   // So we can map our shiz to each fact component
   const fastFacts: string[][] = [
@@ -285,13 +278,14 @@ const MainLogic = ({ isInert }: MainLogicProps) => {
 
   return (
     <main className="main" inert={isInert}>
-      <div className="main__container" ref={scrollRef}>
+      <div className="main__container" /*ref={scrollRef}*/>
         <Image 
           isLoading={isLoading} 
           error={error} 
           fade={fade} 
           image={imageURL} 
           breed={breedList[breed]}
+          ref={scrollRef}
         />
 
         <section className="info">

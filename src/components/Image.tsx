@@ -31,7 +31,7 @@ const errorImages = [
   Drizes3,
 ];
 
-const Image = ({ isLoading, error, fade, image, breed }: ImageProps) => {
+const Image = ({ isLoading, error, fade, image, breed, ref }: ImageProps) => {
   let altText = breed === 'Random Breed' ? 'Random' : breed;
   if (error) {
     const index = getRandomNumber(errorImages.length);
@@ -40,7 +40,10 @@ const Image = ({ isLoading, error, fade, image, breed }: ImageProps) => {
   }
   
   return (
-    <section className='image__container'>
+    <section 
+      className='image__container'
+      ref={ref}
+    >
       {isLoading ? (
         <Loading />
       ) : (

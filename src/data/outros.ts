@@ -79,28 +79,23 @@ const outros: Outro[] = [
     origin: "Saul Bellow",
   },
   {
-    quote:
-      "A cat is more intelligent than people believe, and can be taught any crime.",
+    quote: "A cat is more intelligent than people believe, and can be taught any crime.",
     origin: "Mark Twain",
   },
   {
-    quote:
-      "If man could be crossed with the cat it would improve the man, but it would deteriorate the cat.",
+    quote: "If man could be crossed with the cat it would improve the man, but it would deteriorate the cat.",
     origin: "Mark Twain",
   },
   {
-    quote:
-      "Cats were put into the world to disprove the dogma that all things were created to serve man.",
+    quote: "Cats were put into the world to disprove the dogma that all things were created to serve man.",
     origin: "Paul Gray",
   },
-
   {
-    quote:
-      "'Tis better to remain silent and be thought a fool than to bark and remove all doubt.",
+    quote: "'Tis better to remain silent and be thought a fool than to bark and remove all doubt.",
     origin: "Maurice Switzer",
   },
   {
-    quote: "I don\'t believe in the concept of hell, but if I did I would think of it as filled with people who were cruel to cats.",
+    quote: "I don't believe in the concept of hell, but if I did I would think of it as filled with people who were cruel to cats.",
     origin: "Gary Larson"
   },
   {
@@ -142,7 +137,7 @@ const outros: Outro[] = [
     origin: "Interstellar",
   },
   { 
-    quote: 'You had me at "pspspsps".', 
+    quote: "You had me at \"pspspsps\".", 
     origin: "Jerry Maguire" 
   },
   {
@@ -182,7 +177,7 @@ const outros: Outro[] = [
     origin: "Office Space"
   },
   {
-    quote: 'Why does it say "Paper Jam" when there is no paper jam?',
+    quote: "Why does it say \"Paper Jam\" when there is no paper jam?",
     origin: "Office Space",
   }, 
   { 
@@ -261,6 +256,14 @@ const outros: Outro[] = [
   {
     quote: "I guess, when you think about it, the ground is the original chair.",
     origin: "Beef"
+  },
+  {
+    quote: "You think this is something? You think this is bad? This? This chicanery? I've done worse.",
+    origin: "Better Call Saul"
+  },
+  {
+    quote: "They walked into my house. They disrespected my kitty cat. They called her \"biznatch\"! And they just walk? Huh?",
+    origin: "Better Call Saul"
   },
   {
     quote: "For a long time now, I thought I was just a survivor, but I'm not. I'm the winner. That's who I am. The Cat Lord Victorious.",

@@ -1,3 +1,5 @@
+import { Ref } from 'react';
+
 type AgeProps = { 
   age: number;
 };
@@ -54,11 +56,12 @@ type HeaderProps = {
 };
 
 type ImageProps = {
-  isLoading: boolean,
-  error: boolean,
-  fade: boolean,
-  image: string,
-  breed: string
+  isLoading: boolean;
+  error: boolean;
+  fade: boolean;
+  image: string;
+  breed: string;
+  ref?: Ref<HTMLDivElement> | null ;
 };
 
 type IntroProps = {
