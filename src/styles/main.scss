@@ -1,15 +1,5 @@
-@use 'fonts';
-
-$color-primary: 340;
-$color-secondary: 45;
-$color-light: hsl(35, 100%, 99%);
-$color-med: hsl($color-primary, 100%, 45%);
-$color-dark: hsl($color-primary, 100%, 30%);
-$color-black: hsl($color-primary, 100%, 5%);
-
-$ff-heading: 'heading', sans-serif;
-$ff-body: 'body', sans-serif;
-$letter-spacing: -0.05ch;
+@use 'colors';
+@use 'base';
 
 *, *::before, *::after {
   padding: 0;
@@ -18,7 +8,7 @@ $letter-spacing: -0.05ch;
 }
 
 body {
-  font-family: $ff-body;
+  font-family: base.$ff-body;
 }
 
 button {
@@ -32,11 +22,11 @@ button {
 
 a {
   text-decoration: none;
-  color: $color-light;
+  color: colors.$color-light;
 }
 
 .wrapper {
-  background-color: $color-light;
+  background-color: colors.$color-light;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -44,7 +34,7 @@ a {
 }
 
 .header {
-  background-color: $color-med;
+  background-color: colors.$color-med;
 
   &__container {
     max-width: min(90%, 80em);
@@ -55,11 +45,11 @@ a {
   }
 
   &__title {
-    color: $color-light;
-    font-family: $ff-heading;
+    color: colors.$color-light;
+    font-family: base.$ff-heading;
     font-size: clamp(1rem, 1rem + 2vmin, 2rem);
     font-weight: 800;
-    letter-spacing: $letter-spacing;
+    letter-spacing: base.$letter-spacing;
 
     @media (max-width: 60em) {
       margin-left: auto;
@@ -74,7 +64,7 @@ a {
     margin-left: auto;
     margin-right: calc(0.25rem - 0.15vw);
     $size: 2.25rem;
-    fill: $color-light;
+    fill: colors.$color-light;
     width: $size;
     height: $size;
     display: flex;
@@ -88,21 +78,21 @@ a {
   &__icon-container:focus-visible {
     border: none;
     outline: none;
-    box-shadow: 0 0 0 0 $color-med,
-                0 0 0 2px $color-light;
+    box-shadow: 0 0 0 0 colors.$color-med,
+                0 0 0 2px colors.$color-light;
   }
 
   &__icon {
     $size: clamp(0.5rem, 0.5rem + 1vw, 1.1rem);
-    fill: $color-light;
+    fill: colors.$color-light;
     width: $size;
     height: $size;
   }
 }
 
 .modal {
-  background-color: $color-dark;
-  color: $color-light;
+  background-color: colors.$color-dark;
+  color: colors.$color-light;
   padding: 0.75em 0.5em 5em 0.5em;
   max-width: 80%;
   width: 70ch;
@@ -114,11 +104,11 @@ a {
   border-radius: 5px;
 
   &__title {
-    font-family: $ff-heading;
+    font-family: base.$ff-heading;
     text-align: center;
     font-size: clamp(1rem, 1rem + 2vmin, 3rem);
     font-weight: 700;
-    letter-spacing: $letter-spacing;
+    letter-spacing: base.$letter-spacing;
     padding: 0 1em;
     margin-bottom: 1em;
   }
@@ -136,21 +126,21 @@ a {
     &:focus,
     &:focus-visible {
       outline: none;
-      box-shadow: 0 0 0 2px $color-dark,
-                  0 0 0 4px $color-light;
+      box-shadow: 0 0 0 2px colors.$color-dark,
+                  0 0 0 4px colors.$color-light;
     }
   }
 
 
   &__icon {
-    fill: $color-light;
+    fill: colors.$color-light;
     width: 2rem;
     height: 2rem;
   }
 
   &__body {
     padding-inline: 1em;
-    font-family: $ff-heading;
+    font-family: base.$ff-heading;
   }
 }
 
@@ -190,12 +180,12 @@ a {
   gap: 3rem;
 
   &__message {
-    color: $color-dark;
-    font-family: $ff-heading;
+    color: colors.$color-dark;
+    font-family: base.$ff-heading;
     font-size: 1.2rem;
     font-size: calc(1rem + 1vw);
     font-weight: 800;
-    letter-spacing: $letter-spacing;
+    letter-spacing: base.$letter-spacing;
   }
 
   &__spinner {
@@ -227,7 +217,7 @@ a {
   max-width: 100%;
   object-fit: contain;
   overflow: hidden;
-  box-shadow: 3px 5px 8px 0px hsl($color-primary, 10%, 60%);
+  box-shadow: 3px 5px 8px 0px hsl(colors.$color-primary, 10%, 60%);
 }
 
 .info {
@@ -241,12 +231,12 @@ a {
     color: transparent;
     padding-bottom: 0.1em;
     margin-bottom: 0.3em;
-    font-family: $ff-body;
+    font-family: base.$ff-body;
     font-size: clamp(1.8rem, 1.8rem + 3vmin, 3rem);
     font-weight: 800;
     line-height: 1;
-    letter-spacing: $letter-spacing;
-    background: linear-gradient(0deg, $color-dark, 30%, $color-med);
+    letter-spacing: base.$letter-spacing;
+    background: linear-gradient(0deg, colors.$color-dark, 30%, colors.$color-med);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -258,11 +248,11 @@ a {
   }
 
   &__sub {
-    color: $color-dark;
+    color: colors.$color-dark;
     font-size: clamp(0.55rem, 0.55rem + 1vmin, 1.1rem);
     font-weight: 600;
     line-height: 1;
-    letter-spacing: $letter-spacing;
+    letter-spacing: base.$letter-spacing;
     margin-bottom: 0.2em;
   }
 
@@ -279,41 +269,41 @@ a {
   }
 
   &__label {
-    font-family: $ff-heading;
+    font-family: base.$ff-heading;
     font-size: clamp(0.45rem, 0.45rem + 1vmin, 1rem);
     font-weight: 600;
     text-transform: uppercase;
-    color: $color-med;
+    color: colors.$color-med;
   }
 
   &__text {
-    color: $color-black;
+    color: colors.$color-black;
     font-size: clamp(0.45rem, 0.45rem + 1vmin, 1rem);
-    font-family: $ff-heading;
+    font-family: base.$ff-heading;
     font-weight: 500;
-    letter-spacing: $letter-spacing;
+    letter-spacing: base.$letter-spacing;
   }
 
   &__para {
     position: relative;
     margin-bottom: 2.5em;
-    // color: $color-black;
-    font-family: $ff-heading;
+    // color: colors.$color-black;
+    font-family: base.$ff-heading;
     font-weight: 500;
     font-size: clamp(0.55rem, 0.55rem + 1vmin, 1rem);
     line-height: 1.3;
-    letter-spacing: $letter-spacing;
+    letter-spacing: base.$letter-spacing;
 
     &::first-letter {
       float: left;
       padding-right: 0.75rem;
-      color: $color-med;
+      color: colors.$color-med;
       font-family: 'fancy', cursive;
       font-size: 3rem;
       font-size: clamp(2rem, 2rem + 2vmin, 3rem);
       font-weight: 700;
       line-height: 1;
-      text-shadow: -1px 1px 1px $color-dark;
+      text-shadow: -1px 1px 1px colors.$color-dark;
     }
 
   }
@@ -352,15 +342,15 @@ a {
   display: inline;
   font-style: italic;
   font-weight: 600;
-  color: $color-dark;
+  color: colors.$color-dark;
 }
 
 .tooltip__content {
   position: absolute;
   z-index: 10;
-  background-color: $color-dark;
-  color: $color-light;
-  font-family: $ff-body;
+  background-color: colors.$color-dark;
+  color: colors.$color-light;
+  font-family: base.$ff-body;
   font-size: 1rem;
   font-size: clamp(0.7rem, 0.7rem + 1vmin, 1rem);
   font-style: normal;
@@ -388,25 +378,25 @@ a {
   &__label {
     margin-bottom: 0.5rem;
     cursor: pointer;
-    font-family: $ff-heading;
+    font-family: base.$ff-heading;
     font-size: clamp(0.45rem, 0.45rem + 1vmin, 1rem);
     font-weight: 600;
     text-transform: uppercase;
-    color: $color-med;
+    color: colors.$color-med;
   }
 
   &__input {
     background-color: rgb(220, 238, 252);
     cursor: pointer;
-    color: $color-black;
+    color: colors.$color-black;
     padding: 0.6rem;
     // height: 2.5rem;
     width: 100%;
-    font-family: $ff-body;
+    font-family: base.$ff-body;
 
     font-size: 0.9rem;
     border-radius: 50px;
-    border: 2px solid $color-med;
+    border: 2px solid colors.$color-med;
 
   }
 
@@ -417,7 +407,7 @@ a {
   }
 
   &__option {
-    font-family: $ff-body;
+    font-family: base.$ff-body;
   }
 }
 
@@ -431,7 +421,7 @@ a {
   top: 55%;
   transform: translateY(-50%);
   width: 1.2rem;
-  fill: $color-med;
+  fill: colors.$color-med;
   cursor: pointer;
 }
 
@@ -441,52 +431,52 @@ a {
 
 .button {
   // width: 100%;
-  background-color: $color-med;
-  color: $color-light;    
+  background-color: colors.$color-med;
+  color: colors.$color-light;    
   border-radius: 50px;
   padding: 1.5rem 0;
-  font-family: $ff-heading;
+  font-family: base.$ff-heading;
   font-size: 1rem;
   font-size: clamp(1rem, 1rem + 2vmin, 2.5rem);
   font-weight: 800;
-  letter-spacing: $letter-spacing;
-  box-shadow: inset 0px -5px 10px 3px $color-dark;
+  letter-spacing: base.$letter-spacing;
+  box-shadow: inset 0px -5px 10px 3px colors.$color-dark;
   transition: all 0.5s ease-in-out;
   outline: 1px solid transparent;
 
   &:hover,
   &:focus,
   &:focus-visible {
-    background-color: $color-dark;
+    background-color: colors.$color-dark;
   }
 
   &:focus,
   &:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 3px $color-light,
-                0 0 0 6px $color-med;
+    box-shadow: 0 0 0 3px colors.$color-light,
+                0 0 0 6px colors.$color-med;
   }
 
   &:active,
   &__active-tap {
     transform: scale(0.98);
-    background-color: $color-med;
-    box-shadow: inset 0px -5px 3px $color-dark;
+    background-color: colors.$color-med;
+    box-shadow: inset 0px -5px 3px colors.$color-dark;
   }
 
   &:disabled {
     cursor: not-allowed;
     opacity: 0.7;
-    background-color: hsl($color-primary, 5%, 65%);
+    background-color: hsl(colors.$color-primary, 5%, 65%);
     box-shadow: none;
   }
 }
 
 .footer {
-  background-color: $color-dark;
-  color: $color-light;
+  background-color: colors.$color-dark;
+  color: colors.$color-light;
   padding: calc(0.8rem + 1vh);
-  font-family: $ff-heading;
+  font-family: base.$ff-heading;
   font-size: clamp(0.5rem, 0.5rem + 1vmin, 1rem);
 
   display: flex;
@@ -516,7 +506,7 @@ a {
   }
 
   &__icon {
-    fill: $color-light;
+    fill: colors.$color-light;
     margin-top: 0.2em;
     width: clamp(0.6rem, 0.6rem + 1vw, 1.1rem);
     height: clamp(0.6rem, 0.6rem + 1vw, 1.1rem);

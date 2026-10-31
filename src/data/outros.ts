@@ -27,6 +27,10 @@ const outros: Outro[] = [
     origin: "John F. Kennedy",
   },
   {
+    quote: "I only regret that I have but nine lives to give for my country.",
+    origin: "Nathan Hale"
+  },
+  {
     quote: "I used to think I was indecisive. Now I'm not so sure.",
     origin: "Unknown classic",
   },
@@ -425,6 +429,10 @@ const outros: Outro[] = [
   {
     quote: "Despite all my rage, I am still just a cat in a cage.",
     origin: "The Smashing Pumpkins"
+  },
+  {
+    quote: "With so much drama in the LBC, it's kinda hard bein' Snoop C-A-double-T.",
+    origin: "Snoop Dogg"
   },
 
   // Random
